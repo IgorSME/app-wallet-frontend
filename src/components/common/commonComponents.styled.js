@@ -18,15 +18,16 @@ export const ContainerStyled = styled.div`
 export const ButtonStyled = styled.button`
   width: 280px;
   height: 50px;
-  padding: 13px 55px 13px 61px;
-  border-radius: 20px;
-  border: 1px solid ${p => p.theme.colors.btn};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${p => p.theme.radii.normal};
+  border: ${p => p.theme.borders.btn};
   color: ${p => p.theme.colors.btn};
   font-family: ${p => p.theme.fonts.primary};
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: center;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.normal};
   text-transform: uppercase;
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
