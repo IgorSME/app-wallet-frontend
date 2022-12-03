@@ -5,7 +5,7 @@ import {
   LoginFormLabelStyled,
   LoginFormStyled,
   LoginInputWrap,
-  LoginRegisterBtn,
+  LoginRegisterLink,
 } from './LoginForm.styled';
 import { ReactComponent as MailSvg } from 'images/email.svg';
 import { ReactComponent as PasswordSvg } from 'images/password.svg';
@@ -47,7 +47,7 @@ export default function LoginForm() {
             <PasswordSvg />
           </LoginInputWrap>
           <LoginButtonSubmitStyled>Log in</LoginButtonSubmitStyled>
-          <LoginRegisterBtn>Register</LoginRegisterBtn>
+          <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
       </Formik>
     </>

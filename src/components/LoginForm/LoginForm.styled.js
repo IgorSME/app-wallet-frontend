@@ -9,6 +9,7 @@ import {
   ContainerStyled,
 } from 'components/common/commonComponents.styled';
 import { Form, Field } from 'formik';
+import { NavLink } from 'react-router-dom';
 
 export const LoginSectionStyled = styled.section`
   svg {
@@ -101,7 +102,9 @@ export const LoginButtonSubmitStyled = styled(ButtonStyled)`
   }
 `;
 
-export const LoginRegisterBtn = styled(ButtonStyled)`
+export const NavLinkBtn = ButtonStyled.withComponent(NavLink);
+
+export const LoginRegisterLink = styled(NavLinkBtn)`
   margin: 0 auto;
   @media screen and (min-width: 768px) {
     width: 300px;
