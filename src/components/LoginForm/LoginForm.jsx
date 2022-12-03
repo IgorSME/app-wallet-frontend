@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
+import * as yup from 'yup';
 import {
+  LoginFormError,
   LoginButtonSubmitStyled,
   LoginFormInputStyled,
   LoginFormLabelStyled,
@@ -16,14 +18,24 @@ const initialValues = {
   password: '',
 };
 
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required().min(6).max(12),
+});
+
 export default function LoginForm() {
   const handlerSubmit = (values, actions) => {
     console.log(values, actions);
+    actions.resetForm();
   };
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handlerSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handlerSubmit}
+      >
         <LoginFormStyled autoComplete="false">
           <Logo />
           <LoginInputWrap>
@@ -34,6 +46,7 @@ export default function LoginForm() {
               name="email"
               id="login_name_input"
             />
+            <LoginFormError name="email" />
             <MailSvg />
           </LoginInputWrap>
           <LoginInputWrap>
@@ -44,6 +57,7 @@ export default function LoginForm() {
               name="password"
               id="password_name_input"
             />
+            <LoginFormError name="password" />
             <PasswordSvg />
           </LoginInputWrap>
           <LoginButtonSubmitStyled>Log in</LoginButtonSubmitStyled>

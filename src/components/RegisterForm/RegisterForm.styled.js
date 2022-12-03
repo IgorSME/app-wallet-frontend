@@ -5,7 +5,6 @@ import {
   LoginSideBareStyled,
 } from 'components/LoginForm/LoginForm.styled';
 import RegisterDecorationImgTablet from 'images/Register_tablet_decoration_img.png';
-import DecorationImgDesktop from 'images/Register_desktop_decoration_img.png';
 import LoginPurpleBoob from 'images/Login_purple_boob.png';
 import LoginPinkBoob from 'images/Login_pink_boob.png';
 import RegisterDecorationImgDesktop from 'images/Register_desktop_decoration_img.png';

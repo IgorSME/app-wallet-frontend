@@ -1,6 +1,8 @@
 import { Formik } from 'formik';
+import * as yup from 'yup';
 import {
   LoginButtonSubmitStyled,
+  LoginFormError,
   LoginFormInputStyled,
   LoginFormLabelStyled,
   LoginInputWrap,
@@ -19,14 +21,29 @@ const initialValues = {
   name: ``,
 };
 
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required().min(6).max(12),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'passwords must match')
+    .required(),
+  name: yup.string().required().min(1).max(12),
+});
+
 export default function RegisterForm() {
   const handlerSubmit = (values, actions) => {
     console.log(values, actions);
+    actions.resetForm();
   };
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handlerSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handlerSubmit}
+      >
         <RegisterFormStyled autoComplete="false">
           <Logo />
           <LoginInputWrap>
@@ -37,6 +54,7 @@ export default function RegisterForm() {
               name="email"
               id="login_name_input"
             />
+            <LoginFormError name="email" />
             <MailSvg />
           </LoginInputWrap>
           <LoginInputWrap>
@@ -47,6 +65,8 @@ export default function RegisterForm() {
               name="password"
               id="password_name_input"
             />
+            <LoginFormError name="password" />
+
             <PasswordSvg />
           </LoginInputWrap>
           <LoginInputWrap>
@@ -57,6 +77,8 @@ export default function RegisterForm() {
               name="confirmPassword"
               id="confirm_password_name_input"
             />
+            <LoginFormError name="confirmPassword" />
+
             <PasswordSvg />
           </LoginInputWrap>
           <LoginInputWrap>
@@ -67,6 +89,8 @@ export default function RegisterForm() {
               name="name"
               id="name_input"
             />
+            <LoginFormError name="name" />
+
             <Name />
           </LoginInputWrap>
           <LoginButtonSubmitStyled>Register</LoginButtonSubmitStyled>
