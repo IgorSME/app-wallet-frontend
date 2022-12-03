@@ -4,10 +4,12 @@ import { Suspense } from 'react';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
 import Navigation from 'components/Navigation/Navigation';
+import { AppBar } from 'components/AppBar/AppBar';
 
 function App() {
   return (
     <div className="App">
+      <AppBar />
       <Navigation />
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
