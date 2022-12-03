@@ -1,9 +1,11 @@
-import Login from 'pages/Login';
+// import Login from 'pages/Login';
+import Modal from 'components/Modal/Modal.jsx';
 
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <Modal/>
     </>
   );
 }
