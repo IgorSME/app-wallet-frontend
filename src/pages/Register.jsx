@@ -1,25 +1,27 @@
-import LoginForm from 'components/LoginForm/LoginForm';
 import {
-  LoginContainerStyled,
   LoginSectionStyled,
   LoginTitle,
-  LoginSideBareStyled,
   BlurBackGround,
   BlurBackGroundOpacity,
 } from 'components/LoginForm/LoginForm.styled';
+import RegisterForm from 'components/RegisterForm/RegisterForm';
+import {
+  RegisterContainerStyled,
+  RegisterSideBareStyled,
+} from 'components/RegisterForm/RegisterForm.styled';
 
-export default function Login() {
+export default function Register() {
   return (
     <>
       <LoginSectionStyled>
-        <LoginContainerStyled>
-          <LoginSideBareStyled />
+        <RegisterContainerStyled>
+          <RegisterSideBareStyled />
           <LoginTitle>Finance App</LoginTitle>
           <BlurBackGround>
             <BlurBackGroundOpacity />
           </BlurBackGround>
-          <LoginForm />
-        </LoginContainerStyled>
+          <RegisterForm />
+        </RegisterContainerStyled>
       </LoginSectionStyled>
     </>
   );
