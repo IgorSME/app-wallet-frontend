@@ -3,20 +3,23 @@ import {
   LoginButtonSubmitStyled,
   LoginFormInputStyled,
   LoginFormLabelStyled,
-  LoginFormStyled,
   LoginInputWrap,
   LoginRegisterBtn,
-} from './LoginForm.styled';
+} from 'components/LoginForm/LoginForm.styled';
 import { ReactComponent as MailSvg } from 'images/email.svg';
 import { ReactComponent as PasswordSvg } from 'images/password.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
+import { ReactComponent as Name } from 'images/name.svg';
+import { RegisterFormStyled } from './RegisterForm.styled';
 
 const initialValues = {
   email: '',
   password: '',
+  confirmPassword: ``,
+  name: ``,
 };
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const handlerSubmit = (values, actions) => {
     console.log(values, actions);
   };
@@ -24,7 +27,7 @@ export default function LoginForm() {
   return (
     <>
       <Formik initialValues={initialValues} onSubmit={handlerSubmit}>
-        <LoginFormStyled autoComplete="false">
+        <RegisterFormStyled autoComplete="false">
           <Logo />
           <LoginInputWrap>
             <LoginFormLabelStyled htmlFor="login_name_input"></LoginFormLabelStyled>
@@ -46,9 +49,29 @@ export default function LoginForm() {
             />
             <PasswordSvg />
           </LoginInputWrap>
-          <LoginButtonSubmitStyled>Log in</LoginButtonSubmitStyled>
-          <LoginRegisterBtn>Register</LoginRegisterBtn>
-        </LoginFormStyled>
+          <LoginInputWrap>
+            <LoginFormLabelStyled htmlFor="confirm_password_name_input"></LoginFormLabelStyled>
+            <LoginFormInputStyled
+              type="password"
+              placeholder="Confirm password"
+              name="confirmPassword"
+              id="confirm_password_name_input"
+            />
+            <PasswordSvg />
+          </LoginInputWrap>
+          <LoginInputWrap>
+            <LoginFormLabelStyled htmlFor="name_input"></LoginFormLabelStyled>
+            <LoginFormInputStyled
+              type="text"
+              placeholder="First name"
+              name="name"
+              id="name_input"
+            />
+            <Name />
+          </LoginInputWrap>
+          <LoginButtonSubmitStyled>Register</LoginButtonSubmitStyled>
+          <LoginRegisterBtn>Log in</LoginRegisterBtn>
+        </RegisterFormStyled>
       </Formik>
     </>
   );
