@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
+import * as yup from 'yup';
 import {
+  LoginFormError,
   LoginButtonSubmitStyled,
   LoginFormInputStyled,
   LoginFormLabelStyled,
@@ -10,20 +12,35 @@ import {
 import { ReactComponent as MailSvg } from 'images/email.svg';
 import { ReactComponent as PasswordSvg } from 'images/password.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
+import { useDispatch } from 'react-redux';
+import * as authOperations from 'redux/auth/auth-operations';
 
 const initialValues = {
   email: '',
   password: '',
 };
 
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required().min(6).max(12),
+});
+
 export default function LoginForm() {
+  const dispatch = useDispatch();
+
   const handlerSubmit = (values, actions) => {
     console.log(values, actions);
+    dispatch(authOperations.login(values));
+    actions.resetForm();
   };
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handlerSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handlerSubmit}
+      >
         <LoginFormStyled autoComplete="false">
           <Logo />
           <LoginInputWrap>
@@ -34,6 +51,7 @@ export default function LoginForm() {
               name="email"
               id="login_name_input"
             />
+            <LoginFormError name="email" />
             <MailSvg />
           </LoginInputWrap>
           <LoginInputWrap>
@@ -44,9 +62,12 @@ export default function LoginForm() {
               name="password"
               id="password_name_input"
             />
+            <LoginFormError name="password" />
             <PasswordSvg />
           </LoginInputWrap>
-          <LoginButtonSubmitStyled>Log in</LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled type="submit">
+            Log in
+          </LoginButtonSubmitStyled>
           <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
       </Formik>
