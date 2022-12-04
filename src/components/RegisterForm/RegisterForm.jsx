@@ -1,5 +1,3 @@
-import { Formik } from 'formik';
-import * as yup from 'yup';
 import {
   LoginButtonSubmitStyled,
   LoginFormError,
@@ -8,10 +6,14 @@ import {
   LoginInputWrap,
   LoginRegisterLink,
 } from 'components/LoginForm/LoginForm.styled';
+import { Formik } from 'formik';
 import { ReactComponent as MailSvg } from 'images/email.svg';
-import { ReactComponent as PasswordSvg } from 'images/password.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
 import { ReactComponent as Name } from 'images/name.svg';
+import { ReactComponent as PasswordSvg } from 'images/password.svg';
+import { useDispatch } from 'react-redux';
+import * as authOperations from 'redux/auth/auth-operations';
+import * as yup from 'yup';
 import { RegisterFormStyled } from './RegisterForm.styled';
 
 const initialValues = {
@@ -23,7 +25,7 @@ const initialValues = {
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().required().min(6).max(12),
+  password: yup.string(),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], 'passwords must match')
@@ -32,8 +34,12 @@ const schema = yup.object().shape({
 });
 
 export default function RegisterForm() {
-  const handlerSubmit = (values, actions) => {
-    console.log(values, actions);
+  const dispatch = useDispatch();
+
+  const handlerSubmit = async (values, actions) => {
+    const { confirmPassword, ...body } = values;
+    console.log(body);
+    dispatch(authOperations.register(body));
     actions.resetForm();
   };
 
@@ -93,7 +99,9 @@ export default function RegisterForm() {
 
             <Name />
           </LoginInputWrap>
-          <LoginButtonSubmitStyled>Register</LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled type="submit">
+            Register
+          </LoginButtonSubmitStyled>
           <LoginRegisterLink to={'/login'}>Log in</LoginRegisterLink>
         </RegisterFormStyled>
       </Formik>

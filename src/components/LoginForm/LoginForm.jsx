@@ -12,6 +12,8 @@ import {
 import { ReactComponent as MailSvg } from 'images/email.svg';
 import { ReactComponent as PasswordSvg } from 'images/password.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
+import { useDispatch } from 'react-redux';
+import * as authOperations from 'redux/auth/auth-operations';
 
 const initialValues = {
   email: '',
@@ -24,8 +26,11 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+
   const handlerSubmit = (values, actions) => {
     console.log(values, actions);
+    dispatch(authOperations.login(values));
     actions.resetForm();
   };
 
@@ -60,7 +65,9 @@ export default function LoginForm() {
             <LoginFormError name="password" />
             <PasswordSvg />
           </LoginInputWrap>
-          <LoginButtonSubmitStyled>Log in</LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled type="submit">
+            Log in
+          </LoginButtonSubmitStyled>
           <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
       </Formik>
