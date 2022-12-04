@@ -12,6 +12,9 @@ export const GlobalStyles = css`
     font-family: 'Circe', 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   h1,

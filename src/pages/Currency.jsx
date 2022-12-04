@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import { fetchCurrency, getCorrectCurrency } from 'helpers';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+import CurrencyTable from 'components/CurrencyTable/CurrencyTable';
 
 const CURRENCY_KEY = 'currency';
 const CURRENCY_TIME_KEY = 'currencyTime';
 const REFRESH_TIME = 36000;
 
 export default function Currency() {
-  const [currency, setCurrency] = useState([]);
+  const [currency, setCurrency] = useState(null);
 
   const [currencyStorage, setCurrencyStorage] = useLocalStorage(
     CURRENCY_KEY,
@@ -37,27 +38,12 @@ export default function Currency() {
     };
 
     getCurrency();
-  }, []);
+  }, [
+    currencyStorage,
+    currencyTimeStorage,
+    setCurrencyStorage,
+    setCurrencyTimeStorage,
+  ]);
 
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Currency</th>
-          <th>Purchase</th>
-          <th>Sale</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currency &&
-          currency.map(({ ccy, buy, sell }) => (
-            <tr key={ccy}>
-              <td>{ccy}</td>
-              <td>{Number(buy)}</td>
-              <td>{Number(sell)}</td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
-  );
+  return currency && <CurrencyTable currency={currency} />;
 }
