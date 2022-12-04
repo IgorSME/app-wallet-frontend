@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { fetchCurrency, getCorrectCurrency } from 'helpers';
 import { useLocalStorage } from 'hooks/useLocalStorage';
-import CurrencyTable from 'components/CurrencyTable/CurrencyTable';
+import { CurrencyTable } from 'components';
 
 const CURRENCY_KEY = 'currency';
 const CURRENCY_TIME_KEY = 'currencyTime';

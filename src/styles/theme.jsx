@@ -57,6 +57,7 @@ export const theme = Object.freeze({
   },
 
   radii: {
+    extraSmall: '2px',
     small: '6px',
     normal: '20px',
     large: '30px',
