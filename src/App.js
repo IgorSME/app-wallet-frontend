@@ -4,7 +4,7 @@ import Modal from 'components/Modal/Modal.jsx';
 function App() {
   return (
     <>
-      <Login /> */}
+      <Login /> 
       <Modal/>
     </>
   );
