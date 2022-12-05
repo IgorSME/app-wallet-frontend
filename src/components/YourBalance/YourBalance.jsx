@@ -1,8 +1,18 @@
+import {
+  Section,
+  Container,
+  Text,
+  Score,
+} from 'components/YourBalance/YourBalance.styled';
+
 const YourBalance = () => {
   return (
-    <>
-      <p>Your balance</p>
-    </>
+    <Section>
+      <Container>
+        <Text>Your balance</Text>
+        <Score>₴ 24 000.00</Score>
+      </Container>
+    </Section>
   );
 };
 
