@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <AppBar />
-      {/* <Navigation /> */}
+      <Navigation />
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
           <Route element={<PublicRoute />}>
@@ -34,7 +34,7 @@ function App() {
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
       </Suspense>
-      <Modal/>
+      <Modal />
     </div>
   );
 }

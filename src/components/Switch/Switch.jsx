@@ -1,14 +1,13 @@
 import { SwitchContainer } from "./Switch.styled";
 
+export default function Switch({ id, isToggled, onToggle}) {
 
-export default function Switch({ id }) {
-    
     return (
         <SwitchContainer>
-            <p>Income</p>
-            <input type="checkbox" id={id} />
-            <label htmlFor={id}></label>
-            <p>Expense</p>
+            <p style={isToggled ? { color: '#E0E0E0' } : { color: '#24CCA7' }}>Income</p>
+            <input type="checkbox" id={id} checked={isToggled} onChange={onToggle} />
+            <label htmlFor={id}/>
+            <p style={isToggled ? { color: '#FF6596' } : { color: '#E0E0E0' }}>Expense</p>
         </SwitchContainer>
     );
 }

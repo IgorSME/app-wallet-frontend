@@ -1,10 +1,25 @@
 import styled from '@emotion/styled';
 import { ReactComponent as SelectIcon } from '../../images/select.svg';
 import { ReactComponent as CloseBtn } from '../../images/closeBtn.svg';
+
 import {
   ButtonStyled,
 } from 'components/common/commonComponents.styled';
-import { type } from '@testing-library/user-event/dist/type';
+
+
+export const ModalBackdrop = styled.div`
+@media screen and (min-width: 768px) {
+z-index: 10;
+position: fixed;
+top: 0;
+left: 0;
+overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    background-color: ${p => p.theme.colors.backdropBackground};
+    transition: all .8s;
+}
+`;
 
 export const CloseBtnIcon = styled(CloseBtn)`
 &:hover * {
@@ -20,7 +35,6 @@ margin-left: 210px;
 `;
 
 export const ModalContainerStyled = styled.div`
-max-height: 100%;
 width: 320px;
 margin: 0 auto;
 position: relative;
@@ -35,19 +49,13 @@ background-color: ${p => p.theme.colors.modalBackground};
   width: 540px;
   height: 603px;
   border-radius: ${p => p.theme.radii.normal};
+  top: 20%;
+  // left: 50%;
+  // transform: translate(-50%,-50%);
 }
 `;
 
-export const ModalBackdrop = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-overflow-y: scroll;
-    width: 100%;
-    height: 100%;
-    background-color: ${p => p.theme.colors.backdropBackground};
-    transition: all .8s;
-`
+
 export const ModalCloseBtn = styled.button`
 display: none;
 @media screen and (min-width: 768px) {
@@ -73,12 +81,12 @@ line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.primaryText};
 text-align: center;
 margin-bottom: 40px;
-margin-top: 80px;
+margin-top: 10px;
 
 @media screen and (min-width: 768px) {
   margin-top: 40px;
   font-size: ${p => p.theme.fontSizes.l};
-}
+   }
 `;
 
 export const SelectWrapper = styled.div`
@@ -114,23 +122,6 @@ text-align: left;
 @media screen and (min-width: 768px) {
   width: 394px;
 }
-
-// &::after{
-//   content: "";
-//   position: absolute;
-//   top: 50%;
-//   right: 15px;
-//   transform: translateY(-50%);
-
-//   width: 0;
-//   height: 0;
-//   border-width: 10.4px 6px 0 6px;
-//   border-color: #79849B transparent transparent transparent;
-//   border-style: solid;
-
-//   pointer-events: none;
-//   cursor: pointer;
-// }
 `;
 
 export const SelectCategoryList = styled.ul`
@@ -204,39 +195,39 @@ outline: none;
 }
 `;
 
-export const DateSelector = styled.input`
-position: relative;
-width: 280px;
-height: 32px;
-background-color: ${p => p.theme.colors.barBackground};
-font-family: ${p => p.theme.fonts.primary};
-font-weight: ${p => p.theme.fontWeights.normal};
-font-size: ${p => p.theme.fontSizes.m};
-line-height: ${p => p.theme.lineHeights.normal};
-color: ${p => p.theme.colors.primaryText};
-border-bottom: ${p => p.theme.borders.radioBtn};
-padding-left: 20px;
-margin-bottom: 40px;
-margin-left: 10px;
-margin-right: 10px;
-border-top: none;
-border-left: none;
-border-right: none;
-outline: none;
+// export const DateSelector = styled.input`
+// position: relative;
+// width: 280px;
+// height: 32px;
+// background-color: ${p => p.theme.colors.barBackground};
+// font-family: ${p => p.theme.fonts.primary};
+// font-weight: ${p => p.theme.fontWeights.normal};
+// font-size: ${p => p.theme.fontSizes.m};
+// line-height: ${p => p.theme.lineHeights.normal};
+// color: ${p => p.theme.colors.primaryText};
+// border-bottom: ${p => p.theme.borders.radioBtn};
+// padding-left: 20px;
+// margin-bottom: 40px;
+// margin-left: 10px;
+// margin-right: 10px;
+// border-top: none;
+// border-left: none;
+// border-right: none;
+// outline: none;
 
 
-@media screen and (min-width: 768px) {
-  width: 182px;
-  margin-left: 0;
-}
-
-// svg {
-//     width: 18px;
-//     height: 20px;
-//     color: ${p => p.theme.colors.activeIcon};
-//     margin-left: 137px;
+// @media screen and (min-width: 768px) {
+//   width: 182px;
+//   margin-left: 0;
 // }
-`;
+
+// // svg {
+// //     width: 18px;
+// //     height: 20px;
+// //     color: ${p => p.theme.colors.activeIcon};
+// //     margin-left: 137px;
+// // }
+// `;
 
 export const Comments = styled.input`
 width: 280px;
@@ -275,7 +266,3 @@ margin: 0 auto;
     margin-bottom: 20px;
   }
 `;
-
-// @media screen and (min-width: 768px)
-
-// @media screen and (min-width: 1280px)

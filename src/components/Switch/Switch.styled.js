@@ -72,10 +72,4 @@ display: flex;
                 background-image: url(${ExpensePng});
                 left: 40px;
               }}
-        
-        input:checked {
-           & * {
-                color: blue;
-            }
-        }
 `;
