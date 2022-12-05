@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useId } from "react";
 
- 
+import Calendar from '../Calendar/Calendar'; 
 import Switch from "components/Switch/Switch";
 import {
     ModalBackdrop,
@@ -21,7 +21,7 @@ import {
     ModalButtonStyled
 } from "./ModalAddTransaction.styled";
 
-import Calendar from '../Calendar/Calendar';
+
 
 
 export default function ModalAddTransaction({onClose: handleClose}) {
@@ -41,13 +41,16 @@ export default function ModalAddTransaction({onClose: handleClose}) {
             <ModalTitle>Add transaction</ModalTitle>
                     <Switch id={inputId} isToggled={isToggled} onToggle={()=>setIsToggled(!isToggled)} />
             <SelectWrapper>     
-                <SelectCategoryButton onClick={(e) => setIsActive(!isActive)}>{selected}
+                        <SelectCategoryButton 
+                            onClick={(e) => setIsActive(!isActive)}>
+                            {selected }
                 <SelectIconSvg/>
                 </SelectCategoryButton>
                 {isActive && (
                     <SelectCategoryList >
                         {options.map((option) => (
-                            <SelectCategoryItem onClick={(e) => {
+                            <SelectCategoryItem
+                                onClick={(e) => {
                                 setSelected(option);
                                 setIsActive(false);
                             }}>{option}</SelectCategoryItem>

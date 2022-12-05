@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import { ReactComponent as SelectIcon } from '../../images/select.svg';
 import { ReactComponent as CloseBtn } from '../../images/closeBtn.svg';
 
@@ -24,13 +25,6 @@ overflow-y: scroll;
 export const CloseBtnIcon = styled(CloseBtn)`
 &:hover * {
 stroke: #24CCA7;
-}
-`
-
-export const SelectIconSvg = styled(SelectIcon)`
-margin-left: 95px;
-@media screen and (min-width: 768px) {
-margin-left: 210px;
 }
 `;
 
@@ -124,6 +118,14 @@ text-align: left;
 }
 `;
 
+export const SelectIconSvg = styled(SelectIcon)`
+margin-left: 95px;
+
+@media screen and (min-width: 768px) {
+margin-left: 210px;
+}
+`;
+
 export const SelectCategoryList = styled.ul`
 z-index: 1;
 position: absolute;
@@ -136,6 +138,7 @@ width: 280px;
 background-color: ${p => p.theme.colors.selectMenuBackground};
 box-shadow: ${p => p.theme.shadows.selectMenu};
 border-radius: ${p => p.theme.radii.normal};
+backdrop-filter: blur(25px);
 
 @media screen and (max-width: 767px) {
   left: 0;
@@ -158,6 +161,8 @@ cursor: pointer;
 &:hover,
 &:focus {
     color: ${p => p.theme.colors.expense};
+    background-color: ${p => p.theme.colors.barBackground};
+    
 }
 `;
 
