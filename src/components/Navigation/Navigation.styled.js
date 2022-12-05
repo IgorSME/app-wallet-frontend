@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 
-export const NavigationSectionStyled = styled.section`
+export const Section = styled.section`
   margin: 0 64px;
 
   a.active {
@@ -20,13 +21,14 @@ export const NavigationSectionStyled = styled.section`
       fill: #4a56e2;
     }
 
-    @media screen and (min-width: 768px) {
-      font-size: 18px;
-    }
+    /* @media screen and (min-width: 768px) {
+      width: 18px;
+      height: 18px;
+    } */
   }
 `;
 
-export const NavigationContainerStyled = styled(ContainerStyled)`
+export const Container = styled(ContainerStyled)`
   padding-top: 12px;
   padding-bottom: 12px;
   margin: 0 auto;
@@ -38,35 +40,35 @@ export const NavigationContainerStyled = styled(ContainerStyled)`
   }
 `;
 
-export const NavigationListStyled = styled.div`
-  @media screen and (min-width: 320px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: auto;
-    list-style: none;
-  }
+export const List = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: auto;
+  list-style: none;
 
   @media screen and (min-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     margin-right: auto;
     width: auto;
   }
 `;
 
-export const NavigationItemStyled = styled(ContainerStyled)`
-  @media screen and (min-width: 320px) {
-    &:not(:last-child) {
-      margin-right: 36px;
-    }
+export const Item = styled.li`
+  &:not(:last-child) {
+    margin-right: 36px;
   }
+
   @media screen and (min-width: 768px) {
     margin: 0;
-    margin-right: 0;
     margin-left: 32px;
     width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: left;
 
     &:last-child {
       display: none;
@@ -78,10 +80,21 @@ export const NavigationItemStyled = styled(ContainerStyled)`
   }
 `;
 
-export const NavigationItemTextStyled = styled(ContainerStyled)`
-  @media screen and (min-width: 320px) {
-    display: none;
-    width: auto;
+export const ItemText = styled.p`
+  display: none;
+  width: 100px;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    text-align: left;
+    margin-left: 20px;
+  }
+`;
+
+export const ItemLink = styled(NavLink)`
+  @media screen and (min-width: 768px) {
+    width: 18px;
+    height: 18px;
   }
 `;
 
