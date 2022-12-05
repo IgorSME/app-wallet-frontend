@@ -23,8 +23,8 @@ function App() {
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
           <Route element={<PublicRoute />}>
-            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<h1>Home page</h1>} />
