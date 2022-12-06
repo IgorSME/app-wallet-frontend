@@ -21,7 +21,7 @@ export const theme = Object.freeze({
     background: 'rgb(231, 234, 242)',
     barBackground: '#ffff',
     homeBackground: 'rgba(255, 255, 255, 0.4)',
-    modalBackground: '#fffff',
+    modalBackground: '#ffffff',
     selectMenuBackground: 'rgba(255, 255, 255, 0.7)',
     backdropBackground: 'rgba(0, 0, 0, 0.25)',
   },
