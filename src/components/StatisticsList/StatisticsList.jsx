@@ -12,39 +12,7 @@ import {
   ListSumNumber,
 } from './StatisticsList.styled';
 
-const example = {
-  allCategories: [
-    {
-      categoryName: 'Car',
-      totalSum: 20548,
-    },
-    {
-      categoryName: 'Education',
-      totalSum: 6548,
-    },
-    {
-      categoryName: 'Entertainment',
-      totalSum: 215,
-    },
-    {
-      categoryName: 'Leisure',
-      totalSum: 751,
-    },
-  ],
-  typesTotalSum: [
-    {
-      typeName: 'expense',
-      totalSum: 548631,
-    },
-    {
-      typeName: 'income',
-      totalSum: 54863,
-    },
-  ],
-};
-
-export function StatisticsList(arr) {
-  const { allCategories, typesTotalSum } = example;
+export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
   return (
     <Box>
       <WrapperHeader>
@@ -52,10 +20,10 @@ export function StatisticsList(arr) {
         <p>Sum</p>
       </WrapperHeader>
       <ListCategories>
-        {allCategories.map(({ categoryName, totalSum }) => (
+        {allCategories.map(({ categoryName, totalSum, color }) => (
           <ListItem key={categoryName}>
             <Wrapper>
-              <Color></Color>
+              <Color color={color}></Color>
               <p>{categoryName}</p>
             </Wrapper>
             <p>{totalSum}</p>

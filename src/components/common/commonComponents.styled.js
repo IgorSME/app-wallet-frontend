@@ -15,6 +15,17 @@ export const ContainerStyled = styled.div`
   }
 `;
 
+export const ContainerBoxStyled = styled(ContainerStyled)`
+  padding: 0 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 0 18px;
+  }
+`;
+
 export const ButtonStyled = styled.button`
   width: 280px;
   height: 50px;

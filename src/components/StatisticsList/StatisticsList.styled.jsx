@@ -90,11 +90,8 @@ export const Color = styled.div`
   width: ${p => p.theme.spacing(6)};
   margin-right: ${p => p.theme.spacing(4)};
 
-  border: 1px solid ${p => p.theme.colors.accent};
   border-radius: ${p => p.theme.radii.extraSmall};
-
-  /* принимать цвет в пропсах */
-  background-color: ${p => p.theme.colors.accent};
+  background-color: ${p => p.color};
 `;
 
 export const ListSum = styled.ul`
