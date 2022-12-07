@@ -4,7 +4,6 @@ import YourBalance from 'components/YourBalance/YourBalance';
 const Home = () => {
   return (
     <>
-      <h1>Home page</h1>
       <YourBalance />
       <BalanceTable />
     </>
