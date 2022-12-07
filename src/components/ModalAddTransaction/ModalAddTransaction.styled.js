@@ -9,6 +9,16 @@ import {
 
 
 export const ModalBackdrop = styled.div`
+z-index: 10;
+position: absolute;
+top: 60px;
+left: 0;
+overflow-y: scroll;
+    min-width: 320px;
+    height: 100vh;
+    background-color: ${p => p.theme.colors.backdropBackground};
+    transition: all .8s;
+
 @media screen and (min-width: 768px) {
 z-index: 10;
 position: fixed;
@@ -29,13 +39,14 @@ stroke: #24CCA7;
 `;
 
 export const ModalContainerStyled = styled.div`
-width: 320px;
+min-width: 320px;
+height: 100vh;
 margin: 0 auto;
 position: relative;
 top: 0;
-bottom: 0;
+// bottom: 0;
 left: 0;
-right: 0;
+// right: 0;
 padding: 10px;
 background-color: ${p => p.theme.colors.modalBackground};
 
