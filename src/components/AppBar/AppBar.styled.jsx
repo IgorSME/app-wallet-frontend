@@ -4,7 +4,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
+  width: 100%;
   height: 60px;
   padding: 15px 20px;
 
@@ -76,6 +76,6 @@ export const Divider = styled.div`
     display: block;
     width: 0px;
     height: 30px;
-    border: 1px solid #bdbdbd;
+    outline: 1px solid #bdbdbd;
   }
 `;
