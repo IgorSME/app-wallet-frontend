@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import './fonts.css';
 
 export const GlobalStyles = css`
   html {
@@ -6,34 +7,14 @@ export const GlobalStyles = css`
     scroll-behavior: smooth;
   }
 
-  @font-face {
-    font-family: 'Circe';
-    src: url('../assets/fonts/Circe-Regular.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'Circe';
-    font-weight: 700;
-    src: url('../assets/fonts/Circe-Bold.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-family: 'Poppins';
-    font-weight: 700;
-    src: url('../assets/fonts/Poppins-Bold.ttf') format('truetype');
-  }
-
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Circe', 'Poppins',
-      'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Circe', 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   h1,

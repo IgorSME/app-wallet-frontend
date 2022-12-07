@@ -18,10 +18,10 @@ export const theme = Object.freeze({
     white: '#ffffff',
     dark: '#212121',
 
-    background: '#E7EAF2',
+    background: 'rgb(231, 234, 242)',
     barBackground: '#ffff',
-    homeBackground: 'rgba(255, 255, 255, 0.4',
-    modalBackground: '#fffff',
+    homeBackground: 'rgba(255, 255, 255, 0.4)',
+    modalBackground: '#ffffff',
     selectMenuBackground: 'rgba(255, 255, 255, 0.7)',
     backdropBackground: 'rgba(0, 0, 0, 0.25)',
   },
