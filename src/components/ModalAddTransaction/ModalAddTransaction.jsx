@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useId } from "react";
 
+
 import Calendar from '../Calendar/Calendar'; 
 import Switch from "components/Switch/Switch";
 import {
@@ -65,7 +66,7 @@ export default function ModalAddTransaction({onClose: handleClose}) {
                 </AmoundDateWrapper>
             <Comments placeholder="Comment"/>
                         <ModalButtonStyled>ADD</ModalButtonStyled>
-                        <ModalButtonStyled>CANCEL</ModalButtonStyled>
+                        <ModalButtonStyled onClick={handleClose}>CANCEL</ModalButtonStyled>
             </ModalContainerStyled>
         </ModalBackdrop>
     </>

@@ -6,7 +6,6 @@ import PublicRoute from 'components/PublicRoute/PublicRoute';
 import Navigation from 'components/Navigation/Navigation';
 
 import { AppBar } from 'components/AppBar/AppBar';
-import Modal from 'components/Modal/Modal';
 
 import Currency from 'pages/Currency';
 
@@ -35,7 +34,6 @@ function App() {
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
       </Suspense>
-      <Modal />
     </div>
   );
 }
