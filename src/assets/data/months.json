@@ -1,14 +1,14 @@
 [
-  { "name": "january", "number": 1 },
-  { "name": "february", "number": 2 },
-  { "name": "march", "number": 3 },
-  { "name": "april", "number": 4 },
-  { "name": "may", "number": 5 },
-  { "name": "june", "number": 6 },
-  { "name": "july", "number": 7 },
-  { "name": "august", "number": 8 },
-  { "name": "september", "number": 9 },
-  { "name": "october", "number": 10 },
-  { "name": "november", "number": 11 },
-  { "name": "december", "number": 12 }
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december"
 ]

@@ -2,11 +2,13 @@ import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import {
+  Section,
+  Container,
+  Title,
   Chart,
-  ContainerStyled,
-  ContainerBoxStyled,
   StatisticsFilterSelect,
   StatisticsList,
+  StatisticsWrapper,
 } from 'components';
 
 const example = {
@@ -14,7 +16,7 @@ const example = {
     {
       categoryName: 'Basic expenses',
       color: '#FED057',
-      totalSum: 20548,
+      totalSum: 20548.789,
     },
     {
       categoryName: 'Products',
@@ -24,7 +26,7 @@ const example = {
     {
       categoryName: 'Car',
       color: '#FD9498',
-      totalSum: 6484,
+      totalSum: 6484.541,
     },
     {
       categoryName: 'Self care',
@@ -39,12 +41,12 @@ const example = {
     {
       categoryName: 'Household products',
       color: '#4A56E2',
-      totalSum: 35000,
+      totalSum: 35000.785,
     },
     {
       categoryName: 'Education',
       color: '#81E1FF',
-      totalSum: 6548,
+      totalSum: 6548.8165,
     },
     {
       categoryName: 'Entertainment',
@@ -60,11 +62,11 @@ const example = {
   typesTotalSum: [
     {
       typeName: 'expense',
-      totalSum: 548631,
+      totalSum: 548631.5874,
     },
     {
       typeName: 'income',
-      totalSum: 54863,
+      totalSum: 54863.415,
     },
   ],
 };
@@ -85,17 +87,27 @@ export default function Statistics() {
     setSearchParams(nextParams);
   };
 
+  const statisticBalans = () => {
+    return (
+      example.typesTotalSum[1].totalSum - example.typesTotalSum[0].totalSum
+    );
+  };
+
   return (
-    <ContainerStyled as={'section'}>
-      <ContainerBoxStyled>
-        <h1>Statistics</h1>
-        <Chart dataDiagram={example.allCategories} />
-        <StatisticsFilterSelect
-          handleChangeSearch={handleChangeSearch}
-          currentFilter={{ year, month }}
-        />
-        <StatisticsList data={example} />
-      </ContainerBoxStyled>
-    </ContainerStyled>
+    <Section>
+      <Container>
+        <StatisticsWrapper>
+          <Title>Statistics</Title>
+          <Chart dataDiagram={example.allCategories} sum={statisticBalans()} />
+        </StatisticsWrapper>
+        <StatisticsWrapper>
+          <StatisticsFilterSelect
+            handleChangeSearch={handleChangeSearch}
+            currentFilter={{ year, month }}
+          />
+          <StatisticsList data={example} />
+        </StatisticsWrapper>
+      </Container>
+    </Section>
   );
 }

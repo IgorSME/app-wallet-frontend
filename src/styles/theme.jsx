@@ -16,13 +16,13 @@ export const theme = Object.freeze({
     accentBtn: '#ffffff',
 
     white: '#ffffff',
-    dark: '#212121',
+    dark: '#000000',
 
     background: 'rgb(231, 234, 242)',
     barBackground: '#ffff',
     homeBackground: 'rgba(255, 255, 255, 0.4)',
-    modalBackground: '#fffff',
-    selectMenuBackground: 'rgba(255, 255, 255, 0.7)',
+    modalBackground: '#ffffff',
+    selectMenuBackground: 'rgba(255, 255, 255, 0.8)',
     backdropBackground: 'rgba(0, 0, 0, 0.25)',
   },
 

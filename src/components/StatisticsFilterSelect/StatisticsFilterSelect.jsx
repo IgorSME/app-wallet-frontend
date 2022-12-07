@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Box,
   Wrapper,
-  SelectStyled,
   IconStyled,
-  OptionStyled,
+  SelectButton,
+  SelectList,
+  SelectItem,
 } from './StatisticsFilterSelect.styled';
 import sprite from 'images/svg-sprite.svg';
 
@@ -14,48 +15,83 @@ import months from 'assets/data/months.json';
 export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
   const { year, month } = currentFilter;
 
+  const [isActiveMonth, setIsActiveMonth] = useState(false);
+  const [isActiveYear, setIsActiveYear] = useState(false);
+
+  const [selectedMonth, setSelectedMonth] = useState(month ?? 'Month');
+  const [selectedYear, setSelectedYear] = useState(year ?? 'Year');
+
   const thisYear = new Date().getFullYear();
   const yearsList = Array.from(new Array(6), (_, index) => thisYear - index);
 
   const handleChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const name = e.target.attributes.name.textContent;
+    const value = e.target.textContent;
+
+    if (name === 'month') {
+      setSelectedMonth(value);
+    } else {
+      setSelectedYear(value);
+    }
 
     handleChangeSearch(name, value);
+    setIsActiveMonth(false);
+    setIsActiveYear(false);
   };
+
+  // const closeSelect = e => {
+  //   setIsActiveMonth(false);
+  //   setIsActiveYear(false);
+  // };
 
   return (
     <Box>
       <Wrapper>
-        <SelectStyled onChange={handleChange} name="month" value={month}>
-          <OptionStyled hidden value="">
-            Month
-          </OptionStyled>
-          {months.map(({ name }) => (
-            <OptionStyled key={name} value={name}>
-              {name}
-            </OptionStyled>
-          ))}
-        </SelectStyled>
+        <SelectButton
+          onClick={() => {
+            if (isActiveYear) setIsActiveYear(!isActiveYear);
+            setIsActiveMonth(!isActiveMonth);
+          }}
+        >
+          {selectedMonth}
+          <IconStyled>
+            <use href={`${sprite}#icon-vector`}></use>
+          </IconStyled>
+        </SelectButton>
 
-        <IconStyled>
-          <use href={`${sprite}#icon-vector`}></use>
-        </IconStyled>
+        {isActiveMonth && (
+          <SelectList>
+            {months.map(month => (
+              <SelectItem key={month} name="month" onClick={handleChange}>
+                {month}
+              </SelectItem>
+            ))}
+          </SelectList>
+        )}
       </Wrapper>
+
       <Wrapper>
-        <SelectStyled onChange={handleChange} name="year" value={year}>
-          <OptionStyled hidden value={''}>
-            Year
-          </OptionStyled>
-          {yearsList.map(item => (
-            <OptionStyled key={item} value={item}>
-              {item}
-            </OptionStyled>
-          ))}
-        </SelectStyled>
-        <IconStyled>
-          <use href={`${sprite}#icon-vector`}></use>
-        </IconStyled>
+        <SelectButton
+          onClick={() => {
+            if (isActiveMonth) setIsActiveMonth(!isActiveMonth);
+            setIsActiveYear(!isActiveYear);
+          }}
+        >
+          {selectedYear}
+          <IconStyled>
+            <use href={`${sprite}#icon-vector`}></use>
+          </IconStyled>
+        </SelectButton>
+
+        {isActiveYear && (
+          <SelectList>
+            {yearsList.map(item => (
+              <SelectItem key={item} name="year" onClick={handleChange}>
+                {item}
+              </SelectItem>
+            ))}
+          </SelectList>
+        )}
       </Wrapper>
     </Box>
   );

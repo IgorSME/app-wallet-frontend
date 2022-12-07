@@ -12,6 +12,8 @@ import {
   ListSumNumber,
 } from './StatisticsList.styled';
 
+import { transformNumber } from 'helpers';
+
 export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
   return (
     <Box>
@@ -26,7 +28,7 @@ export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
               <Color color={color}></Color>
               <p>{categoryName}</p>
             </Wrapper>
-            <p>{totalSum}</p>
+            <p>{transformNumber(totalSum)}</p>
           </ListItem>
         ))}
       </ListCategories>
@@ -34,7 +36,9 @@ export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
         {typesTotalSum.map(({ typeName, totalSum }) => (
           <ListSumItem key={typeName}>
             <ListSumText>{typeName}:</ListSumText>
-            <ListSumNumber textColor={typeName}>{totalSum}</ListSumNumber>
+            <ListSumNumber textColor={typeName}>
+              {transformNumber(totalSum)}
+            </ListSumNumber>
           </ListSumItem>
         ))}
       </ListSum>

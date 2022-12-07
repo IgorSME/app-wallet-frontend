@@ -8,7 +8,7 @@ import {
   ButtonStyled,
   ContainerStyled,
 } from 'components/common/commonComponents.styled';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 import { NavLink } from 'react-router-dom';
 
 export const LoginSectionStyled = styled.section`
@@ -167,3 +167,23 @@ export const BlurBackGroundOpacity = styled.div`
     background-color: ${p => p.theme.colors.homeBackground};
   }
 `;
+
+export const LoginErrorText = styled.p`
+  color: red;
+  position: absolute;
+  top: 38px;
+  left: 34px;
+  font-family: ${p => p.theme.fonts.title};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: 12px;
+  line-height: ${p => p.theme.lineHeights.normal};
+`;
+
+export const LoginFormError = ({ name }) => {
+  return (
+    <ErrorMessage
+      name={name}
+      render={message => <LoginErrorText>{message}</LoginErrorText>}
+    />
+  );
+};
