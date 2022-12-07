@@ -1,18 +1,24 @@
 import {
   Section,
-  Container,
+  ContainerTable,
   Table,
   Thead,
   TheadTr,
   TheadTrTh,
   Tbody,
   TbodyTr,
+  ContainerList,
+  List,
+  Element,
+  Item,
+  ItemFirstChild,
+  ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
 
 const BalanceTable = () => {
   return (
     <Section>
-      <Container>
+      <ContainerTable>
         <Table>
           <Thead>
             <TheadTr>
@@ -52,7 +58,63 @@ const BalanceTable = () => {
             </TbodyTr>
           </Tbody>
         </Table>
-      </Container>
+      </ContainerTable>
+      <ContainerList>
+        <List>
+          <Element>
+            <Item>
+              <ItemFirstChild>Date</ItemFirstChild>
+              <ItemLastChild>04.01.19</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Type</ItemFirstChild>
+              <ItemLastChild> - </ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Category</ItemFirstChild>
+              <ItemLastChild>Other</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Comment</ItemFirstChild>
+              <ItemLastChild>Gift for your wife</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Sum</ItemFirstChild>
+              <ItemLastChild>300.00</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Balance</ItemFirstChild>
+              <ItemLastChild>6 900.00</ItemLastChild>
+            </Item>
+          </Element>
+          <Element>
+            <Item>
+              <ItemFirstChild>Date</ItemFirstChild>
+              <ItemLastChild>04.01.19</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Type</ItemFirstChild>
+              <ItemLastChild> - </ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Category</ItemFirstChild>
+              <ItemLastChild>Other</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Comment</ItemFirstChild>
+              <ItemLastChild>Gift for your wife</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Sum</ItemFirstChild>
+              <ItemLastChild>300.00</ItemLastChild>
+            </Item>
+            <Item>
+              <ItemFirstChild>Balance</ItemFirstChild>
+              <ItemLastChild>6 900.00</ItemLastChild>
+            </Item>
+          </Element>
+        </List>
+      </ContainerList>
     </Section>
   );
 };
