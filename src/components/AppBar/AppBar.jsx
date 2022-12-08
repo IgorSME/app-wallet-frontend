@@ -1,4 +1,5 @@
 import { Logo } from 'components/Logo/Logo';
+import { ContainerStyled } from 'components/common/commonComponents.styled';
 import {
   Header,
   UserMenu,
@@ -11,16 +12,18 @@ import { ExitIcon } from './ExitIcon';
 
 export const AppBar = () => {
   return (
-    <Header>
-      <Logo />
-      <UserMenu>
-        <UserName>Dima</UserName>
-        <Divider />
-        <ExitBtn onClick={() => {}}>
-          <ExitIcon />
-          <ExitText>Exit</ExitText>
-        </ExitBtn>
-      </UserMenu>
-    </Header>
+    <ContainerStyled>
+      <Header>
+        <Logo />
+        <UserMenu>
+          <UserName>Dima</UserName>
+          <Divider />
+          <ExitBtn onClick={() => {}}>
+            <ExitIcon />
+            <ExitText>Exit</ExitText>
+          </ExitBtn>
+        </UserMenu>
+      </Header>
+    </ContainerStyled>
   );
 };

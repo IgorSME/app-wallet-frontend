@@ -5,10 +5,12 @@ export const LogoBox = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 15.56px;
+  height: 30px;
 
   @media screen and (min-width: 768px) {
     width: 181px;
     gap: 20px;
+    height: 40px;
   }
 `;
 
