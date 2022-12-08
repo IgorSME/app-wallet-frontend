@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { ReactComponent as SelectIcon } from '../../images/select.svg';
 import { ReactComponent as CloseBtn } from '../../images/closeBtn.svg';
+import { ReactComponent as CalendarSvg } from '../../images/calendar.svg';
 
 import {
   ButtonStyled,
@@ -39,7 +40,7 @@ stroke: #24CCA7;
 `;
 
 export const ModalContainerStyled = styled.div`
-min-width: 320px;
+width: 100vw;
 height: 100vh;
 margin: 0 auto;
 position: relative;
@@ -96,19 +97,16 @@ margin-top: 10px;
 
 export const SelectWrapper = styled.div`
 position: relative;
-
-@media screen and (min-width: 768px) {
-  display: flex;
+display: flex;
 justify-content: center;
-}
+margin-bottom: 40px;
+margin-left: 10px;
+margin-right: 10px;
 `;
 
 export const SelectCategoryButton = styled.button`
 user-select: none;
 position: relative;
-margin-bottom: 40px;
-margin-left: 10px;
-margin-right: 10px;
 width: 280px;
 height: 32px;
 background-color: ${p => p.theme.colors.barBackground};
@@ -131,7 +129,9 @@ text-align: left;
 
 export const SelectIconSvg = styled(SelectIcon)`
 margin-left: 95px;
-
+position: absolute;
+    top: 10px;
+    right: 10px;
 @media screen and (min-width: 768px) {
 margin-left: 210px;
 }
@@ -150,10 +150,6 @@ background-color: ${p => p.theme.colors.selectMenuBackground};
 box-shadow: ${p => p.theme.shadows.selectMenu};
 border-radius: ${p => p.theme.radii.normal};
 backdrop-filter: blur(25px);
-
-@media screen and (max-width: 767px) {
-  left: 0;
-}
 
 @media screen and (min-width: 768px) {
   width: 394px;
@@ -177,10 +173,82 @@ cursor: pointer;
 }
 `;
 
+export const CommentWrapper = styled.div`
+display: flex;
+justify-content: center;
+margin-bottom: 40px;
+margin-left: 10px;
+margin-right: 10px;
+margin-top: 40px;
+`;
+
+export const AmoundWrapper = styled.div`
+justify-content: center;
+display: flex;
+margin-bottom: 40px;
+margin-left: 10px;
+margin-right: 10px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 32px;
+    margin-left: 0;
+  }
+`;
+
+export const CalendarImg = styled(CalendarSvg)`
+width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  right: 8px;
+`;
+
+export const DateWrapper = styled.div`
+position: relative;
+margin-left: 10px;
+margin-right: 10px;
+justify-content: center;
+display: flex;
+align-items: flex-end;
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
+
+  & * input {
+    padding-left: 10px;
+    width: 280px;
+    height: 32px;
+    border-top: none;
+border-left: none;
+border-right: none;
+outline: none;
+font-family: ${p => p.theme.fonts.primary};
+font-weight: ${p => p.theme.fontWeights.normal};
+font-size: ${p => p.theme.fontSizes.m};
+line-height: ${p => p.theme.lineHeights.normal};
+color: ${p => p.theme.colors.primaryText};
+border-bottom: ${p => p.theme.borders.radioBtn};
+
+@media screen and (min-width: 768px) {
+  width: 181px;
+  margin: 0;
+}
+  }
+`;
+
 export const AmoundDateWrapper = styled.div`
+justify-content: center;
+display: flex;
+flex-wrap: wrap;
+align-content: center;
+flex-direction: column;
+
   @media screen and (min-width: 768px) {
    display: flex;
-   justify-content: center;
+  justify-content: center;
+  flex-direction: row;
   }
 `;
 
@@ -195,18 +263,13 @@ line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.placeholder};
 border-bottom: ${p => p.theme.borders.radioBtn};
 padding-left: 20px;
-margin-bottom: 40px;
-// margin-top: 40px;
-margin-left: 10px;
-margin-right: 10px;
 border-top: none;
 border-left: none;
 border-right: none;
 outline: none;
 
 @media screen and (min-width: 768px) {
-  width: 182px;
-  margin-right: 30px;
+  width: 181px;
   text-align: center;
 }
 `;
@@ -255,9 +318,6 @@ font-size: ${p => p.theme.fontSizes.m};
 line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.placeholder};
 border-bottom: ${p => p.theme.borders.radioBtn};
-margin-bottom: 40px;
-margin-left: 10px;
-margin-right: 10px;
 border-top: none;
 border-left: none;
 border-right: none;

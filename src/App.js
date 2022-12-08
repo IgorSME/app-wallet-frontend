@@ -33,7 +33,6 @@ function App() {
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
       </Suspense>
-      <Modal />
     </main>
   );
 }

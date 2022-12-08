@@ -15,11 +15,15 @@ import {
   SelectCategoryButton,
   SelectCategoryList,
   SelectCategoryItem,
+  CommentWrapper,
   AmoundDateWrapper,
+  DateWrapper,
+  AmoundWrapper,
   Amount,
   // DateSelector,
   Comments,
   ModalButtonStyled,
+  CalendarImg
 } from './ModalAddTransaction.styled';
 
 export default function ModalAddTransaction({ onClose: handleClose }) {
@@ -64,13 +68,20 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
                         ))}
             </SelectCategoryList>
                 )}
-            </SelectWrapper>
-            <AmoundDateWrapper>
-                <Amount />
-                <Calendar/>
-                {/* <DateSelector type="date" */}
-                </AmoundDateWrapper>
-            <Comments placeholder="Comment"/>
+          </SelectWrapper>
+          <AmoundDateWrapper>
+            <AmoundWrapper>
+            <Amount />     
+          </AmoundWrapper>
+          <DateWrapper>
+              <Calendar />
+              <CalendarImg/>
+            {/* <DateSelector type="date" name='Date'/> */}
+            </DateWrapper>
+            </AmoundDateWrapper>
+          <CommentWrapper>
+          <Comments placeholder="Comment" />
+          </CommentWrapper>
                         <ModalButtonStyled>ADD</ModalButtonStyled>
                         <ModalButtonStyled onClick={handleClose}>CANCEL</ModalButtonStyled>
             </ModalContainerStyled>
