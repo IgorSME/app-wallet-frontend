@@ -22,7 +22,7 @@ export const WrapperHeader = styled.div`
 
   height: 58px;
   padding: 0 20px;
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
 
   border-radius: ${p => p.theme.radii.large};
 
@@ -30,21 +30,19 @@ export const WrapperHeader = styled.div`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.bold};
 
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     margin-bottom: 16px;
-  }
+  } */
 `;
 
 export const ListCategories = styled.ul`
-  /* background-color: ${p => p.theme.colors.placeholder}; */
-
-  padding: 0 20px;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 `;
 
 export const ListItem = styled.li`
-  margin-bottom: 28px;
-  position: relative;
+  width: 280px;
+  height: 52px;
+  padding: 0 20px;
 
   display: flex;
   justify-content: space-between;
@@ -52,37 +50,21 @@ export const ListItem = styled.li`
 
   font-size: ${p => p.theme.fontSizes.s};
 
-  &::after {
-    content: '';
-    width: 280px;
-    height: 1px;
-
-    position: absolute;
-    left: -20px;
-    bottom: -14px;
-
-    background-color: #dcdcdf;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-  }
-
-  &:last-child {
-    margin: 0;
-  }
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
 
   @media (min-width: 768px) {
-    &::after {
-      width: 336px;
-    }
+    width: 336px;
   }
   @media (min-width: 1279px) {
-    &::after {
-      width: 395px;
-    }
+    width: 395px;
   }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
+  text-align: left;
+  align-items: center;
 `;
 
 export const Color = styled.div`
@@ -98,7 +80,6 @@ export const ListSum = styled.ul`
   font-weight: ${p => p.theme.fontWeights.bold};
 
   padding: 0 20px;
-  /* background-color: blue; */
 `;
 
 export const ListSumItem = styled.li`
@@ -124,4 +105,24 @@ export const ListSumText = styled.p`
 export const ListSumNumber = styled.p`
   color: ${p =>
     p.textColor === 'expense' ? p.theme.colors.expense : p.theme.colors.income};
+`;
+
+export const Text = styled.p`
+  /* text-align: left; */
+  width: 120px;
+
+  line-height: ${({ name, theme }) => {
+    const isLongText = name.categoryName.length + name.sum.length > 24;
+
+    console.log(name.categoryName.length + name.sum.length);
+
+    return isLongText ? theme.lineHeights.small : theme.lineHeights.normal;
+  }};
+
+  @media (min-width: 768px) {
+    width: 170px;
+  }
+  @media (min-width: 1279px) {
+    width: 230px;
+  }
 `;

@@ -8,6 +8,7 @@ import {
   Color,
   ListSum,
   ListSumItem,
+  Text,
   ListSumText,
   ListSumNumber,
 } from './StatisticsList.styled';
@@ -26,7 +27,9 @@ export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
           <ListItem key={categoryName}>
             <Wrapper>
               <Color color={color}></Color>
-              <p>{categoryName}</p>
+              <Text name={{ categoryName, sum: transformNumber(totalSum) }}>
+                {categoryName}
+              </Text>
             </Wrapper>
             <p>{transformNumber(totalSum)}</p>
           </ListItem>
