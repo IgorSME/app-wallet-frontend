@@ -15,6 +15,8 @@ export const GlobalStyles = css`
 
     font-weight: 400;
     line-height: 1.5;
+
+    background-color: rgba(255, 255, 255, 0.4);
   }
 
   h1,

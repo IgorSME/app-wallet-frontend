@@ -1,40 +1,46 @@
-import { useState } from "react";
-import { useId } from "react";
+import { useState } from 'react';
+import { useId } from 'react';
 
 
-import Calendar from '../Calendar/Calendar'; 
-import Switch from "components/Switch/Switch";
+import Calendar from '../Calendar/Calendar';
+import Switch from 'components/Switch/Switch';
 import {
-    ModalBackdrop,
-    SelectIconSvg,
-    CloseBtnIcon,
-    ModalContainerStyled,
-    ModalCloseBtn,
-    ModalTitle,
-    SelectWrapper,
-    SelectCategoryButton,
-    SelectCategoryList,
-    SelectCategoryItem,
-    AmoundDateWrapper,
-    Amount,
-    // DateSelector,
-    Comments,
-    ModalButtonStyled
-} from "./ModalAddTransaction.styled";
+  ModalBackdrop,
+  SelectIconSvg,
+  CloseBtnIcon,
+  ModalContainerStyled,
+  ModalCloseBtn,
+  ModalTitle,
+  SelectWrapper,
+  SelectCategoryButton,
+  SelectCategoryList,
+  SelectCategoryItem,
+  AmoundDateWrapper,
+  Amount,
+  // DateSelector,
+  Comments,
+  ModalButtonStyled,
+} from './ModalAddTransaction.styled';
 
+export default function ModalAddTransaction({ onClose: handleClose }) {
+  const [isToggled, setIsToggled] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [selected, setSelected] = useState('Select a category');
+  const options = [
+    'Main',
+    'Food',
+    'Auto',
+    'Development',
+    'Children',
+    'House',
+    'Education',
+    'Reset',
+  ];
+  const inputId = useId();
 
-
-
-export default function ModalAddTransaction({onClose: handleClose}) {
-    const [isToggled, setIsToggled] = useState(false);
-    const [isActive, setIsActive] = useState(false);
-    const [selected, setSelected] = useState('Select a category');
-    const options = ['Main', 'Food', 'Auto', 'Development', 'Children', 'House', 'Education', 'Reset'];
-    const inputId = useId();
-
-    return (
+  return (
     <>
-        <ModalBackdrop>
+      <ModalBackdrop>
         <ModalContainerStyled>
                         <ModalCloseBtn onClick={handleClose}>
                 <CloseBtnIcon/>
@@ -70,5 +76,5 @@ export default function ModalAddTransaction({onClose: handleClose}) {
             </ModalContainerStyled>
         </ModalBackdrop>
     </>
-    );
+  );
 }

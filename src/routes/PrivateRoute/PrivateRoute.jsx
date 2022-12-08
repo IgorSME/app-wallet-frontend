@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 
-const PublicRoute = () => {
+export const PrivateRoute = () => {
   return <Outlet />;
 };
-export default PublicRoute;

@@ -74,7 +74,7 @@ export const Item = styled.li`
       display: none;
     }
 
-    &:first-child {
+    &:first-of-type {
       margin-bottom: 21px;
     }
   }
