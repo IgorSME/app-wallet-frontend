@@ -1,24 +1,23 @@
 import { Routes, Route } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
-import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
-import PublicRoute from 'components/PublicRoute/PublicRoute';
+import { PrivateRoute, PublicRoute } from 'routes';
+
 import Navigation from 'components/Navigation/Navigation';
 
 import { AppBar } from 'components/AppBar/AppBar';
 import Modal from 'components/Modal/Modal';
 
-import Currency from 'pages/Currency';
-
-import Home from 'pages/Home';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
+import Home from 'pages/Home';
 
-
+const Currency = lazy(() => import('./pages/Currency'));
+const Statistics = lazy(() => import('./pages/Statistics'));
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <AppBar />
       <Navigation />
       <Suspense fallBack={<p>...loading</p>}>
@@ -29,14 +28,14 @@ function App() {
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/statistics" element={<h1>Statistics page</h1>} />
-            <Route path="/currency" element={<Currency/>} />
+            <Route path="/statistics" element={<Statistics />} />
+            <Route path="/currency" element={<Currency />} />
           </Route>
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
       </Suspense>
       <Modal />
-    </div>
+    </main>
   );
 }
 
