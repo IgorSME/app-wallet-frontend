@@ -3,24 +3,26 @@ import { Suspense } from 'react';
 
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
-import Navigation from 'components/Navigation/Navigation';
+// import Navigation from 'components/Navigation/Navigation';
 
-import { AppBar } from 'components/AppBar/AppBar';
+// import { AppBar } from 'components/AppBar/AppBar';
 import Modal from 'components/Modal/Modal';
 
 import Currency from 'pages/Currency';
 
-import Home from 'pages/Home';
+// import Home from 'pages/Home';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
-
-
+import { Layout } from 'components';
 
 function App() {
   return (
     <div className="App">
-      <AppBar />
-      <Navigation />
+      {/* <Routes>
+        <Route path="/" element={<Layout />}></Route>
+      </Routes> */}
+      {/* <AppBar /> */}
+      {/* <Navigation /> */}
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
           <Route element={<PublicRoute />}>
@@ -28,9 +30,10 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
+            {/* <Route path="/home" element={<Home />} /> */}
+            <Route path="/home" element={<Layout />} />
             <Route path="/statistics" element={<h1>Statistics page</h1>} />
-            <Route path="/currency" element={<Currency/>} />
+            <Route path="/currency" element={<Currency />} />
           </Route>
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
