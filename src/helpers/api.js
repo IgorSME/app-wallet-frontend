@@ -13,6 +13,9 @@ export const performRegistration = async body => {
 
 export const performLogin = async body => {
   const { data } = await instance.post('/api/auth/login', body);
-  console.log(data);
   return data;
+};
+
+export const performLogout = async () => {
+  await instance.post('/api/auth/logout');
 };
