@@ -6,7 +6,6 @@ import { PrivateRoute, PublicRoute } from 'routes';
 import Navigation from 'components/Navigation/Navigation';
 
 import { AppBar } from 'components/AppBar/AppBar';
-import Modal from 'components/Modal/Modal';
 
 import Register from 'pages/Register';
 import Login from 'pages/Login';
@@ -34,7 +33,6 @@ function App() {
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
       </Suspense>
-      <Modal />
     </main>
   );
 }
