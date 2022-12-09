@@ -33,6 +33,7 @@ const authSlice = createSlice({
     },
     [authOperations.login.fulfilled]: (state, { payload }) => {
       state.loading = false;
+      console.log(payload.user);
       state.user.email = payload.data.email;
       state.accessToken = payload.data.accessToken;
       state.refreshToken = payload.data.refreshToken;

@@ -29,7 +29,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, actions) => {
-    console.log(values, actions);
+    // console.log(values, actions);
     dispatch(authOperations.login(values));
     actions.resetForm();
   };
