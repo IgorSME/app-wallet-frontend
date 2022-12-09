@@ -30,7 +30,7 @@ const Navigation = () => {
               <ItemText>Statistics</ItemText>
             </Item>
             <Item>
-              <NavLink to="home/currency">
+              <NavLink to="/home/currency">
                 <Currency />
               </NavLink>
             </Item>
