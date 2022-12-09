@@ -4,7 +4,6 @@ import { getIsLoggedIn } from '../../redux/selectors';
 
 export function PublicRoute({ children, restricted = false }) {
   const isLoggedIn = useSelector(getIsLoggedIn);
-  console.log(isLoggedIn);
   const shoudRedirect = isLoggedIn && restricted;
 
   return (
