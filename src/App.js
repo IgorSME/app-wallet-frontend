@@ -4,7 +4,6 @@ import { Suspense, lazy } from 'react';
 import { PrivateRoute, PublicRoute } from './routes';
 
 import { AppBar } from 'components/AppBar/AppBar';
-import Modal from 'components/Modal/Modal';
 
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
@@ -70,7 +69,6 @@ function App() {
           <Route path="*" element={<p>Not Found page</p>} />
         </Routes>
       </Suspense>
-      <Modal />
     </main>
   );
 }

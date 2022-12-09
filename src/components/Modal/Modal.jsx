@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ModalAddTransaction from "components/ModalAddTransaction/ModalAddTransaction";
 
+import {OpenModalBtn, PlusIconSvg } from "./Modal.styled";
 
 export default function Modal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,10 +15,13 @@ export default function Modal() {
 
     return (
         <>
-            <button type="button" onClick={openModal}>Open modal</button>
+            <OpenModalBtn onClick={openModal}>
+                <PlusIconSvg/>
+            </OpenModalBtn>
+    
             {isModalOpen &&
                 <ModalAddTransaction onClose={closeModal}/>
-            }
-            </>
+    }
+    </>
     );
 }
