@@ -21,7 +21,9 @@ const authSlice = createSlice({
     },
     [authOperations.register.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.user = payload;
+      state.user = payload.user;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
     },
     [authOperations.register.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -33,12 +35,29 @@ const authSlice = createSlice({
     },
     [authOperations.login.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.user.email = payload.data.email;
-      state.accessToken = payload.data.accessToken;
-      state.refreshToken = payload.data.refreshToken;
+      state.user.email = payload.user.email;
+      state.user.name = payload.user.name;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
       state.isLoggedIn = true;
     },
     [authOperations.login.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [authOperations.logout.pending]: state => {
+      state.loading = true;
+      state.error = false;
+    },
+    [authOperations.logout.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.user.email = '';
+      state.user.name = '';
+      state.accessToken = '';
+      state.refreshToken = '';
+      state.isLoggedIn = false;
+    },
+    [authOperations.logout.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

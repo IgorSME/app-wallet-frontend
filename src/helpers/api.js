@@ -6,26 +6,30 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
+const setToken = token => {
+  if (token) {
+    return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
+  }
+  instance.defaults.headers.common.authorization = '';
+};
+
 export const performRegistration = async body => {
   const { data } = await instance.post('/api/auth/register', body);
+  setToken(data.accessToken);
   return data;
 };
 
 export const performLogin = async body => {
   const { data } = await instance.post('/api/auth/login', body);
-  console.log(data);
+  setToken(data.accessToken);
+
   return data;
 };
 
-// export const addBook = async data => {
-//   const { data: result } = await instance.post('/books', data);
-//   return result;
-// };
-
-// export const removeBook = async id => {
-//   const { data: result } = await instance.delete(`/books/${id}`);
-//   return result;
-// };
+export const performLogout = async () => {
+  await instance.post('/api/auth/logout');
+  setToken();
+};
 
 export const fetchStatistics = async body => {
   const { month, year } = body;

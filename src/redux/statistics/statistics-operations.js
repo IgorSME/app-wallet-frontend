@@ -3,10 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'helpers/api';
 
 const getDate = new Date();
-const currentMonth = getDate
-  .toLocaleString('en', { month: 'long' })
-  .toLowerCase();
-const currentYear = getDate.toLocaleString('en', { year: 'numeric' });
+
+const currentMonth = getDate.getMonth() + 1;
+const currentYear = getDate.getFullYear();
 
 export const fetchStatistics = createAsyncThunk(
   'transactions/statistics',

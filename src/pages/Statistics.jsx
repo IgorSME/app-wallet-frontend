@@ -2,6 +2,9 @@ import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
+import { fetchStatistics } from 'redux/statistics/statistics-operations';
+import { getMonthPosition } from 'helpers';
+
 import {
   Section,
   Container,
@@ -17,7 +20,7 @@ const example = {
     {
       categoryName: 'Basic expenses',
       color: '#FED057',
-      totalSum: 20548.789,
+      totalSum: 20548,
     },
     {
       categoryName: 'Products',
@@ -80,10 +83,10 @@ export default function Statistics() {
   );
   const { year, month } = params;
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchStatistics({ year, month }));
-  // }, [dispatch]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchStatistics({ year, month: getMonthPosition(month) }));
+  }, [dispatch, month, year]);
 
   const handleChangeSearch = (name, value) => {
     const nextParams = value !== '' ? { ...params, [name]: value } : {};
@@ -91,7 +94,7 @@ export default function Statistics() {
     setSearchParams(nextParams);
   };
 
-  const statisticBalans = () => {
+  const profit = () => {
     return (
       example.typesTotalSum[1].totalSum - example.typesTotalSum[0].totalSum
     );
@@ -102,7 +105,7 @@ export default function Statistics() {
       <Container>
         <StatisticsWrapper>
           <Title>Statistics</Title>
-          <Chart dataDiagram={example.allCategories} sum={statisticBalans()} />
+          <Chart dataDiagram={example.allCategories} profit={profit()} />
         </StatisticsWrapper>
         <StatisticsWrapper>
           <StatisticsFilterSelect

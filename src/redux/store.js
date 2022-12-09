@@ -17,6 +17,7 @@ import statisticsReducer from './statistics/statisticsSlice';
 
 const persistConfig = {
   key: 'auth',
+  whitelist: ['accessToken', 'refreshToken'],
   storage,
 };
 
