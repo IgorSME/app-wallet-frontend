@@ -16,3 +16,22 @@ export const performLogin = async body => {
   console.log(data);
   return data;
 };
+
+// export const addBook = async data => {
+//   const { data: result } = await instance.post('/books', data);
+//   return result;
+// };
+
+// export const removeBook = async id => {
+//   const { data: result } = await instance.delete(`/books/${id}`);
+//   return result;
+// };
+
+export const fetchStatistics = async body => {
+  const { month, year } = body;
+
+  const { data } = await instance.get(
+    `/api/transactions/statistic?month=${month}&year=${year}`
+  );
+  return data;
+};

@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import {
@@ -79,7 +80,10 @@ export default function Statistics() {
   );
   const { year, month } = params;
 
-  useEffect(() => {}, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchStatistics({ year, month }));
+  // }, [dispatch]);
 
   const handleChangeSearch = (name, value) => {
     const nextParams = value !== '' ? { ...params, [name]: value } : {};
