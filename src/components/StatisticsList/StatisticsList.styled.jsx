@@ -114,8 +114,6 @@ export const Text = styled.p`
   line-height: ${({ name, theme }) => {
     const isLongText = name.categoryName.length + name.sum.length > 24;
 
-    console.log(name.categoryName.length + name.sum.length);
-
     return isLongText ? theme.lineHeights.small : theme.lineHeights.normal;
   }};
 
