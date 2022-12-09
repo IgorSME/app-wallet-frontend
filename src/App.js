@@ -6,10 +6,9 @@ import { PrivateRoute, PublicRoute } from './routes';
 import { AppBar } from 'components/AppBar/AppBar';
 import Modal from 'components/Modal/Modal';
 
-import Register from 'pages/Register';
-import Login from 'pages/Login';
-import Home from 'pages/Home';
-
+const Register = lazy(() => import('./pages/Register'));
+const Login = lazy(() => import('./pages/Login'));
+const Home = lazy(() => import('./pages/Home'));
 const Currency = lazy(() => import('./pages/Currency'));
 const Statistics = lazy(() => import('./pages/Statistics'));
 
