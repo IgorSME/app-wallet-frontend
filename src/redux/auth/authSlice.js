@@ -34,9 +34,9 @@ const authSlice = createSlice({
     [authOperations.login.fulfilled]: (state, { payload }) => {
       state.loading = false;
       console.log(payload.user);
-      state.user.email = payload.data.email;
-      state.accessToken = payload.data.accessToken;
-      state.refreshToken = payload.data.refreshToken;
+      state.user.email = payload.email;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
       state.isLoggedIn = true;
     },
     [authOperations.login.rejected]: (state, { payload }) => {

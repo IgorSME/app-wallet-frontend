@@ -3,8 +3,6 @@ import { Suspense, lazy } from 'react';
 
 import { PrivateRoute, PublicRoute } from './routes';
 
-import Navigation from 'components/Navigation/Navigation';
-
 import { AppBar } from 'components/AppBar/AppBar';
 import Modal from 'components/Modal/Modal';
 
@@ -18,12 +16,9 @@ const Statistics = lazy(() => import('./pages/Statistics'));
 function App() {
   return (
     <main className="App">
-      {/* <AppBar />
-      <Navigation /> */}
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
           <Route
-            index
             path="/login"
             element={
               <PublicRoute restricted>
@@ -41,15 +36,15 @@ function App() {
           />
 
           <Route
-            path="/"
+            path="/home"
             element={
               <PrivateRoute>
-                <AppBar />/
+                <AppBar />
               </PrivateRoute>
             }
           >
             <Route
-              path="home"
+              index
               element={
                 <PrivateRoute>
                   <Home />/
