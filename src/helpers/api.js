@@ -56,3 +56,11 @@ export const performLogout = async () => {
   localStorage.setItem('refreshToken', '');
   token.deleteAccessToken();
 };
+
+export const fetchStatistics = async body => {
+  const { month, year } = body;
+  const { data } = await instance.get(
+    `/api/transactions/statistic?month=${month}&year=${year}`
+  );
+  return data;
+};
