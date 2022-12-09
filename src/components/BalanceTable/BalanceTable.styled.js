@@ -6,7 +6,9 @@ export const Section = styled.section`
   margin: 0 auto;
 
   @media screen and (min-width: 768px) {
+    width: 704px;
     margin: 0 32px;
+    text-align: center;
   }
 `;
 
@@ -21,7 +23,7 @@ export const ContainerTable = styled(ContainerStyled)`
     width: 715px;
     margin-right: 16px;
     position: absolute;
-    top: 46px;
+    top: 126px;
     left: 549px;
   }
 `;
@@ -45,7 +47,7 @@ export const Thead = styled.thead`
   }
   @media screen and (min-width: 768px) {
     height: 58px;
-    background-color: #e7eaf2;
+    background-color: #fff;
   }
   @media screen and (min-width: 1280px) {
   }
@@ -141,7 +143,7 @@ export const Element = styled.li`
   @media screen and (max-width: 767px) {
     border-radius: 10px;
     border-left: 5px solid teal;
-    background-color: #e7eaf2;
+    background-color: #fff;
 
     &:not(:last-child) {
       margin-bottom: 8px;

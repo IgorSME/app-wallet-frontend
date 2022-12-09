@@ -5,7 +5,7 @@ import {
   Score,
 } from 'components/YourBalance/YourBalance.styled';
 
-const YourBalance = () => {
+export const YourBalance = () => {
   return (
     <Section>
       <Container>
@@ -15,5 +15,3 @@ const YourBalance = () => {
     </Section>
   );
 };
-
-export default YourBalance;

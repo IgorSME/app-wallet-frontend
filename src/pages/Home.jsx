@@ -1,5 +1,4 @@
-import BalanceTable from 'components/BalanceTable/BalanceTable';
-import YourBalance from 'components/YourBalance/YourBalance';
+import { BalanceTable, YourBalance } from 'components';
 
 const Home = () => {
   return (
