@@ -35,8 +35,10 @@ const authSlice = createSlice({
     },
     [authOperations.login.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.user.email = payload.user.email;
-      state.user.name = payload.user.name;
+
+     
+      state.user.email = payload.email;
+
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
       state.isLoggedIn = true;
