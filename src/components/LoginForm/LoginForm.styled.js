@@ -12,6 +12,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 import { NavLink } from 'react-router-dom';
 
 export const LoginSectionStyled = styled.section`
+  background-color: #fff;
   svg {
     width: 120px;
     height: auto;

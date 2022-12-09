@@ -38,7 +38,6 @@ export default function RegisterForm() {
 
   const handlerSubmit = async (values, actions) => {
     const { confirmPassword, ...body } = values;
-    console.log(body);
     dispatch(authOperations.register(body));
     actions.resetForm();
   };
