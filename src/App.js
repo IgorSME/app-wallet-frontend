@@ -13,7 +13,7 @@ const Statistics = lazy(() => import('./pages/Statistics'));
 
 function App() {
   return (
-    <main className="App">
+    <main>
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
           <Route
@@ -61,7 +61,7 @@ function App() {
               path="currency"
               element={
                 <PrivateRoute>
-                  <Currency />/
+                  <Currency />
                 </PrivateRoute>
               }
             />

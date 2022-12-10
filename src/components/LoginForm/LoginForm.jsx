@@ -29,7 +29,6 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, actions) => {
-
     dispatch(authOperations.login(values));
     actions.resetForm();
   };
@@ -43,6 +42,7 @@ export default function LoginForm() {
       >
         <LoginFormStyled autoComplete="false">
           <Logo />
+
           <LoginInputWrap>
             <LoginFormLabelStyled htmlFor="login_name_input"></LoginFormLabelStyled>
             <LoginFormInputStyled
@@ -54,6 +54,7 @@ export default function LoginForm() {
             <LoginFormError name="email" />
             <MailSvg />
           </LoginInputWrap>
+
           <LoginInputWrap>
             <LoginFormLabelStyled htmlFor="password_name_input"></LoginFormLabelStyled>
             <LoginFormInputStyled
@@ -65,17 +66,11 @@ export default function LoginForm() {
             <LoginFormError name="password" />
             <PasswordSvg />
           </LoginInputWrap>
+
           <LoginButtonSubmitStyled type="submit">
             Log in
           </LoginButtonSubmitStyled>
-          <LoginButtonSubmitStyled
-            onClick={() => {
-              dispatch(authOperations.logout());
-            }}
-            type="button"
-          >
-            Log
-          </LoginButtonSubmitStyled>
+
           <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
       </Formik>
