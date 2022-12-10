@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchStatistics } from './statistics-operations';
 
 const initialState = {
-  statistics: [],
+  statistics: {},
   loading: false,
   error: null,
 };

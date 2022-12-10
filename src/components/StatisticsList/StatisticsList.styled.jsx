@@ -119,6 +119,7 @@ export const Text = styled.p`
 
   @media (min-width: 768px) {
     width: 170px;
+    height: ${p => p.theme.lineHeights.normal};
   }
   @media (min-width: 1279px) {
     width: 230px;
