@@ -1,5 +1,4 @@
 import * as api from 'helpers/api';
-import instance from 'helpers/api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -34,6 +33,15 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     toast.success('Logout success');
   } catch (error) {
     toast.error(error.response.data.message);
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
+  try {
+    const result = await api.getCurrent();
+    return result;
+  } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 });

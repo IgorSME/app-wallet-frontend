@@ -60,6 +60,20 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    [authOperations.current.pending]: state => {
+      state.loading = true;
+      state.error = false;
+    },
+    [authOperations.current.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.user.email = payload.user.email;
+      state.user.name = payload.user.name;
+      state.isLoggedIn = true;
+    },
+    [authOperations.current.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
   },
 });
 

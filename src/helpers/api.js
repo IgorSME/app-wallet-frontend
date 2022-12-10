@@ -24,11 +24,11 @@ instance.interceptors.response.use(
         const { data } = await instance.post('api/auth/refresh', {
           refreshToken,
         });
-        console.log(data);
-
         token.setAccessToken(data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
-        return axios(error.config);
+        // setRefreshToken(data.refreshToken);
+
+        return instance(error.config);
       } catch (error) {
         return Promise.reject(error);
       }
@@ -57,6 +57,11 @@ export const performLogout = async () => {
   token.deleteAccessToken();
 };
 
+export const getCurrent = async () => {
+  const { data } = await instance.get('/api/user/current');
+  return data;
+};
+
 export const fetchStatistics = async body => {
   const { month, year } = body;
   const { data } = await instance.get(
@@ -64,3 +69,5 @@ export const fetchStatistics = async body => {
   );
   return data;
 };
+
+export default instance;

@@ -14,6 +14,19 @@ import { ReactComponent as PasswordSvg } from 'images/password.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
 import { useDispatch } from 'react-redux';
 import * as authOperations from 'redux/auth/auth-operations';
+import * as transactionOperations from 'redux/transactions/transactions-operations';
+
+const transaction = {
+  date: 1646137500000,
+  type: 'income',
+  category: 'ЗСУ',
+  comment: 'Bayractar',
+  sum: 1,
+};
+
+const id = '63948fe8904953159a561805';
+
+const body = { comment: 'hello' };
 
 const initialValues = {
   email: '',
@@ -29,7 +42,6 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, actions) => {
-
     dispatch(authOperations.login(values));
     actions.resetForm();
   };
@@ -74,7 +86,42 @@ export default function LoginForm() {
             }}
             type="button"
           >
-            Log
+            Log out
+          </LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled
+            onClick={() => {
+              dispatch(transactionOperations.getAllTransactions());
+            }}
+            type="button"
+          >
+            Get transactions
+          </LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled
+            onClick={() => {
+              dispatch(transactionOperations.addTransaction(transaction));
+            }}
+            type="button"
+          >
+            Add transactions
+          </LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled
+            onClick={() => {
+              dispatch(
+                transactionOperations.updateTransactionById({ id, body })
+              );
+            }}
+            type="button"
+          >
+            Update transactions
+          </LoginButtonSubmitStyled>
+          <LoginButtonSubmitStyled
+            onClick={() => {
+              console.log('one');
+              dispatch(authOperations.current());
+            }}
+            type="button"
+          >
+            get current
           </LoginButtonSubmitStyled>
           <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
