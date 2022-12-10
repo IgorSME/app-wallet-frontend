@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import {
-  LoginContainerStyled,
   LoginFormStyled,
   LoginSideBareStyled,
 } from 'components/LoginForm/LoginForm.styled';
