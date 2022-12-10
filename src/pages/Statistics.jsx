@@ -1,8 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { fetchStatistics } from 'redux/statistics/statistics-operations';
+import statisticsSelectors from 'redux/statistics/statistics-selectors';
 import { getMonthPosition } from 'helpers';
 
 import {
@@ -13,6 +15,8 @@ import {
   StatisticsFilterSelect,
   StatisticsList,
   StatisticsWrapper,
+  Loader,
+  NoStatisticsText,
 } from 'components';
 
 const example = {
@@ -76,6 +80,10 @@ const example = {
 };
 
 export default function Statistics() {
+  const statisticsData = useSelector(statisticsSelectors.getStatistics);
+  const loading = useSelector(statisticsSelectors.getIsLoading);
+  const errorFetch = useSelector(statisticsSelectors.getError);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const params = useMemo(
     () => Object.fromEntries([...searchParams]),
@@ -86,7 +94,7 @@ export default function Statistics() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchStatistics({ year, month: getMonthPosition(month) }));
-  }, [dispatch, month, year]);
+  }, [dispatch, year, month]);
 
   const handleChangeSearch = (name, value) => {
     const nextParams = value !== '' ? { ...params, [name]: value } : {};
@@ -100,20 +108,44 @@ export default function Statistics() {
     );
   };
 
+  if (errorFetch) toast.error(errorFetch.response.data.message);
+
+  const isNoStatisticsData = statisticsData.allCategories?.length === 0;
+
   return (
     <Section>
       <Container>
-        <StatisticsWrapper>
-          <Title>Statistics</Title>
-          <Chart dataDiagram={example.allCategories} profit={profit()} />
-        </StatisticsWrapper>
-        <StatisticsWrapper>
-          <StatisticsFilterSelect
-            handleChangeSearch={handleChangeSearch}
-            currentFilter={{ year, month }}
-          />
-          <StatisticsList data={example} />
-        </StatisticsWrapper>
+        {loading ? (
+          <>
+            <Title>Statistics</Title>
+            <Loader />
+          </>
+        ) : (
+          <>
+            <StatisticsWrapper>
+              <Title>Statistics</Title>
+              {!isNoStatisticsData && (
+                <Chart
+                  dataDiagram={statisticsData.allCategories}
+                  profit={profit()}
+                />
+              )}
+            </StatisticsWrapper>
+            <StatisticsWrapper>
+              <StatisticsFilterSelect
+                handleChangeSearch={handleChangeSearch}
+                currentFilter={{ year, month }}
+              />
+              {isNoStatisticsData ? (
+                <NoStatisticsText>
+                  There are no transactions this month
+                </NoStatisticsText>
+              ) : (
+                <StatisticsList data={statisticsData} />
+              )}
+            </StatisticsWrapper>
+          </>
+        )}
       </Container>
     </Section>
   );

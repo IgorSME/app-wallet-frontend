@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 import { fetchCurrency, getCorrectCurrency } from 'helpers';
 import { useLocalStorage } from 'hooks/useLocalStorage';
@@ -29,12 +30,16 @@ export default function Currency() {
     }
 
     const getCurrency = async () => {
-      const data = await fetchCurrency();
-      const currentData = getCorrectCurrency(data);
+      try {
+        const data = await fetchCurrency();
+        const currentData = getCorrectCurrency(data);
 
-      setCurrency(currentData);
-      setCurrencyStorage(currentData);
-      setCurrencyTimeStorage(Date.now());
+        setCurrency(currentData);
+        setCurrencyStorage(currentData);
+        setCurrencyTimeStorage(Date.now());
+      } catch (error) {
+        toast.error('No connection. try later.');
+      }
     };
 
     getCurrency();
