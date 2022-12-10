@@ -31,7 +31,7 @@ const authSlice = createSlice({
     },
     [authOperations.login.pending]: state => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     },
     [authOperations.login.fulfilled]: (state, { payload }) => {
       state.loading = false;
@@ -46,7 +46,7 @@ const authSlice = createSlice({
     },
     [authOperations.logout.pending]: state => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     },
     [authOperations.logout.fulfilled]: (state, { payload }) => {
       state.loading = false;
@@ -62,7 +62,7 @@ const authSlice = createSlice({
     },
     [authOperations.current.pending]: state => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     },
     [authOperations.current.fulfilled]: (state, { payload }) => {
       state.loading = false;
