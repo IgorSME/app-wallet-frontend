@@ -30,15 +30,23 @@ export const Container = styled(ContainerStyled)`
 
 export const StatisticsWrapper = styled.div`
   margin-bottom: 32px;
-
   &:last-of-type {
     margin-bottom: 0;
   }
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
+
     &:last-of-type {
       margin-top: 20px;
+      width: 336px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    &:last-of-type {
+      margin-bottom: 0;
+      width: 395px;
     }
   }
 `;
@@ -54,4 +62,16 @@ export const Title = styled.h1`
   @media screen and (min-width: 768px) {
     margin-bottom: ${p => p.theme.spacing(5)};
   }
+`;
+
+export const NoStatisticsText = styled.p`
+  font-family: ${p => p.theme.fonts.title};
+  font-size: ${p => p.theme.fontSizes.m};
+  font-weight: ${p => p.theme.fontWeights.normal};
+
+  color: ${p => p.theme.colors.expense};
+
+  text-align: center;
+
+  padding: 20px;
 `;
