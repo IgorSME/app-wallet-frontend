@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 import CurrencyBg from 'images/currency-bg.png';
+import CurrencyBgDesk from 'images/currency-bg-desk.png';
 
 export const BaseTable = styled.table`
   min-width: 280px;
+  height: 174px;
+
   margin: 0 auto;
-  padding-bottom: 16px;
+  padding-bottom: 52px;
 
   border-spacing: 0px;
   text-align: left;
@@ -21,11 +24,14 @@ export const BaseTable = styled.table`
 
   @media (min-width: 768px) {
     min-width: 336px;
-    padding-bottom: 20px;
+    height: 182px;
+    padding-bottom: 56px;
   }
   @media (min-width: 1279px) {
-    /* height: 347px; */
     width: 393px;
+    height: 331px;
+    padding-bottom: 179px;
+    background-image: url(${CurrencyBgDesk});
   }
 `;
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useId } from 'react';
 
+
 import Calendar from '../Calendar/Calendar';
 import Switch from 'components/Switch/Switch';
 import {
@@ -14,11 +15,15 @@ import {
   SelectCategoryButton,
   SelectCategoryList,
   SelectCategoryItem,
+  CommentWrapper,
   AmoundDateWrapper,
+  DateWrapper,
+  AmoundWrapper,
   Amount,
   // DateSelector,
   Comments,
   ModalButtonStyled,
+  CalendarImg
 } from './ModalAddTransaction.styled';
 
 export default function ModalAddTransaction({ onClose: handleClose }) {
@@ -41,45 +46,46 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
     <>
       <ModalBackdrop>
         <ModalContainerStyled>
-          <ModalCloseBtn onClick={handleClose}>
-            <CloseBtnIcon />
-          </ModalCloseBtn>
-          <ModalTitle>Add transaction</ModalTitle>
-          <Switch
-            id={inputId}
-            isToggled={isToggled}
-            onToggle={() => setIsToggled(!isToggled)}
-          />
-          <SelectWrapper>
-            <SelectCategoryButton onClick={e => setIsActive(!isActive)}>
-              {selected}
-              <SelectIconSvg />
-            </SelectCategoryButton>
-            {isActive && (
-              <SelectCategoryList>
-                {options.map(option => (
-                  <SelectCategoryItem
-                    onClick={e => {
-                      setSelected(option);
-                      setIsActive(false);
-                    }}
-                  >
-                    {option}
-                  </SelectCategoryItem>
-                ))}
-              </SelectCategoryList>
-            )}
+                        <ModalCloseBtn onClick={handleClose}>
+                <CloseBtnIcon/>
+            </ModalCloseBtn>
+            <ModalTitle>Add transaction</ModalTitle>
+                    <Switch id={inputId} isToggled={isToggled} onToggle={()=>setIsToggled(!isToggled)} />
+            <SelectWrapper>     
+                        <SelectCategoryButton 
+                            onClick={(e) => setIsActive(!isActive)}>
+                            {selected }
+                <SelectIconSvg/>
+                </SelectCategoryButton>
+                {isActive && (
+                    <SelectCategoryList >
+                        {options.map((option) => (
+                            <SelectCategoryItem
+                                onClick={(e) => {
+                                setSelected(option);
+                                setIsActive(false);
+                            }}>{option}</SelectCategoryItem>
+                        ))}
+            </SelectCategoryList>
+                )}
           </SelectWrapper>
           <AmoundDateWrapper>
-            <Amount />
-            <Calendar />
-            {/* <DateSelector type="date" */}
-          </AmoundDateWrapper>
+            <AmoundWrapper>
+            <Amount />     
+          </AmoundWrapper>
+          <DateWrapper>
+              <Calendar />
+              <CalendarImg/>
+            {/* <DateSelector type="date" name='Date'/> */}
+            </DateWrapper>
+            </AmoundDateWrapper>
+          <CommentWrapper>
           <Comments placeholder="Comment" />
-          <ModalButtonStyled>ADD</ModalButtonStyled>
-          <ModalButtonStyled>CANCEL</ModalButtonStyled>
-        </ModalContainerStyled>
-      </ModalBackdrop>
+          </CommentWrapper>
+                        <ModalButtonStyled>ADD</ModalButtonStyled>
+                        <ModalButtonStyled onClick={handleClose}>CANCEL</ModalButtonStyled>
+            </ModalContainerStyled>
+        </ModalBackdrop>
     </>
   );
 }

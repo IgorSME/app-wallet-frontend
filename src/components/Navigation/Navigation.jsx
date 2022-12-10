@@ -24,13 +24,13 @@ const Navigation = () => {
               <ItemText>Home</ItemText>
             </Item>
             <Item>
-              <NavLink to="/statistics">
+              <NavLink to="/home/statistics">
                 <Statistics />
               </NavLink>
               <ItemText>Statistics</ItemText>
             </Item>
             <Item>
-              <NavLink to="/currency">
+              <NavLink to="/home/currency">
                 <Currency />
               </NavLink>
             </Item>

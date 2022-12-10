@@ -1,6 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from 'redux/auth/authSlice';
-import transactionReducer from 'redux/transactions/transactionSlice';
 import {
   persistStore,
   persistReducer,
@@ -13,8 +11,13 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import authReducer from 'redux/auth/authSlice';
+import transactionReducer from 'redux/transactions/transactionSlice';
+import statisticsReducer from './statistics/statisticsSlice';
+
 const persistConfig = {
   key: 'auth',
+  whitelist: ['accessToken', 'refreshToken'],
   storage,
 };
 
@@ -24,6 +27,7 @@ export const store = configureStore({
   reducer: {
     auth: persisterReducer,
     transactions: transactionReducer,
+    statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
