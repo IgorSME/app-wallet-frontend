@@ -6,6 +6,7 @@ export const Section = styled.section`
   margin-bottom: 32px;
   margin-top: 12px;
   background-color: #fff;
+  border-radius: 30px;
   /* backdrop-filter: blur(25px); */
   @media screen and (min-width: 768px) {
     margin: 0 32px;
@@ -35,6 +36,7 @@ export const Container = styled(ContainerStyled)`
     margin: 0;
     padding-left: 40px;
     width: 336px;
+    height: 80px;
   }
   @media screen and (min-width: 1280px) {
     width: 395px;
@@ -43,6 +45,7 @@ export const Container = styled(ContainerStyled)`
 
 export const Text = styled.p`
   margin-bottom: 12px;
+  height: 13px;
   font-family: 'Circe';
   font-style: normal;
   font-weight: 400;
@@ -55,6 +58,7 @@ export const Text = styled.p`
 `;
 
 export const Score = styled.p`
+  height: 36px;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;

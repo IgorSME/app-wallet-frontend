@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import {
   Section,
   ContainerTable,
@@ -16,6 +18,10 @@ import {
 } from 'components/BalanceTable/BalanceTable.styled';
 
 export const BalanceTable = () => {
+  // const dispatch = useDispatch();
+  const transactions = useSelector(store => store.transactions);
+  console.log(transactions);
+
   return (
     <Section>
       <ContainerTable>

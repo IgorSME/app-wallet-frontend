@@ -8,3 +8,5 @@ export * from './Chart/Chart';
 export * from './Loader/Loader';
 export * from './LoginForm/LoginForm.styled';
 export * from './RegisterForm/RegisterForm.styled';
+export * from './YourBalance/YourBalance';
+export * from './BalanceTable/BalanceTable';
