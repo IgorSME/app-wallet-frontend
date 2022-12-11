@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 
 import authReducer from 'redux/auth/authSlice';
 // import transactionReducer from 'redux/transactions/transactionSlice';
-import transactionReducer from 'redux/transactionsF05/transactionSlice';
+import transactionReducer from 'redux/transactions/transactionSlice';
 import statisticsReducer from './statistics/statisticsSlice';
 
 const persistConfig = {

@@ -7,7 +7,7 @@ const Home = () => {
     <>
       <YourBalance />
       <BalanceTable />
-      <Modal/>
+      <Modal />
     </>
   );
 };
