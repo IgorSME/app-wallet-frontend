@@ -19,7 +19,6 @@ function App() {
     dispatch(authOperations.current());
   }, [dispatch]);
   return (
-
     <Suspense fallBack={<p>...loading</p>}>
       <Routes>
         <Route
@@ -47,13 +46,12 @@ function App() {
             </PrivateRoute>
           }
         >
-
           <Route
             index
             path="home"
             element={
               <PrivateRoute>
-                <Home />/
+                <Home />
               </PrivateRoute>
             }
           />
@@ -61,7 +59,7 @@ function App() {
             path="statistics"
             element={
               <PrivateRoute>
-                <Statistics />/
+                <Statistics />
               </PrivateRoute>
             }
           />
@@ -69,7 +67,7 @@ function App() {
             path="currency"
             element={
               <PrivateRoute>
-                <Currency />/
+                <Currency />
               </PrivateRoute>
             }
           />

@@ -156,7 +156,7 @@ export const Element = styled.li`
   }
 `;
 
-export const Item = styled.p`
+export const Item = styled.div`
   @media screen and (max-width: 767px) {
     display: flex;
     justify-content: space-between;
