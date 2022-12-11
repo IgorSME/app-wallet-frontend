@@ -1,25 +1,34 @@
 import styled from '@emotion/styled';
+import { ContainerStyled } from 'components/';
 
 export const Header = styled.header`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  /* justify-content: space-between;
+  align-items: center; */
+  /* width: 100%; */
   height: 60px;
-  padding: 15px 20px;
 
   background-color: ${props => props.theme.colors.white};
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    /* width: 768px; */
     height: 80px;
-    padding: 20px 32px;
+  }
+`;
+
+export const Container = styled(ContainerStyled)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 1280px;
-    height: 80px;
-    padding: 20px 16px;
+    padding: 0 16px;
   }
 `;
 
