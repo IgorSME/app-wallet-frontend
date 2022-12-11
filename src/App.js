@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import * as authOperations from 'redux/auth/auth-operations';
 import { PrivateRoute, PublicRoute } from './routes';
 
 import { AppBar } from 'components/AppBar/AppBar';
@@ -12,6 +14,11 @@ const Currency = lazy(() => import('./pages/Currency'));
 const Statistics = lazy(() => import('./pages/Statistics'));
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.current());
+  }, [dispatch]);
   return (
     <main>
       <Suspense fallBack={<p>...loading</p>}>
@@ -45,7 +52,7 @@ function App() {
               index
               element={
                 <PrivateRoute>
-                  <Home />/
+                  <Home />
                 </PrivateRoute>
               }
             />
@@ -53,7 +60,7 @@ function App() {
               path="statistics"
               element={
                 <PrivateRoute>
-                  <Statistics />/
+                  <Statistics />
                 </PrivateRoute>
               }
             />
