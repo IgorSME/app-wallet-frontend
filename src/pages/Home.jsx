@@ -1,5 +1,4 @@
-import BalanceTable from 'components/BalanceTable/BalanceTable';
-import YourBalance from 'components/YourBalance/YourBalance';
+import { BalanceTable, YourBalance } from 'components';
 
 import Modal from 'components/Modal/Modal';
 
@@ -8,7 +7,7 @@ const Home = () => {
     <>
       <YourBalance />
       <BalanceTable />
-      <Modal/>
+      <Modal />
     </>
   );
 };

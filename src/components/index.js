@@ -9,4 +9,7 @@ export * from './Loader/Loader';
 export * from './Logo/Logo';
 export * from './LoginForm/LoginForm.styled';
 export * from './RegisterForm/RegisterForm.styled';
-export * from './Navigation/Navigation';
+
+export * from './YourBalance/YourBalance';
+export * from './BalanceTable/BalanceTable';
+

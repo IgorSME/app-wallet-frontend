@@ -15,7 +15,7 @@ import {
   ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
 
-const BalanceTable = () => {
+export const BalanceTable = () => {
   return (
     <Section>
       <ContainerTable>
@@ -118,5 +118,3 @@ const BalanceTable = () => {
     </Section>
   );
 };
-
-export default BalanceTable;

@@ -4,13 +4,21 @@ import { ContainerStyled } from 'components/common/commonComponents.styled';
 export const Section = styled.section`
   margin: 0 20px;
   margin-bottom: 32px;
+  margin-top: 12px;
   background-color: #fff;
+  border-radius: 30px;
   /* backdrop-filter: blur(25px); */
   @media screen and (min-width: 768px) {
     margin: 0 32px;
     margin-top: 28px;
     margin-bottom: 20px;
-    margin-right: 32px;
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin: 0;
+    margin-top: 28px;
+    margin-bottom: 32px;
+    margin-left: 18px;
   }
 `;
 
@@ -18,7 +26,7 @@ export const Container = styled(ContainerStyled)`
   padding-left: 32px;
   padding-top: 8px;
   padding-bottom: 12px;
-  background-color: #e7eaf2;
+  background-color: #fff;
   border-radius: 30px;
   text-align: left;
   @media screen and (min-width: 320px) {
@@ -28,6 +36,7 @@ export const Container = styled(ContainerStyled)`
     margin: 0;
     padding-left: 40px;
     width: 336px;
+    height: 80px;
   }
   @media screen and (min-width: 1280px) {
     width: 395px;
@@ -36,6 +45,7 @@ export const Container = styled(ContainerStyled)`
 
 export const Text = styled.p`
   margin-bottom: 12px;
+  height: 13px;
   font-family: 'Circe';
   font-style: normal;
   font-weight: 400;
@@ -48,6 +58,7 @@ export const Text = styled.p`
 `;
 
 export const Score = styled.p`
+  height: 36px;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
