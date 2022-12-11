@@ -5,10 +5,9 @@ import Media from 'react-media';
 
 const Home = () => {
   return (
-
     <Media
       queries={{
-        small: '(max-width: 768px)',
+        small: '(max-width: 767px)',
       }}
     >
       {matches =>
@@ -26,7 +25,6 @@ const Home = () => {
         )
       }
     </Media>
-
   );
 };
 

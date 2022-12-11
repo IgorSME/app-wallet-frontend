@@ -2,18 +2,17 @@ import styled from '@emotion/styled';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 
 export const Section = styled.section`
-  margin: 0 64px;
-
-  // @media screen and (min-width: 320px) {
-  //     width: 320px;
-  //   }
+  @media screen and (max-width: 767px) {
+    width: 320px;
+  }
   @media screen and (min-width: 768px) {
     margin-left: 32px;
     width: 150px;
   }
-  //   @media screen and (min-width: 1280px) {
-  //     width: 1280px;
-  //   }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 18px;
+  }
 
   a.active {
     svg {
@@ -39,14 +38,14 @@ export const Section = styled.section`
 `;
 
 export const Container = styled(ContainerStyled)`
-  padding-top: 40px;
-  padding-bottom: 12px;
-  margin: 0 auto;
-  @media screen and (min-width: 320px) {
-    width: auto;
+  @media screen and (max-width: 767px) {
+    padding-top: 15px;
+    padding-bottom: 12px;
+    margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
     margin: 0;
+    padding-top: 40px;
   }
 `;
 
@@ -74,7 +73,7 @@ export const Item = styled.li`
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     margin: 0;
     width: auto;
     height: 45px;
