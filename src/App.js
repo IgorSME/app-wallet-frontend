@@ -18,6 +18,7 @@ function App() {
   useEffect(() => {
     dispatch(authOperations.current());
   }, [dispatch]);
+
   return (
     <Suspense fallBack={<p>...loading</p>}>
       <Routes>
