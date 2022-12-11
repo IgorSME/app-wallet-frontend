@@ -66,7 +66,7 @@ export const TheadTrTh = styled.th`
   @media screen and (min-width: 320px) {
   }
   @media screen and (min-width: 768px) {
-    &:first-child {
+    &:first-of-type {
       border-bottom-left-radius: 30px;
     }
     &:last-child {
@@ -179,7 +179,7 @@ export const ItemFirstChild = styled.p`
   @media screen and (max-width: 767px) {
     text-align: left;
 
-    &:first-child {
+    &:first-of-type {
       font-family: 'Circe';
       font-style: normal;
       font-weight: 700;
@@ -198,7 +198,7 @@ export const ItemLastChild = styled.p`
   @media screen and (max-width: 767px) {
     text-align: left;
 
-    &:first-child {
+    &:first-of-type {
       font-family: 'Circe';
       font-style: normal;
       font-weight: 700;

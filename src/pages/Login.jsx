@@ -5,7 +5,6 @@ import {
   LoginTitle,
   LoginSideBareStyled,
   BlurBackGround,
-  BlurBackGroundOpacity,
 } from 'components/LoginForm/LoginForm.styled';
 
 export default function Login() {
@@ -15,11 +14,9 @@ export default function Login() {
         <LoginContainerStyled>
           <LoginSideBareStyled />
           <LoginTitle>Finance App</LoginTitle>
-          <BlurBackGround>
-            <BlurBackGroundOpacity />
-          </BlurBackGround>
-          <LoginForm />
         </LoginContainerStyled>
+        <LoginForm />
+        <BlurBackGround />
       </LoginSectionStyled>
     </>
   );

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import CurrencyBg from 'images/currency-bg.png';
-import CurrencyBgDesk from 'images/currency-bg-desk.png';
+import CurrencyBg from 'images/currency/currency-bg.png';
+import CurrencyBgDesk from 'images/currency/currency-bg-desk.png';
 
 export const BaseTable = styled.table`
   min-width: 280px;

@@ -1,8 +1,10 @@
 import { css } from '@emotion/react';
 import './fonts.css';
 
-import LoginPurpleBoob from 'images/Login_purple_boob.png';
-import LoginPinkBoob from 'images/Login_pink_boob.png';
+import PurpleBoob from 'images/background/purple_boob.png';
+import PinkBoob from 'images/background/pink_boob.png';
+import PurpleBoobDesk from 'images/background/purple_boob.png';
+import PinkBoobDesk from 'images/background/pink_boob.png';
 
 export const GlobalStyles = css`
   html {
@@ -18,34 +20,35 @@ export const GlobalStyles = css`
 
     font-weight: 400;
     line-height: 1.5;
-
-    background-color: #e7eaf2;
-
-    @media screen and (min-width: 768px) {
-      position: relative;
-
-      background-image: url(${LoginPurpleBoob}), url(${LoginPinkBoob});
-      background-repeat: no-repeat;
-      background-position: 0 100%, 100% 0;
-    }
-    /* @media screen and (min-width: 1280px) {
-      /* display: flex;
-      padding: 0;
-      background-image: none; */
-    /* } */
   }
 
   #root {
     min-height: 100vh;
     flex-direction: column;
     display: flex;
+
+    background-color: #e7eaf2;
+
+    @media screen and (min-width: 768px) {
+      position: relative;
+
+      background-image: url(${PurpleBoob}), url(${PinkBoob});
+      background-position: 0 100%, 100% 0;
+      background-repeat: no-repeat;
+      /* background-attachment: fixed; */
+    }
+
+    @media screen and (min-width: 1280px) {
+      background-image: url(${PurpleBoobDesk}), url(${PinkBoobDesk});
+      background-position: 0 100%, 100% 0;
+    }
   }
 
   main {
     flex-grow: 1;
 
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(25px);
+    /* background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px); */
   }
 
   h1,

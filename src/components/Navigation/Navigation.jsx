@@ -11,7 +11,7 @@ import { ReactComponent as Home } from 'images/home.svg';
 import { ReactComponent as Statistics } from 'images/statistics.svg';
 import { ReactComponent as Currency } from 'images/currency.svg';
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <>
       <Section>
@@ -40,5 +40,3 @@ const Navigation = () => {
     </>
   );
 };
-
-export default Navigation;

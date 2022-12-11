@@ -81,6 +81,7 @@ const example = {
 
 export default function Statistics() {
   const statisticsData = useSelector(statisticsSelectors.getStatistics);
+
   const loading = useSelector(statisticsSelectors.getIsLoading);
   const errorFetch = useSelector(statisticsSelectors.getError);
 
