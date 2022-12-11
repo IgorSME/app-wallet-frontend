@@ -20,7 +20,7 @@ function App() {
     dispatch(authOperations.current());
   }, [dispatch]);
   return (
-    <main className="App">
+    <main>
       <Suspense fallBack={<p>...loading</p>}>
         <Routes>
           <Route
