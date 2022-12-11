@@ -5,13 +5,12 @@ import { useEffect } from 'react';
 import * as authOperations from 'redux/auth/auth-operations';
 import { PrivateRoute, PublicRoute } from './routes';
 
-import { AppBar } from 'components/AppBar/AppBar';
-
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
 const Home = lazy(() => import('./pages/Home'));
 const Currency = lazy(() => import('./pages/Currency'));
 const Statistics = lazy(() => import('./pages/Statistics'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 
 function App() {
   const dispatch = useDispatch();
@@ -20,63 +19,64 @@ function App() {
     dispatch(authOperations.current());
   }, [dispatch]);
   return (
-    <main>
-      <Suspense fallBack={<p>...loading</p>}>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted>
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute restricted>
-                <Register />
-              </PublicRoute>
-            }
-          />
+
+    <Suspense fallBack={<p>...loading</p>}>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <PublicRoute restricted>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute restricted>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }
+        >
 
           <Route
-            path="/home"
+            index
+            path="home"
             element={
               <PrivateRoute>
-                <AppBar />
+                <Home />/
               </PrivateRoute>
             }
-          >
-            <Route
-              index
-              element={
-                <PrivateRoute>
-                  <Home />/
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="statistics"
-              element={
-                <PrivateRoute>
-                  <Statistics />/
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="currency"
-              element={
-                <PrivateRoute>
-                  <Currency />/
-                </PrivateRoute>
-              }
-            />
-          </Route>
-          <Route path="*" element={<p>Not Found page</p>} />
-        </Routes>
-      </Suspense>
-    </main>
+          />
+          <Route
+            path="statistics"
+            element={
+              <PrivateRoute>
+                <Statistics />/
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="currency"
+            element={
+              <PrivateRoute>
+                <Currency />/
+              </PrivateRoute>
+            }
+          />
+        </Route>
+        <Route path="*" element={<p>Not Found page</p>} />
+      </Routes>
+    </Suspense>
   );
 }
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BaseTable, THead, TBody, Th, Td } from './CurrencyTable.styled';
 
@@ -27,4 +26,3 @@ export function CurrencyTable({ currency }) {
     </>
   );
 }
-

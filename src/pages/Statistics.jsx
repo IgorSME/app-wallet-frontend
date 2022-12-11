@@ -114,6 +114,8 @@ export default function Statistics() {
   const isNoStatisticsData = statisticsData.allCategories?.length === 0;
 
   return (
+    <Chart dataDiagram={example.allCategories} profit={profit()} />
+
     <Section>
       <Container>
         {loading ? (
@@ -149,5 +151,6 @@ export default function Statistics() {
         )}
       </Container>
     </Section>
+
   );
 }

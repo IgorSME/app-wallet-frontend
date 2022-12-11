@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getName } from 'redux/selectors';
 import { logout } from 'redux/auth/auth-operations';
 
 import { Navigation, Logo } from 'components';
+
 import {
   Header,
   Container,
@@ -38,9 +40,11 @@ export const AppBar = () => {
               <ExitText>Exit</ExitText>
             </ExitBtn>
           </UserMenu>
-        </Container>
-      </Header>
-      <Navigation />
+
+        </Header>
+      </ContainerStyled>
+
+
       <Outlet />
     </>
   );
