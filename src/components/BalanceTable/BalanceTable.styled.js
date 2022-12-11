@@ -23,7 +23,7 @@ export const ContainerTable = styled(ContainerStyled)`
     width: 715px;
     margin-right: 16px;
     position: absolute;
-    top: 126px;
+    top: 46px;
     left: 549px;
   }
 `;
