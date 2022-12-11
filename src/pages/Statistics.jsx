@@ -101,20 +101,22 @@ export default function Statistics() {
   };
 
   return (
-    <Section>
-      <Container>
-        <StatisticsWrapper>
-          <Title>Statistics</Title>
-          <Chart dataDiagram={example.allCategories} profit={profit()} />
-        </StatisticsWrapper>
-        <StatisticsWrapper>
-          <StatisticsFilterSelect
-            handleChangeSearch={handleChangeSearch}
-            currentFilter={{ year, month }}
-          />
-          <StatisticsList data={example} />
-        </StatisticsWrapper>
-      </Container>
-    </Section>
+    <main className="App">
+      <Section>
+        <Container>
+          <StatisticsWrapper>
+            <Title>Statistics</Title>
+            <Chart dataDiagram={example.allCategories} profit={profit()} />
+          </StatisticsWrapper>
+          <StatisticsWrapper>
+            <StatisticsFilterSelect
+              handleChangeSearch={handleChangeSearch}
+              currentFilter={{ year, month }}
+            />
+            <StatisticsList data={example} />
+          </StatisticsWrapper>
+        </Container>
+      </Section>
+    </main>
   );
 }

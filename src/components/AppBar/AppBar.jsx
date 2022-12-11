@@ -1,7 +1,7 @@
 import { Logo } from 'components/Logo/Logo';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 import { Outlet } from 'react-router-dom';
-import Navigation from 'components/Navigation/Navigation';
+
 import {
   Header,
   UserMenu,
@@ -28,7 +28,7 @@ export const AppBar = () => {
           </UserMenu>
         </Header>
       </ContainerStyled>
-      <Navigation />
+
       <Outlet />
     </>
   );
