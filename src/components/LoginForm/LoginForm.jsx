@@ -42,6 +42,7 @@ export default function LoginForm() {
       >
         <LoginFormStyled autoComplete="false">
           <Logo />
+
           <LoginInputWrap>
             <LoginFormLabelStyled htmlFor="login_name_input"></LoginFormLabelStyled>
             <LoginFormInputStyled
@@ -53,6 +54,7 @@ export default function LoginForm() {
             <LoginFormError name="email" />
             <MailSvg />
           </LoginInputWrap>
+
           <LoginInputWrap>
             <LoginFormLabelStyled htmlFor="password_name_input"></LoginFormLabelStyled>
             <LoginFormInputStyled
@@ -64,9 +66,11 @@ export default function LoginForm() {
             <LoginFormError name="password" />
             <PasswordSvg />
           </LoginInputWrap>
+
           <LoginButtonSubmitStyled type="submit">
             Log in
           </LoginButtonSubmitStyled>
+
           <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
       </Formik>
