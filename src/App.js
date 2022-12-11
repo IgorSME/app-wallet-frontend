@@ -45,7 +45,7 @@ function App() {
               index
               element={
                 <PrivateRoute>
-                  <Home />/
+                  <Home />
                 </PrivateRoute>
               }
             />
@@ -53,7 +53,7 @@ function App() {
               path="statistics"
               element={
                 <PrivateRoute>
-                  <Statistics />/
+                  <Statistics />
                 </PrivateRoute>
               }
             />
@@ -61,7 +61,7 @@ function App() {
               path="currency"
               element={
                 <PrivateRoute>
-                  <Currency />/
+                  <Currency />
                 </PrivateRoute>
               }
             />
