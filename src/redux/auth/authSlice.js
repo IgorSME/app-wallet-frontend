@@ -13,7 +13,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setToken: (state, action) => {
+      state.refreshToken = action.payload;
+    },
+  },
   extraReducers: {
     [authOperations.register.pending]: state => {
       state.error = null;
@@ -31,7 +35,7 @@ const authSlice = createSlice({
     },
     [authOperations.login.pending]: state => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     },
     [authOperations.login.fulfilled]: (state, { payload }) => {
       state.loading = false;
@@ -47,7 +51,7 @@ const authSlice = createSlice({
     },
     [authOperations.logout.pending]: state => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     },
     [authOperations.logout.fulfilled]: (state, { payload }) => {
       state.loading = false;
@@ -61,7 +65,27 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    [authOperations.current.pending]: state => {
+      state.loading = true;
+      state.error = null;
+    },
+    [authOperations.current.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.user.email = payload.user.email;
+      state.user.name = payload.user.name;
+      state.isLoggedIn = true;
+    },
+    [authOperations.current.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [authOperations.addToken.fulfilled]: (state, { payload }) => {
+      state.refreshToken = payload.refreshToken;
+      state.accessToken = payload.accessToken;
+    },
   },
 });
+
+export const { setToken } = authSlice.actions;
 
 export default authSlice.reducer;

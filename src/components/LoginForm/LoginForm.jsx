@@ -29,7 +29,6 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, actions) => {
-
     dispatch(authOperations.login(values));
     actions.resetForm();
   };
@@ -67,14 +66,6 @@ export default function LoginForm() {
           </LoginInputWrap>
           <LoginButtonSubmitStyled type="submit">
             Log in
-          </LoginButtonSubmitStyled>
-          <LoginButtonSubmitStyled
-            onClick={() => {
-              dispatch(authOperations.logout());
-            }}
-            type="button"
-          >
-            Log
           </LoginButtonSubmitStyled>
           <LoginRegisterLink to={'/register'}>Register</LoginRegisterLink>
         </LoginFormStyled>
