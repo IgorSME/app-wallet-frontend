@@ -114,43 +114,44 @@ export default function Statistics() {
   const isNoStatisticsData = statisticsData.allCategories?.length === 0;
 
   return (
-    <Chart dataDiagram={example.allCategories} profit={profit()} />
+    <>
+      <Chart dataDiagram={example.allCategories} profit={profit()} />
 
-    <Section>
-      <Container>
-        {loading ? (
-          <>
-            <Title>Statistics</Title>
-            <Loader />
-          </>
-        ) : (
-          <>
-            <StatisticsWrapper>
+      <Section>
+        <Container>
+          {loading ? (
+            <>
               <Title>Statistics</Title>
-              {!isNoStatisticsData && (
-                <Chart
-                  dataDiagram={statisticsData.allCategories}
-                  profit={profit()}
+              <Loader />
+            </>
+          ) : (
+            <>
+              <StatisticsWrapper>
+                <Title>Statistics</Title>
+                {!isNoStatisticsData && (
+                  <Chart
+                    dataDiagram={statisticsData.allCategories}
+                    profit={profit()}
+                  />
+                )}
+              </StatisticsWrapper>
+              <StatisticsWrapper>
+                <StatisticsFilterSelect
+                  handleChangeSearch={handleChangeSearch}
+                  currentFilter={{ year, month }}
                 />
-              )}
-            </StatisticsWrapper>
-            <StatisticsWrapper>
-              <StatisticsFilterSelect
-                handleChangeSearch={handleChangeSearch}
-                currentFilter={{ year, month }}
-              />
-              {isNoStatisticsData ? (
-                <NoStatisticsText>
-                  There are no transactions this month
-                </NoStatisticsText>
-              ) : (
-                <StatisticsList data={statisticsData} />
-              )}
-            </StatisticsWrapper>
-          </>
-        )}
-      </Container>
-    </Section>
-
+                {isNoStatisticsData ? (
+                  <NoStatisticsText>
+                    There are no transactions this month
+                  </NoStatisticsText>
+                ) : (
+                  <StatisticsList data={statisticsData} />
+                )}
+              </StatisticsWrapper>
+            </>
+          )}
+        </Container>
+      </Section>
+    </>
   );
 }

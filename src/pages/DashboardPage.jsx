@@ -1,5 +1,5 @@
-import Navigation from '../components/Navigation/Navigation';
-import YourBalance from '../components/YourBalance/YourBalance';
+import { Navigation } from '../components/Navigation/Navigation';
+import { YourBalance } from '../components/YourBalance/YourBalance';
 import { CurrencyTable } from '../components/CurrencyTable/CurrencyTable';
 import { AppBar } from '../components/AppBar/AppBar';
 import Media from 'react-media';
