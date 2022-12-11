@@ -25,7 +25,7 @@ export const injectStore = _store => {
 instance.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response.data.message === 'Not authorized') {
+    if (error.response.status === 412) {
       try {
         const state = store.getState();
         const refreshToken = state.auth.refreshToken;
@@ -67,6 +67,9 @@ export const performLogout = async () => {
 };
 
 export const getCurrent = async () => {
+  const state = store.getState();
+  const accessToken = state.auth.accessToken;
+  token.setAccessToken(accessToken);
   const { data } = await instance.get('/api/user/current');
   return data;
 };

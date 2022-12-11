@@ -13,11 +13,7 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialState,
-  reducers: {
-    setToken: (state, action) => {
-      state.refreshToken = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [authOperations.register.pending]: state => {
       state.error = null;
@@ -85,7 +81,5 @@ const authSlice = createSlice({
     },
   },
 });
-
-export const { setToken } = authSlice.actions;
 
 export default authSlice.reducer;
