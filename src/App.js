@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import * as authOperations from 'redux/auth/auth-operations';
 import { PrivateRoute, PublicRoute } from './routes';
 
 const Register = lazy(() => import('./pages/Register'));
@@ -11,7 +13,13 @@ const Statistics = lazy(() => import('./pages/Statistics'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.current());
+  }, [dispatch]);
   return (
+
     <Suspense fallBack={<p>...loading</p>}>
       <Routes>
         <Route
@@ -39,6 +47,7 @@ function App() {
             </PrivateRoute>
           }
         >
+
           <Route
             index
             path="home"

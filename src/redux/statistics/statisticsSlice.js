@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchStatistics } from './statistics-operations';
 
 const initialState = {
-  statistics: [],
+  statistics: {
+    allCategories: [],
+    typesTotalSum: [],
+  },
   loading: false,
   error: null,
 };

@@ -1,11 +1,11 @@
-import BalanceTable from 'components/BalanceTable/BalanceTable';
-import YourBalance from 'components/YourBalance/YourBalance';
+import { BalanceTable, YourBalance } from 'components';
 
 import Modal from 'components/Modal/Modal';
 import Media from 'react-media';
 
 const Home = () => {
   return (
+
     <Media
       queries={{
         small: '(max-width: 768px)',
@@ -26,6 +26,7 @@ const Home = () => {
         )
       }
     </Media>
+
   );
 };
 
