@@ -53,7 +53,6 @@ function App() {
               element={
                 <PrivateRoute>
                   <Home />/
-                  <Login />
                 </PrivateRoute>
               }
             />

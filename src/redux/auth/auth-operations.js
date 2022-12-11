@@ -45,3 +45,7 @@ export const current = createAsyncThunk('auth/current', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error);
   }
 });
+
+export const addToken = createAsyncThunk('auth/token', async token => {
+  return token;
+});

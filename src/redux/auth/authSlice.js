@@ -13,7 +13,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setToken: (state, action) => {
+      state.refreshToken = action.payload;
+    },
+  },
   extraReducers: {
     [authOperations.register.pending]: state => {
       state.error = null;
@@ -74,7 +78,13 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    [authOperations.addToken.fulfilled]: (state, { payload }) => {
+      state.refreshToken = payload.refreshToken;
+      state.accessToken = payload.accessToken;
+    },
   },
 });
+
+export const { setToken } = authSlice.actions;
 
 export default authSlice.reducer;
