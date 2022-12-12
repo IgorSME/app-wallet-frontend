@@ -55,7 +55,7 @@ export const AppBar = () => {
         <ModalLogout onClose={onCloseModal} onLogout={handleLogOut} />
       )}
 
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   );
 };

@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 
+// export const ListSumNumber = styled.p`
+//   color: ${p =>
+//     p.textColor === 'expense' ? p.theme.colors.expense : p.theme.colors.income};
+// `;
+
 export const Section = styled.section`
   width: 280px;
   margin: 0 auto;
