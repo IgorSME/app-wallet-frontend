@@ -4,7 +4,6 @@ import { CurrencyTable } from '../components/CurrencyTable/CurrencyTable';
 import { AppBar } from '../components/AppBar/AppBar';
 import Media from 'react-media';
 import { Outlet } from 'react-router-dom';
-// import { Outlet } from 'react-router-dom';
 
 const mobStyles = {
   position: 'relative',

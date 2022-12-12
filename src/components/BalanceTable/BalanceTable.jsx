@@ -56,6 +56,22 @@ export const BalanceTable = () => {
               <td>1 000.00</td>
               <td>13 900.00</td>
             </TbodyTr>
+            <TbodyTr>
+              <td>07.01.19</td>
+              <td> - </td>
+              <td>Products</td>
+              <td>Vegetables for the week</td>
+              <td>280.00</td>
+              <td>13 870.00</td>
+            </TbodyTr>
+            <TbodyTr>
+              <td>07.01.19</td>
+              <td> + </td>
+              <td>Irregular Income</td>
+              <td>Gift </td>
+              <td>1 000.00</td>
+              <td>14870.00</td>
+            </TbodyTr>
           </Tbody>
         </Table>
       </ContainerTable>
