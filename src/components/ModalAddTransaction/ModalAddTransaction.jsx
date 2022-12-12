@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useId } from 'react';
+import { useSelector } from 'react-redux';
 
+import get from 'redux/categories/categories-operations';
 
 import Calendar from '../Calendar/Calendar';
 import Switch from 'components/Switch/Switch';
@@ -20,36 +22,29 @@ import {
   DateWrapper,
   AmoundWrapper,
   Amound,
-  // DateSelector,
   Comments,
   ModalButtonStyled,
   CalendarImg
 } from './ModalAddTransaction.styled';
 
-export default function ModalAddTransaction({ onClose: handleClose, onSubmit } ) {
+
+export default function ModalAddTransaction({ onClose: handleClose, onSubmit, categories: {baseCategories} } ) {
   const [isToggled, setIsToggled] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState('Select a category');
   const [amound, setAmound] = useState('');
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(new Date());
   const [comment, setComment] = useState('');
 
-
-  const options = [
-    'Main',
-    'Food',
-    'Auto',
-    'Development',
-    'Children',
-    'House',
-    'Education',
-    'Reset',
-  ];
   const inputId = useId();
+ 
 
   const handleChange = event => {
     const { name, value } = event.target;
     switch (name) {
+      case 'isToggled':
+        setIsToggled(value);
+        break;
       case 'selected':
         setSelected(value);
         break;
@@ -71,11 +66,13 @@ export default function ModalAddTransaction({ onClose: handleClose, onSubmit } )
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit({ selected, amound, date, comment });
+    onSubmit({ isToggled, selected, amound, date, comment });
     setSelected('');
     setAmound('');
-    setDate();
+    setDate(new Date());
     setComment('');
+    setIsToggled(false);
+    console.log(onSubmit());
 };
 
   return (
@@ -87,6 +84,7 @@ export default function ModalAddTransaction({ onClose: handleClose, onSubmit } )
             </ModalCloseBtn>
             <ModalTitle>Add transaction</ModalTitle>
           <Switch
+            value={isToggled}
             id={inputId}
             isToggled={isToggled}
             onToggle={() => setIsToggled(!isToggled)} />
@@ -97,17 +95,18 @@ export default function ModalAddTransaction({ onClose: handleClose, onSubmit } )
               value={selected}
               name="selected"
               onChange={handleChange}/>
-                            {/* {selected } */}
                 <SelectIconSvg/>
-                {/* </SelectCategoryButton> */}
                 {isActive && (
                     <SelectCategoryList >
-                        {options.map((option) => (
-                            <SelectCategoryItem
+                        {baseCategories.map(({_id, categoryName, type}) => (
+                          <SelectCategoryItem
+                            key={_id}
+                            name={categoryName}
+                            type={type}
                                 onClick={(e) => {
-                                setSelected(option);
+                                setSelected(categoryName);
                                 setIsActive(false);
-                            }}>{option}</SelectCategoryItem>
+                            }}>{categoryName}</SelectCategoryItem>
                         ))}
             </SelectCategoryList>
                 )}
@@ -124,7 +123,6 @@ export default function ModalAddTransaction({ onClose: handleClose, onSubmit } )
                 onChange={handleChange}
               />
               <CalendarImg/>
-            {/* <DateSelector type="date" name='Date'/> */}
             </DateWrapper>
             </AmoundDateWrapper>
           <CommentWrapper>

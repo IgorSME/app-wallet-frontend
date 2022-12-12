@@ -13,7 +13,7 @@ export default function Calendar() {
                 onChange={onChange}
                 dateFormat="dd-MM-yyyy"
                 minDate={new Date()}
-                // maxDate={new Date()}
+                maxDate={new Date()}
                 // showDisabledMonthNavigation
 
             >
