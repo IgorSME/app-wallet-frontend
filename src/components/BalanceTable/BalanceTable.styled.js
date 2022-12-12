@@ -44,6 +44,7 @@ export const Table = styled.table`
     border-collapse: collapse;
   }
   @media screen and (min-width: 1280px) {
+    width: 715px;
   }
 `;
 
