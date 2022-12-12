@@ -273,40 +273,6 @@ outline: none;
 }
 `;
 
-// export const DateSelector = styled.input`
-// position: relative;
-// width: 280px;
-// height: 32px;
-// background-color: ${p => p.theme.colors.barBackground};
-// font-family: ${p => p.theme.fonts.primary};
-// font-weight: ${p => p.theme.fontWeights.normal};
-// font-size: ${p => p.theme.fontSizes.m};
-// line-height: ${p => p.theme.lineHeights.normal};
-// color: ${p => p.theme.colors.primaryText};
-// border-bottom: ${p => p.theme.borders.radioBtn};
-// padding-left: 20px;
-// margin-bottom: 40px;
-// margin-left: 10px;
-// margin-right: 10px;
-// border-top: none;
-// border-left: none;
-// border-right: none;
-// outline: none;
-
-
-// @media screen and (min-width: 768px) {
-//   width: 182px;
-//   margin-left: 0;
-// }
-
-// // svg {
-// //     width: 18px;
-// //     height: 20px;
-// //     color: ${p => p.theme.colors.activeIcon};
-// //     margin-left: 137px;
-// // }
-// `;
-
 export const Comments = styled.input`
 width: 280px;
 height: 84px;

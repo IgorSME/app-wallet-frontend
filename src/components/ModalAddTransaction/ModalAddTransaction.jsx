@@ -90,7 +90,8 @@ export default function ModalAddTransaction({ onClose: handleClose, onSubmit, ca
             onToggle={() => setIsToggled(!isToggled)} />
            {/* {isToggled && (  */}
           <SelectWrapper>     
-                        <SelectCategoryButton 
+            <SelectCategoryButton
+              readOnly
               onClick={(e) => setIsActive(!isActive)}
               value={selected}
               name="selected"
