@@ -3,11 +3,14 @@ import { Suspense, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as authOperations from 'redux/auth/auth-operations';
+
 import { PrivateRoute, PublicRoute } from './routes';
+// import Dashboard from 'components/Dashboard/Dashboard';
 
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
 const Home = lazy(() => import('./pages/Home'));
+// const HomeCopy = lazy(() => import('./pages/HomeCopy'));
 const Currency = lazy(() => import('./pages/Currency'));
 const Statistics = lazy(() => import('./pages/Statistics'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));

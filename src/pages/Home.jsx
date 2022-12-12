@@ -18,7 +18,7 @@ const tabStyles = {
   margin: '0 auto',
 };
 const descStyles = {
-  position: 'relative',
+  // position: 'relative',
   minWidth: '1280px',
   margin: '0 auto',
 };
