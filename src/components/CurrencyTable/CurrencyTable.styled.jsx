@@ -31,7 +31,8 @@ export const BaseTable = styled.table`
     padding-bottom: 56px;
   }
   @media (min-width: 1280px) {
-    position: static;
+    top: 282px;
+    left: 0;
     margin-left: 18px;
     width: 393px;
     height: 331px;
