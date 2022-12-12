@@ -49,6 +49,8 @@ const Home = () => {
           )}
           {matches.large && (
             <div style={descStyles}>
+              <YourBalance />
+              <CurrencyTable />
               <BalanceTable />
               <Modal />
             </div>

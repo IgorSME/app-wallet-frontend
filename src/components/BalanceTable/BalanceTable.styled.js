@@ -23,7 +23,7 @@ export const ContainerTable = styled(ContainerStyled)`
     width: 715px;
     margin-right: 16px;
     position: absolute;
-    top: 126px;
+    top: 46px;
     left: 549px;
   }
 `;
@@ -156,7 +156,7 @@ export const Element = styled.li`
   }
 `;
 
-export const Item = styled.p`
+export const Item = styled.div`
   @media screen and (max-width: 767px) {
     display: flex;
     justify-content: space-between;

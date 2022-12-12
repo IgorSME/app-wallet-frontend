@@ -23,11 +23,16 @@ export const BaseTable = styled.table`
   background-position-y: bottom;
 
   @media (min-width: 768px) {
+    position: absolute;
+    left: 400px;
+    top: 32px;
     min-width: 336px;
     height: 182px;
     padding-bottom: 56px;
   }
-  @media (min-width: 1279px) {
+  @media (min-width: 1280px) {
+    position: static;
+    margin-left: 18px;
     width: 393px;
     height: 331px;
     padding-bottom: 179px;

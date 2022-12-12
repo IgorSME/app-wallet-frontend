@@ -1,9 +1,18 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 
 export const Section = styled.section`
-  margin: 0 64px;
+  @media screen and (max-width: 767px) {
+    width: 320px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-left: 32px;
+    width: 150px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 18px;
+  }
 
   a.active {
     svg {
@@ -29,14 +38,14 @@ export const Section = styled.section`
 `;
 
 export const Container = styled(ContainerStyled)`
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin: 0 auto;
-  @media screen and (min-width: 320px) {
-    width: auto;
+  @media screen and (max-width: 767px) {
+    padding-top: 15px;
+    padding-bottom: 12px;
+    margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
-    width: auto;
+    margin: 0;
+    padding-top: 40px;
   }
 `;
 
@@ -58,24 +67,27 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  &:not(:last-child) {
-    margin-right: 36px;
+  @media screen and (max-width: 767px) {
+    &:not(:last-child) {
+      margin-right: 36px;
+    }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     margin: 0;
-    margin-left: 32px;
     width: auto;
+    height: 45px;
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: center;
+    text-align: center;
 
     &:last-child {
       display: none;
     }
 
-    &:first-of-type {
-      margin-bottom: 21px;
+    &:first-child {
+      margin-bottom: 12px;
     }
   }
 `;
@@ -88,13 +100,6 @@ export const ItemText = styled.p`
     display: block;
     text-align: left;
     margin-left: 20px;
-  }
-`;
-
-export const ItemLink = styled(NavLink)`
-  @media screen and (min-width: 768px) {
-    width: 18px;
-    height: 18px;
   }
 `;
 
