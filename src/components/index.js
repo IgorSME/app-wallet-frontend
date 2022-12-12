@@ -12,4 +12,4 @@ export * from './RegisterForm/RegisterForm.styled';
 
 export * from './YourBalance/YourBalance';
 export * from './BalanceTable/BalanceTable';
-
+export * from './ModalLogout/ModalLogout';

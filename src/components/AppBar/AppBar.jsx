@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
-import { Logo } from '../Logo/Logo';
+
+import { Logo, ModalLogout } from 'components';
 import { getName } from 'redux/selectors';
 import { logout } from 'redux/auth/auth-operations';
 
@@ -17,12 +18,17 @@ import {
 import { ExitIcon } from './ExitIcon';
 
 export const AppBar = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const userName = useSelector(getName);
 
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
     dispatch(logout());
+  };
+
+  const onCloseModal = () => {
+    setIsOpenModal(false);
   };
 
   return (
@@ -33,13 +39,21 @@ export const AppBar = () => {
           <UserMenu>
             <UserName>{userName}</UserName>
             <Divider />
-            <ExitBtn onClick={handleLogOut}>
+            <ExitBtn
+              onClick={() => {
+                setIsOpenModal(true);
+              }}
+            >
               <ExitIcon />
               <ExitText>Exit</ExitText>
             </ExitBtn>
           </UserMenu>
         </Container>
       </Header>
+
+      {isOpenModal && (
+        <ModalLogout onClose={onCloseModal} onLogout={handleLogOut} />
+      )}
 
       <Outlet />
     </>
