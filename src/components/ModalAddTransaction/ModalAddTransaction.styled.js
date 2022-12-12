@@ -39,7 +39,7 @@ stroke: #24CCA7;
 }
 `;
 
-export const ModalContainerStyled = styled.div`
+export const ModalContainerStyled = styled.form`
 width: 100vw;
 height: 100vh;
 margin: 0 auto;
@@ -104,7 +104,7 @@ margin-left: 10px;
 margin-right: 10px;
 `;
 
-export const SelectCategoryButton = styled.button`
+export const SelectCategoryButton = styled.input`
 user-select: none;
 position: relative;
 width: 280px;
@@ -128,12 +128,11 @@ text-align: left;
 `;
 
 export const SelectIconSvg = styled(SelectIcon)`
-margin-left: 95px;
 position: absolute;
     top: 10px;
-    right: 10px;
+    left: 400px;
 @media screen and (min-width: 768px) {
-margin-left: 210px;
+// margin-left: 210px;
 }
 `;
 
@@ -252,7 +251,7 @@ flex-direction: column;
   }
 `;
 
-export const Amount = styled.input`
+export const Amound = styled.input`
 width: 280px;
 height: 32px;
 background: ${p => p.theme.colors.barBackground};
