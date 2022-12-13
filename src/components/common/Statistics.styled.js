@@ -25,7 +25,8 @@ export const Container = styled(ContainerStyled)`
     justify-content: space-between;
   }
   @media screen and (min-width: 1280px) {
-    padding: 0 18px;
+    width: 100%;
+    padding: 0;
   }
 `;
 
@@ -45,6 +46,9 @@ export const StatisticsWrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    &:first-of-type {
+      margin-right: 32px;
+    }
     &:last-of-type {
       margin-bottom: 0;
       width: 395px;

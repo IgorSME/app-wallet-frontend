@@ -39,10 +39,10 @@ export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
     setIsActiveYear(false);
   };
 
-  const closeSelect = e => {
-    setIsActiveMonth(false);
-    setIsActiveYear(false);
-  };
+  // const closeSelect = e => {
+  //   setIsActiveMonth(false);
+  //   setIsActiveYear(false);
+  // };
 
   return (
     <Box>

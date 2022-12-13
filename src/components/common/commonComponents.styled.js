@@ -9,15 +9,26 @@ export const SectionStyled = styled.section`
     padding-bottom: 20px;
   }
   @media screen and (min-width: 1280px) {
+    position: relative;
     padding-top: 40px;
     padding-bottom: 63px;
 
-    border-right: 1px solid #e7e5f2;
-    border-box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
-      1px 0px 0px rgba(255, 255, 255, 0.6);
+    /* border-right: 1px solid #e7e5f2;
+    box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+      1px 0px 0px rgba(255, 255, 255, 0.6); */
 
     &::after {
       content: '';
+      width: 1px;
+      height: 90vh;
+
+      background-color: #e7e5f2;
+      box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+        1px 0px 0px rgba(255, 255, 255, 0.6);
+
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 `;
@@ -109,5 +120,11 @@ export const WrapperDesktop = styled.div`
 
     width: 1280px;
     margin: 0 auto;
+  }
+`;
+
+export const SectionHomeTable = styled.section`
+  @media (min-width: 1279px) {
+    padding-top: 46px;
   }
 `;

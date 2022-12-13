@@ -15,7 +15,7 @@ import {
   StatisticsFilterSelect,
   StatisticsList,
   StatisticsWrapper,
-  Loader,
+  LoaderStatistics,
   NoStatisticsText,
 } from 'components';
 
@@ -111,7 +111,8 @@ export default function Statistics() {
 
   if (errorFetch) toast.error(errorFetch.response.data.message);
 
-  const isNoStatisticsData = statisticsData.allCategories?.length === 0;
+  const isNoStatisticsData = false;
+  // const isNoStatisticsData = statisticsData.allCategories?.length === 0;
 
   return (
     <>
@@ -120,7 +121,7 @@ export default function Statistics() {
           {loading ? (
             <>
               <Title>Statistics</Title>
-              <Loader />
+              <LoaderStatistics />
             </>
           ) : (
             <>
@@ -128,7 +129,7 @@ export default function Statistics() {
                 <Title>Statistics</Title>
                 {!isNoStatisticsData && (
                   <Chart
-                    dataDiagram={statisticsData.allCategories}
+                    dataDiagram={example.allCategories}
                     profit={profit()}
                   />
                 )}
@@ -143,7 +144,7 @@ export default function Statistics() {
                     There are no transactions this month
                   </NoStatisticsText>
                 ) : (
-                  <StatisticsList data={statisticsData} />
+                  <StatisticsList data={example} />
                 )}
               </StatisticsWrapper>
             </>

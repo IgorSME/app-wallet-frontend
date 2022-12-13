@@ -1,7 +1,7 @@
 export const theme = Object.freeze({
   colors: {
     accent: '#24CCA7',
-    // active: '#075e98',
+    name: '#075e98',
     placeholder: ' #BDBDBD',
     primaryText: '#000000',
     secondaryText: '#ffff',

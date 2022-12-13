@@ -6,6 +6,7 @@ import {
   Modal,
   ContainerNav,
   ContainerTable,
+  SectionHomeTable,
 } from 'components';
 
 const Home = () => {
@@ -28,12 +29,12 @@ const Home = () => {
             </section>
           )}
           {matches.other && (
-            <section style={{ paddingTop: 46 }}>
+            <SectionHomeTable>
               <ContainerTable>
                 <BalanceTable />
               </ContainerTable>
               <Modal />
-            </section>
+            </SectionHomeTable>
           )}
         </>
       )}

@@ -8,8 +8,6 @@ import * as authOperations from 'redux/auth/auth-operations';
 import { PrivateRoute, PublicRoute } from './routes';
 import { Loader } from 'components';
 
-// import DashboardPage from 'pages/DashboardPage';
-
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));

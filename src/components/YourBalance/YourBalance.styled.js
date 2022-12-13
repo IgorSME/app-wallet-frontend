@@ -24,7 +24,6 @@ import { ContainerStyled } from 'components';
 
 export const Wrapper = styled(ContainerStyled)`
   height: 80px;
-  width: 280px;
 
   margin-bottom: 32px;
   padding-top: 8px;
@@ -33,6 +32,10 @@ export const Wrapper = styled(ContainerStyled)`
   background-color: ${p => p.theme.colors.white};
   border-radius: 30px;
   text-align: left;
+
+  @media screen and (min-width: 320px), (max-width: 767px) {
+    width: 280px;
+  }
 
   @media screen and (min-width: 768px) {
     margin: 0;
