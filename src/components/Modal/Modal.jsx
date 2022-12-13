@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 
@@ -8,6 +9,7 @@ export function Modal() {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -20,6 +22,7 @@ export function Modal() {
       </OpenModalBtn>
 
       {isModalOpen && <ModalAddTransaction onClose={closeModal} />}
+
     </>
   );
 }
