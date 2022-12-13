@@ -13,7 +13,7 @@ export function Modal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const categories = useSelector(getCategories);
-    console.log(categories);
+    // console.log(categories);
 
 
 
@@ -21,12 +21,12 @@ export function Modal() {
 
     useEffect(() => {
         dispatch(get())
-      }, [dispatch]);
+      }, [dispatch, categories]);
 
 
     const onAddTransaction = (payload) => {
-    // dispatch(addTransaction(payload));
-        console.log(payload);
+    dispatch(addTransaction(payload));
+        // console.log(payload);
   };
   
 
@@ -46,7 +46,9 @@ export function Modal() {
       </OpenModalBtn>
 
       {isModalOpen &&
-        <ModalAddTransaction categories={categories} onClose={closeModal}
+        <ModalAddTransaction
+        categories={categories}
+        onClose={closeModal}
           onSubmit={onAddTransaction}
         />
       }
