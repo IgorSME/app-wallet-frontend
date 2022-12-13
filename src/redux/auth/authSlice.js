@@ -24,6 +24,7 @@ const authSlice = createSlice({
       state.user = payload.user;
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
+      state.isLoggedIn = true;
     },
     [authOperations.register.rejected]: (state, { payload }) => {
       state.loading = false;
