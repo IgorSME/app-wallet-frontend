@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useId } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 import Calendar from '../Calendar/Calendar';
 import Switch from 'components/Switch/Switch';
 import {
@@ -29,20 +31,25 @@ export default function ModalAddTransaction({
   onSubmit,
   categories: { baseCategories },
 }) {
-  const [isToggled, setIsToggled] = useState(false);
+
+  const [income, setIncome] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState('Select a category');
   const [amound, setAmound] = useState('');
   const [date, setDate] = useState(new Date());
   const [comment, setComment] = useState('');
+  const [category, setCategory] = useState("setCategory");
 
   const inputId = useId();
+
+  // const categories = useSelector(getCategories);
+
 
   const handleChange = event => {
     const { name, value } = event.target;
     switch (name) {
-      case 'isToggled':
-        setIsToggled(value);
+      case 'income':
+        setIncome(value);
         break;
       case 'selected':
         setSelected(value);
@@ -64,14 +71,16 @@ export default function ModalAddTransaction({
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit({ isToggled, selected, amound, date, comment });
+    onSubmit({ income, selected, amound, date, comment });
     setSelected('Select a category');
     setAmound('');
     setDate(new Date());
     setComment('');
-    setIsToggled(false);
-    console.log(onSubmit());
+    setIncome(false);
+    // console.log(onSubmit());
   };
+
+  const typeTransaction = income ? "income" : "expense";
 
   return (
     <>
@@ -82,12 +91,12 @@ export default function ModalAddTransaction({
           </ModalCloseBtn>
           <ModalTitle>Add transaction</ModalTitle>
           <Switch
-            value={isToggled}
+            value={income}
             id={inputId}
-            isToggled={isToggled}
-            onToggle={() => setIsToggled(!isToggled)}
+            income={income}
+            onToggle={() => setIncome(!income)}
           />
-          {/* {isToggled && (  */}
+          {/* {income && (  */}
           <SelectWrapper>
             <SelectCategoryButton
               readOnly
@@ -99,14 +108,18 @@ export default function ModalAddTransaction({
             <SelectIconSvg />
             {isActive && (
               <SelectCategoryList>
-                {baseCategories.map(({ _id, categoryName, type }) => (
+                {baseCategories.filter((el) => el.type === typeTransaction)
+                  .map(({ _id, categoryName}) => (
                   <SelectCategoryItem
-                    key={_id}
-                    name={categoryName}
-                    type={type}
+                      key={_id}
+                      value={categoryName}
+                    // name={categoryName}
+                    // type={type}
+                    // color={color}
                     onClick={e => {
                       setSelected(categoryName);
                       setIsActive(false);
+                      setCategory(e.target.value);
                     }}
                   >
                     {categoryName}
