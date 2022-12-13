@@ -12,22 +12,17 @@ import { OpenModalBtn, PlusIconSvg } from './Modal.styled';
 export function Modal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const categories = useSelector(getCategories);
-    // console.log(categories);
-
-
-
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(get())
-      }, [dispatch, categories]);
+      }, [dispatch]);
 
 
-    const onAddTransaction = (payload) => {
-    dispatch(addTransaction(payload));
-        // console.log(payload);
-  };
+  //   const onAddTransaction = (payload) => {
+  //   // dispatch(addTransaction(payload));
+  //     console.log(payload);
+  // };
   
 
   const openModal = () => {
@@ -47,9 +42,8 @@ export function Modal() {
 
       {isModalOpen &&
         <ModalAddTransaction
-        categories={categories}
         onClose={closeModal}
-          onSubmit={onAddTransaction}
+          // onSubmit={onAddTransaction}
         />
       }
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useId } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { getCategories } from 'redux/selectors';
 
 import Calendar from '../Calendar/Calendar';
 import Switch from 'components/Switch/Switch';
@@ -25,24 +26,24 @@ import {
   ModalButtonStyled,
   CalendarImg,
 } from './ModalAddTransaction.styled';
+import { addTransaction } from 'redux/transactions/transactions-operations';
 
 export default function ModalAddTransaction({
   onClose: handleClose,
-  onSubmit,
-  categories: { baseCategories },
 }) {
 
   const [income, setIncome] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState('Select a category');
-  const [amound, setAmound] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [amound, setAmound] = useState();
   const [comment, setComment] = useState('');
   const [category, setCategory] = useState("setCategory");
 
   const inputId = useId();
 
-  // const categories = useSelector(getCategories);
+  const date = Date.now();
+   
+  const {baseCategories} = useSelector(getCategories);
 
 
   const handleChange = event => {
@@ -54,11 +55,11 @@ export default function ModalAddTransaction({
       case 'selected':
         setSelected(value);
         break;
+      case 'category':
+          setCategory(value);
+          break;
       case 'amound':
         setAmound(value);
-        break;
-      case 'date':
-        setDate(value);
         break;
       case 'comment':
         setComment(value);
@@ -69,18 +70,26 @@ export default function ModalAddTransaction({
     }
   };
 
+  const dispatch = useDispatch();
+
+ 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit({ income, selected, amound, date, comment });
+    dispatch(addTransaction({
+      date: date,
+      type: typeTransaction,
+      category: selected,
+      comment: comment,
+      sum: +amound,
+    }));
     setSelected('Select a category');
-    setAmound('');
-    setDate(new Date());
+    setCategory("setCategory");
+    setAmound("");
     setComment('');
     setIncome(false);
-    // console.log(onSubmit());
   };
 
-  const typeTransaction = income ? "income" : "expense";
+  const typeTransaction = income ? "expense" : "income";
 
   return (
     <>
@@ -94,9 +103,11 @@ export default function ModalAddTransaction({
             value={income}
             id={inputId}
             income={income}
-            onToggle={() => setIncome(!income)}
+            onToggle={() => {setIncome(!income);
+              setSelected();
+}
+            }
           />
-          {/* {income && (  */}
           <SelectWrapper>
             <SelectCategoryButton
               readOnly
@@ -112,11 +123,9 @@ export default function ModalAddTransaction({
                   .map(({ _id, categoryName}) => (
                   <SelectCategoryItem
                       key={_id}
-                      value={categoryName}
-                    // name={categoryName}
-                    // type={type}
-                    // color={color}
-                    onClick={e => {
+                      value={category}
+                      name="category"
+                      onClick={e => {
                       setSelected(categoryName);
                       setIsActive(false);
                       setCategory(e.target.value);
@@ -128,10 +137,9 @@ export default function ModalAddTransaction({
               </SelectCategoryList>
             )}
           </SelectWrapper>
-          {/* )} */}
           <AmoundDateWrapper>
             <AmoundWrapper>
-              <Amound name="amound" value={amound} onChange={handleChange} />
+              <Amound name="amound" value={amound} type="number" min="1" onChange={handleChange} />
             </AmoundWrapper>
             <DateWrapper>
               <Calendar name="date" value={date} onChange={handleChange} />
