@@ -7,6 +7,7 @@ import {
   SelectButton,
   SelectList,
   SelectItem,
+  OverlaySelect,
 } from './StatisticsFilterSelect.styled';
 import sprite from 'images/svg-sprite.svg';
 
@@ -39,13 +40,14 @@ export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
     setIsActiveYear(false);
   };
 
-  // const closeSelect = e => {
-  //   setIsActiveMonth(false);
-  //   setIsActiveYear(false);
-  // };
+  const closeSelect = e => {
+    setIsActiveMonth(false);
+    setIsActiveYear(false);
+  };
 
   return (
     <Box>
+      <OverlaySelect onClick={closeSelect} />
       <Wrapper>
         <SelectButton
           onClick={() => {
