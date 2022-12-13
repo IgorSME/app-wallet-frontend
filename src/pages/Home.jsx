@@ -3,6 +3,7 @@ import { Navigation } from '../components/Navigation/Navigation';
 import { YourBalance } from '../components/YourBalance/YourBalance';
 import { CurrencyTable } from '../components/CurrencyTable/CurrencyTable';
 import Modal from 'components/Modal/Modal';
+import transactions from '../components/BalanceTable/transactions.json';
 
 import Media from 'react-media';
 // import { Outlet } from 'react-router-dom';
@@ -37,19 +38,19 @@ const Home = () => {
           {matches.small && (
             <div style={mobStyles}>
               <YourBalance />
-              <BalanceTable />
+              <BalanceTable transactions={transactions} />
               <Modal />
             </div>
           )}
           {matches.medium && (
             <div style={tabStyles}>
-              <BalanceTable />
+              <BalanceTable transactions={transactions} />
               <Modal />
             </div>
           )}
           {matches.large && (
             <div style={descStyles}>
-              <BalanceTable />
+              <BalanceTable transactions={transactions} />
               <Modal />
             </div>
           )}

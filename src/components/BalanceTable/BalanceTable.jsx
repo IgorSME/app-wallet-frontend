@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Section,
   ContainerTable,
@@ -15,7 +17,7 @@ import {
   ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
 
-export const BalanceTable = () => {
+export const BalanceTable = transactions => {
   return (
     <Section>
       <ContainerTable>
@@ -30,48 +32,19 @@ export const BalanceTable = () => {
               <TheadTrTh>Balance</TheadTrTh>
             </TheadTr>
           </Thead>
-
           <Tbody>
-            <TbodyTr>
-              <td>04.01.22</td>
-              <td> - </td>
-              <td>Other</td>
-              <td>Gift for your wife</td>
-              <td>300.00</td>
-              <td>6 900.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>05.01.19</td>
-              <td> + </td>
-              <td>Regular Income</td>
-              <td>January bonus</td>
-              <td>8 000.00</td>
-              <td>14 900.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>07.01.19</td>
-              <td> - </td>
-              <td>Car</td>
-              <td>Oil</td>
-              <td>1 000.00</td>
-              <td>13 900.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>07.01.19</td>
-              <td> - </td>
-              <td>Products</td>
-              <td>Vegetables for the week</td>
-              <td>280.00</td>
-              <td>13 870.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>07.01.19</td>
-              <td> + </td>
-              <td>Irregular Income</td>
-              <td>Gift </td>
-              <td>1 000.00</td>
-              <td>14 870.00</td>
-            </TbodyTr>
+            {transactions.map(
+              ({ date, type, category, comment, sum, balance }) => (
+                <TbodyTr>
+                  <td>{date}</td>
+                  <td>{type}</td>
+                  <td>{category}</td>
+                  <td>{comment}</td>
+                  <td>{sum}</td>
+                  <td>{balance}</td>
+                </TbodyTr>
+              )
+            )}
           </Tbody>
         </Table>
       </ContainerTable>

@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "6397b3962a0749f6608594f4",
+    "date": "2022-03-01T12:25:00.000Z",
+    "month": "3",
+    "year": "2022",
+    "type": "income",
+    "category": "ЗСУ",
+    "owner": "63945f735fee699cc287d17a",
+    "comment": "Bayractar",
+    "sum": "8000",
+    "balanceAfterTransaction": "8000",
+    "createdAt": "2022-12-12T23:04:54.214Z",
+    "updatedAt": "2022-12-12T23:04:54.214Z"
+  },
+  {
+    "_id": "6397b3ca2a0749f660859867",
+    "date": "2022-03-01T12:25:00.000Z",
+    "month": "3",
+    "year": "2022",
+    "type": "expense",
+    "category": "ЗСУ",
+    "owner": "63945f735fee699cc287d17a",
+    "comment": "Bayractar",
+    "sum": "1000",
+    "balanceAfterTransaction": "7000",
+    "createdAt": "2022-12-12T23:05:46.454Z",
+    "updatedAt": "2022-12-12T23:05:46.454Z"
+  },
+  {
+    "_id": "6397b43a2a0749f660859fdc",
+    "date": "2022-03-01T12:25:00.000Z",
+    "month": "3",
+    "year": "2022",
+    "type": "expense",
+    "category": "Products",
+    "owner": "63945f735fee699cc287d17a",
+    "comment": "Їжа на 3 дні",
+    "sum": "1000",
+    "balanceAfterTransaction": "6000",
+    "createdAt": "2022-12-12T23:07:38.596Z",
+    "updatedAt": "2022-12-12T23:07:38.596Z"
+  },
+  {
+    "_id": "6397b4652a0749f66085a2b7",
+    "date": "2022-03-01T12:25:00.000Z",
+    "month": "3",
+    "year": "2022",
+    "type": "expense",
+    "category": "Education",
+    "owner": "63945f735fee699cc287d17a",
+    "comment": "Курсова робота",
+    "sum": "3000",
+    "balanceAfterTransaction": "3000",
+    "createdAt": "2022-12-12T23:07:38.596Z",
+    "updatedAt": "2022-12-12T23:07:38.596Z"
+  }
+  
+  
+]
