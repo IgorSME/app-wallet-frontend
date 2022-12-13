@@ -65,7 +65,7 @@ export default function ModalAddTransaction({
   const handleSubmit = event => {
     event.preventDefault();
     onSubmit({ isToggled, selected, amound, date, comment });
-    setSelected('');
+    setSelected('Select a category');
     setAmound('');
     setDate(new Date());
     setComment('');
