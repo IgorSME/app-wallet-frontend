@@ -5,6 +5,7 @@ import Media from 'react-media';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as authOperations from 'redux/auth/auth-operations';
+
 import { PrivateRoute, PublicRoute } from './routes';
 import { Loader } from 'components';
 
