@@ -99,11 +99,12 @@ export default function ModalAddTransaction({
             <SelectIconSvg />
             {isActive && (
               <SelectCategoryList>
-                {baseCategories.map(({ _id, categoryName, type }) => (
+                {baseCategories.map(({ _id, categoryName, type, color }) => (
                   <SelectCategoryItem
                     key={_id}
                     name={categoryName}
                     type={type}
+                    color={color}
                     onClick={e => {
                       setSelected(categoryName);
                       setIsActive(false);
