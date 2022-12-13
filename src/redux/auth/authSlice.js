@@ -68,8 +68,9 @@ const authSlice = createSlice({
     },
     [authOperations.current.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.user.email = payload.user.email;
-      state.user.name = payload.user.name;
+      // state.user.email = payload.user.email;
+      // state.user.name = payload.user.name;
+      state.user = { ...payload.user };
       state.isLoggedIn = true;
     },
     [authOperations.current.rejected]: (state, { payload }) => {
