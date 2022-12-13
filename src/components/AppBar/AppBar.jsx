@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Logo, ModalLogout } from 'components';
@@ -54,8 +53,6 @@ export const AppBar = () => {
       {isOpenModal && (
         <ModalLogout onClose={onCloseModal} onLogout={handleLogOut} />
       )}
-
-      <Outlet />
     </>
   );
 };

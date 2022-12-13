@@ -7,6 +7,7 @@ export const BaseTable = styled.table`
   height: 174px;
 
   margin: 0 auto;
+  margin-top: 16px;
   padding-bottom: 52px;
 
   border-spacing: 0px;
@@ -23,18 +24,19 @@ export const BaseTable = styled.table`
   background-position-y: bottom;
 
   @media (min-width: 768px) {
-    position: absolute;
-    left: 400px;
-    top: 32px;
+    /* position: absolute; */
+    /* left: 400px;
+    top: 32px; */
+    margin-top: 0;
     min-width: 336px;
     height: 182px;
     padding-bottom: 56px;
   }
   @media (min-width: 1280px) {
-    position: static;
-    margin-left: 18px;
+    margin-left: 0;
     width: 393px;
     height: 331px;
+
     padding-bottom: 179px;
     background-image: url(${CurrencyBgDesk});
   }

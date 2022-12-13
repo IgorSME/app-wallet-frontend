@@ -5,7 +5,7 @@ import {
   LoginTitle,
   LoginSideBareStyled,
   BlurBackGround,
-} from 'components/LoginForm/LoginForm.styled';
+} from 'components';
 
 export default function Login() {
   return (

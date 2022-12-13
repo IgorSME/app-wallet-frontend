@@ -38,7 +38,7 @@ export default function Currency() {
         setCurrencyStorage(currentData);
         setCurrencyTimeStorage(Date.now());
       } catch (error) {
-        toast.error('No connection. try later.');
+        // toast.error('No connection. try later.');
       }
     };
 

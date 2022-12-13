@@ -7,6 +7,7 @@ export const Section = styled.section`
   padding-bottom: 48px;
 
   @media screen and (min-width: 768px) {
+    padding-top: 0;
     padding-bottom: 24px;
   }
   @media screen and (min-width: 1280px) {

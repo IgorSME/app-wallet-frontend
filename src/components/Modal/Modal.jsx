@@ -1,27 +1,25 @@
-import { useState } from "react";
-import ModalAddTransaction from "components/ModalAddTransaction/ModalAddTransaction";
+import { useState } from 'react';
+import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 
-import {OpenModalBtn, PlusIconSvg } from "./Modal.styled";
+import { OpenModalBtn, PlusIconSvg } from './Modal.styled';
 
-export default function Modal() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
+export function Modal() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-    return (
-        <>
-            <OpenModalBtn onClick={openModal}>
-                <PlusIconSvg/>
-            </OpenModalBtn>
-    
-            {isModalOpen &&
-                <ModalAddTransaction onClose={closeModal}/>
-    }
+  return (
+    <>
+      <OpenModalBtn onClick={openModal}>
+        <PlusIconSvg />
+      </OpenModalBtn>
+
+      {isModalOpen && <ModalAddTransaction onClose={closeModal} />}
     </>
-    );
+  );
 }

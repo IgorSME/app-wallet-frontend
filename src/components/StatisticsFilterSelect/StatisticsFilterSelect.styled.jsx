@@ -38,7 +38,7 @@ export const SelectButton = styled.button`
 
   padding: 0 20px;
 
-  width: 280px;
+  width: 100%;
   height: 50px;
 
   /* background-color: ${p => p.theme.colors.barBackground}; */
@@ -52,6 +52,10 @@ export const SelectButton = styled.button`
 
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  @media (min-width: 320px) {
+    width: 280px;
   }
 
   @media (min-width: 768px) {

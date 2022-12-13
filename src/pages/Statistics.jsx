@@ -115,8 +115,6 @@ export default function Statistics() {
 
   return (
     <>
-      <Chart dataDiagram={example.allCategories} profit={profit()} />
-
       <Section>
         <Container>
           {loading ? (
