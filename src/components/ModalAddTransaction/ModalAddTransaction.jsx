@@ -35,9 +35,8 @@ export default function ModalAddTransaction({
   const [income, setIncome] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState('Select a category');
-  const [amound, setAmound] = useState();
+  const [amound, setAmound] = useState(0);
   const [comment, setComment] = useState('');
-  const [category, setCategory] = useState("setCategory");
 
   const inputId = useId();
 
@@ -55,9 +54,6 @@ export default function ModalAddTransaction({
       case 'selected':
         setSelected(value);
         break;
-      case 'category':
-          setCategory(value);
-          break;
       case 'amound':
         setAmound(value);
         break;
@@ -83,7 +79,6 @@ export default function ModalAddTransaction({
       sum: +amound,
     }));
     setSelected('Select a category');
-    setCategory("setCategory");
     setAmound("");
     setComment('');
     setIncome(false);
@@ -103,15 +98,17 @@ export default function ModalAddTransaction({
             value={income}
             id={inputId}
             income={income}
-            onToggle={() => {setIncome(!income);
-              setSelected();
+            onToggle={() => {
+              setIncome(!income);
+              setSelected('Select a category');
 }
             }
           />
           <SelectWrapper>
             <SelectCategoryButton
+              required
               readOnly
-              onClick={e => setIsActive(!isActive)}
+              onClick={() => {setIsActive(!isActive)}}
               value={selected}
               name="selected"
               onChange={handleChange}
@@ -121,14 +118,12 @@ export default function ModalAddTransaction({
               <SelectCategoryList>
                 {baseCategories.filter((el) => el.type === typeTransaction)
                   .map(({ _id, categoryName}) => (
-                  <SelectCategoryItem
+                    <SelectCategoryItem
                       key={_id}
-                      value={category}
-                      name="category"
-                      onClick={e => {
+                      value={selected}
+                      onClick={() => {
                       setSelected(categoryName);
-                      setIsActive(false);
-                      setCategory(e.target.value);
+                        setIsActive(false);
                     }}
                   >
                     {categoryName}
@@ -139,7 +134,13 @@ export default function ModalAddTransaction({
           </SelectWrapper>
           <AmoundDateWrapper>
             <AmoundWrapper>
-              <Amound name="amound" value={amound} type="number" min="1" onChange={handleChange} />
+              <Amound
+                style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
+                name="amound"
+                value={amound}
+                type="number"
+                min="1"
+                onChange={handleChange} />
             </AmoundWrapper>
             <DateWrapper>
               <Calendar name="date" value={date} onChange={handleChange} />
@@ -148,6 +149,7 @@ export default function ModalAddTransaction({
           </AmoundDateWrapper>
           <CommentWrapper>
             <Comments
+              style={comment ? { color: '#000000' } : { color: '#BDBDBD' }}
               placeholder="Comment"
               name="comment"
               value={comment}
