@@ -23,8 +23,6 @@ export const LoginSectionStyled = styled.section`
   }
 
   @media screen and (min-width: 768px) {
-    background-color: inherit;
-
     min-height: 100vh;
 
     display: flex;

@@ -1,25 +1,17 @@
-import { Navigation } from '../components/Navigation/Navigation';
-import { YourBalance } from '../components/YourBalance/YourBalance';
-import { CurrencyTable } from '../components/CurrencyTable/CurrencyTable';
-import { AppBar } from '../components/AppBar/AppBar';
 import Media from 'react-media';
 import { Outlet } from 'react-router-dom';
 
-const mobStyles = {
-  position: 'relative',
-  minWidth: '320px',
-  margin: '0 auto',
-};
-const tabStyles = {
-  position: 'relative',
-  minWidth: '768px',
-  margin: '0 auto',
-};
-const descStyles = {
-  position: 'relative',
-  minWidth: '1280px',
-  margin: '0 auto',
-};
+import Currency from 'pages/Currency';
+
+import {
+  AppBar,
+  YourBalance,
+  Navigation,
+  SectionStyled,
+  ContainerNav,
+  WrapperNav,
+  WrapperDesktop,
+} from 'components';
 
 const DashboardPage = () => {
   return (
@@ -27,8 +19,7 @@ const DashboardPage = () => {
       <Media
         queries={{
           small: '(max-width: 767px)',
-          medium: '(min-width: 768px) and (max-width: 1279px)',
-          large: '(min-width: 1280px)',
+          other: '(min-width: 768px)',
         }}
       >
         {matches => (
@@ -36,31 +27,31 @@ const DashboardPage = () => {
             {matches.small && (
               <>
                 <AppBar />
-                <main style={mobStyles}>
-                  <Navigation />
+                <main style={{ position: 'relative' }}>
+                  <SectionStyled>
+                    <Navigation />
+                  </SectionStyled>
+
                   <Outlet />
                 </main>
               </>
             )}
-            {matches.medium && (
+            {matches.other && (
               <>
                 <AppBar />
-                <main style={tabStyles}>
-                  <Navigation />
-                  <YourBalance />
-                  <CurrencyTable />
-                  <Outlet />
-                </main>
-              </>
-            )}
-            {matches.large && (
-              <>
-                <AppBar />
-                <main style={descStyles}>
-                  <Navigation />
-                  <YourBalance />
-                  <CurrencyTable />
-                  <Outlet />
+                <main style={{ position: 'relative' }}>
+                  <WrapperDesktop>
+                    <SectionStyled>
+                      <ContainerNav>
+                        <WrapperNav>
+                          <Navigation />
+                          <YourBalance />
+                        </WrapperNav>
+                        <Currency />
+                      </ContainerNav>
+                    </SectionStyled>
+                    <Outlet />
+                  </WrapperDesktop>
                 </main>
               </>
             )}

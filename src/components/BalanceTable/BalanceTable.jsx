@@ -1,5 +1,4 @@
 import {
-  Section,
   ContainerTable,
   Table,
   Thead,
@@ -17,7 +16,7 @@ import {
 
 export const BalanceTable = () => {
   return (
-    <Section>
+    <>
       <ContainerTable>
         <Table>
           <Thead>
@@ -131,6 +130,6 @@ export const BalanceTable = () => {
           </Element>
         </List>
       </ContainerList>
-    </Section>
+    </>
   );
 };

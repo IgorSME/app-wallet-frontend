@@ -1,19 +1,21 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 import { Suspense, lazy } from 'react';
+import Media from 'react-media';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as authOperations from 'redux/auth/auth-operations';
 
 import { PrivateRoute, PublicRoute } from './routes';
-// import Dashboard from 'components/Dashboard/Dashboard';
+import { Loader } from 'components';
 
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
-const Home = lazy(() => import('./pages/Home'));
-// const HomeCopy = lazy(() => import('./pages/HomeCopy'));
-const Currency = lazy(() => import('./pages/Currency'));
-const Statistics = lazy(() => import('./pages/Statistics'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const Home = lazy(() => import('./pages/Home'));
+const Statistics = lazy(() => import('./pages/Statistics'));
+const Currency = lazy(() => import('./pages/Currency'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Suspense fallBack={<p>...loading</p>}>
+    <Suspense fallBack={<Loader />}>
       <Routes>
         <Route
           path="/login"
@@ -52,7 +54,7 @@ function App() {
         >
           <Route
             index
-            path="home"
+            path="/home"
             element={
               <PrivateRoute>
                 <Home />
@@ -71,12 +73,16 @@ function App() {
             path="currency"
             element={
               <PrivateRoute>
-                <Currency />
+                <Media query="(max-width: 767px)">
+                  {matches =>
+                    matches ? <Currency /> : <Navigate to="/home" />
+                  }
+                </Media>
               </PrivateRoute>
             }
           />
         </Route>
-        <Route path="*" element={<p>Not Found page</p>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
