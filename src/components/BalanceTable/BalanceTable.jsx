@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   ContainerTable,
   Table,
@@ -15,18 +17,20 @@ import {
 } from 'components/BalanceTable/BalanceTable.styled';
 
 export const BalanceTable = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <ContainerTable>
         <Table>
           <Thead>
             <TheadTr>
-              <TheadTrTh>Date</TheadTrTh>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Comment</th>
-              <th>Sum</th>
-              <TheadTrTh>Balance</TheadTrTh>
+              <TheadTrTh>{t('transactions.date')}</TheadTrTh>
+              <th>{t('transactions.type')}</th>
+              <th>{t('transactions.category')}</th>
+              <th>{t('transactions.comment')}</th>
+              <th>{t('transactions.sum')}</th>
+              <TheadTrTh>{t('transactions.balance')}</TheadTrTh>
             </TheadTr>
           </Thead>
 

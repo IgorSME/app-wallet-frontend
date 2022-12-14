@@ -1,15 +1,17 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Media from 'react-media';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import * as authOperations from 'redux/auth/auth-operations';
 import { useSelector } from 'react-redux';
 
-import { PrivateRoute, PublicRoute } from './routes';
 import { Loader } from 'components';
+
 import { getAccessToken } from 'redux/selectors';
+
+import { PrivateRoute, PublicRoute } from './routes';
+
 
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));

@@ -17,7 +17,8 @@ export const Wrapper = styled.div`
 
 export const Text = styled.p`
   position: absolute;
-  color: ${p => (p.sum > 0 ? p.theme.colors.income : p.theme.colors.expense)};
+  color: ${p =>
+    p.profit > 0 ? p.theme.colors.income : p.theme.colors.expense};
 
   /* font-family: ${p => p.theme.fonts.primary}; */
   font-size: ${p => p.theme.fontSizes.m};
