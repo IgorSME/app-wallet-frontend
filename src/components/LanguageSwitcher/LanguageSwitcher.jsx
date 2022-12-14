@@ -1,11 +1,10 @@
-import { Image, Tab, TabList, Tabs } from '@chakra-ui/react';
-import styled from '@emotion/styled';
-
+import { useState } from 'react';
+import { Tabs } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
+import { TabListStyled, TabStyled, ImgStyled } from './LanguageSwitcher.styled';
 import englishFlag from 'images/lang-switcher/lang-english.png';
 import ukraineFlag from 'images/lang-switcher/lang-ukraine.png';
-import { useState } from 'react';
 
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
@@ -17,30 +16,29 @@ export const LanguageSwitcher = () => {
   const sizeEngImg = !isActive ? '20px' : '30px';
   const sizeUkrImg = isActive ? '20px' : '30px';
 
+  const changeLanguage = () => {
+    if (i18n.language === 'en') {
+      i18n.changeLanguage('ua');
+    } else {
+      i18n.changeLanguage('en');
+    }
+    setIsActive(!isActive);
+  };
+
   return (
     <>
       <Tabs variant="soft-rounded" colorScheme="accent">
         <TabListStyled>
-          <TabStyled>
+          <TabStyled onClick={changeLanguage} opacity={sizeEngImg}>
             <ImgStyled
-              onClick={() => {
-                setIsActive(!isActive);
-                i18n.changeLanguage('en');
-              }}
               boxSize={sizeEngImg}
-              // boxShadow={isActive === true && '0px 6px 15px rgba(0, 0, 0, 0.1)'}
-              // borderRadius="full"
               src={englishFlag}
               alt="change english language"
               pos={sizeEngImg}
             />
           </TabStyled>
-          <TabStyled>
+          <TabStyled onClick={changeLanguage} opacity={sizeUkrImg}>
             <ImgStyled
-              onClick={() => {
-                setIsActive(!isActive);
-                i18n.changeLanguage('ua');
-              }}
               boxSize={sizeUkrImg}
               // borderRadius="full"
               src={ukraineFlag}
@@ -53,29 +51,3 @@ export const LanguageSwitcher = () => {
     </>
   );
 };
-
-const TabListStyled = styled(TabList)`
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    margin-bottom: 0;
-  }
-`;
-
-const TabStyled = styled(Tab)`
-  @media (min-width: 768px) {
-    &:first-of-type {
-      margin-right: 12px;
-    }
-  }
-`;
-
-const ImgStyled = styled(Image)`
-  margin-right: 0;
-  display: ${p => (p.pos === '30px' ? 'none' : 'flex')};
-
-  @media (min-width: 768px) {
-    display: flex;
-  }
-`;
