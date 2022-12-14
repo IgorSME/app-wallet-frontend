@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { get } from 'redux/categories/categories-operations';
+import { get } from 'redux/categories/categories-operations'
 
 import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 
@@ -15,11 +16,6 @@ export function Modal() {
   useEffect(() => {
     dispatch(get());
   }, [dispatch]);
-
-  //   const onAddTransaction = (payload) => {
-  //   // dispatch(addTransaction(payload));
-  //     console.log(payload);
-  // };
 
   const openModal = () => {
     setIsModalOpen(true);

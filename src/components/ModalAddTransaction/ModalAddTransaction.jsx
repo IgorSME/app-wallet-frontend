@@ -33,9 +33,9 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
   const [income, setIncome] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState(t('addTransactions.select'));
-  const [amount, setAmount] = useState();
+  const [amound, setAmound] = useState(0);
   const [comment, setComment] = useState('');
-  const [category, setCategory] = useState('setCategory');
+
 
   const inputId = useId();
 
@@ -52,9 +52,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
       case 'selected':
         setSelected(value);
         break;
-      case 'category':
-        setCategory(value);
-        break;
+
       case 'amound':
         setAmount(value);
         break;
@@ -71,18 +69,16 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(
-      addTransaction({
-        date: date,
-        type: typeTransaction,
-        category: selected,
-        comment: comment,
-        sum: +amount,
-      })
-    );
+
+    dispatch(addTransaction({
+      date: date,
+      type: typeTransaction,
+      category: selected,
+      comment: comment,
+      sum: +amound,
+    }));
     setSelected(t('addTransactions.select'));
-    setCategory('setCategory');
-    setAmount('');
+    setAmound("");
     setComment('');
     setIncome(false);
   };
@@ -103,13 +99,15 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
             income={income}
             onToggle={() => {
               setIncome(!income);
-              setSelected();
-            }}
+              setSelected(t('addTransactions.select'));
+              }}
+
           />
           <SelectWrapper>
             <SelectCategoryButton
+              required
               readOnly
-              onClick={e => setIsActive(!isActive)}
+              onClick={() => {setIsActive(!isActive)}}
               value={selected}
               name="selected"
               onChange={handleChange}
@@ -117,34 +115,35 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
             <SelectIconSvg />
             {isActive && (
               <SelectCategoryList>
-                {baseCategories
-                  .filter(el => el.type === typeTransaction)
-                  .map(({ _id, categoryName }) => (
+
+                {baseCategories.filter((el) => el.type === typeTransaction)
+                  .map(({ _id, categoryName}) => (
                     <SelectCategoryItem
                       key={_id}
-                      value={category}
-                      name="category"
-                      onClick={e => {
-                        setSelected(categoryName);
+                      value={selected}
+                      onClick={() => {
+                      setSelected(categoryName);
                         setIsActive(false);
-                        setCategory(e.target.value);
-                      }}
-                    >
-                      {categoryName}
-                    </SelectCategoryItem>
-                  ))}
+                    }}
+                  >
+                    {categoryName}
+                  </SelectCategoryItem>
+                ))}
+
               </SelectCategoryList>
             )}
           </SelectWrapper>
           <AmoundDateWrapper>
             <AmoundWrapper>
               <Amound
-                name="amount"
-                value={amount}
+
+                style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
+                name="amound"
+                value={amound}
                 type="number"
                 min="1"
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
+
             </AmoundWrapper>
             <DateWrapper>
               <Calendar name="date" value={date} onChange={handleChange} />
@@ -153,6 +152,8 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
           </AmoundDateWrapper>
           <CommentWrapper>
             <Comments
+
+              style={comment ? { color: '#000000' } : { color: '#BDBDBD' }}
               placeholder={t('addTransactions.comment')}
               name="comment"
               value={comment}
