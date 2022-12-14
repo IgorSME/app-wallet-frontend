@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { fetchStatistics } from 'redux/statistics/statistics-operations';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
+import { getCategories } from 'redux/selectors';
 import { getMonthPosition } from 'helpers';
 
 import {
@@ -23,10 +24,12 @@ import {
 export default function Statistics() {
   const { t } = useTranslation();
 
-  const statisticsData = useSelector(statisticsSelectors.getStatistics);
-
+  const { allCategories, typesTotalSum } = useSelector(
+    statisticsSelectors.getStatistics
+  );
   const loading = useSelector(statisticsSelectors.getIsLoading);
   const errorFetch = useSelector(statisticsSelectors.getError);
+  const { baseCategories } = useSelector(getCategories);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const params = useMemo(
@@ -47,7 +50,7 @@ export default function Statistics() {
   };
 
   const profit = () => {
-    const sortArr = [...statisticsData.typesTotalSum].sort((x, y) =>
+    const sortArr = [...typesTotalSum].sort((x, y) =>
       y.typeName.localeCompare(x.typeName)
     );
     const [income, expense] = sortArr;
@@ -57,8 +60,21 @@ export default function Statistics() {
 
   if (errorFetch) toast.error(errorFetch.response.data.message);
 
-  // const isNoStatisticsData = false;
-  const isNoStatisticsData = statisticsData.allCategories?.length === 0;
+  const renderStatistics = baseCategories.reduce(
+    (previousValue, { categoryName, color }) => {
+      const findCategory = allCategories.find(
+        el => el.categoryName === categoryName
+      );
+      if (!findCategory) {
+        return previousValue;
+      }
+
+      return [...previousValue, { ...findCategory, color }];
+    },
+    []
+  );
+
+  const isNoStatisticsData = renderStatistics?.length === 0;
 
   return (
     <>
@@ -74,10 +90,7 @@ export default function Statistics() {
               <StatisticsWrapper>
                 <Title>{t('nav.statistics')}</Title>
                 {!isNoStatisticsData && (
-                  <Chart
-                    dataDiagram={statisticsData.allCategories}
-                    profit={profit()}
-                  />
+                  <Chart dataDiagram={renderStatistics} profit={profit()} />
                 )}
               </StatisticsWrapper>
               <StatisticsWrapper>
@@ -88,7 +101,7 @@ export default function Statistics() {
                 {isNoStatisticsData ? (
                   <NoStatisticsText>{t('diagram.text')}</NoStatisticsText>
                 ) : (
-                  <StatisticsList data={statisticsData} />
+                  <StatisticsList data={{ renderStatistics, typesTotalSum }} />
                 )}
               </StatisticsWrapper>
             </>

@@ -3,25 +3,14 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Overlay, Box, Title, Button, ButtonText } from './ModalLogout.styled';
+import { useCloseOnEsc } from '../../hooks/useCloseOnEsc';
 
 const modalRef = document.querySelector('#modal-root');
 
 export function ModalLogout({ onClose, onLogout }) {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.code === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClose]);
+  useCloseOnEsc(onClose);
 
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {

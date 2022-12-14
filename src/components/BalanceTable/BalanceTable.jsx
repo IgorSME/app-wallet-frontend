@@ -1,4 +1,8 @@
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTransactions } from '../../redux/selectors';
+import { getAllTransactions } from '../../redux/transactions/transactions-operations';
 
 import {
   ContainerTable,
@@ -18,66 +22,56 @@ import {
 
 export const BalanceTable = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const allTransactions = useSelector(getTransactions);
+  useEffect(() => {
+    dispatch(getAllTransactions());
+  }, [dispatch]);
 
   return (
     <>
-      <ContainerTable>
-        <Table>
-          <Thead>
-            <TheadTr>
-              <TheadTrTh>{t('transactions.date')}</TheadTrTh>
-              <th>{t('transactions.type')}</th>
-              <th>{t('transactions.category')}</th>
-              <th>{t('transactions.comment')}</th>
-              <th>{t('transactions.sum')}</th>
-              <TheadTrTh>{t('transactions.balance')}</TheadTrTh>
-            </TheadTr>
-          </Thead>
+      {allTransactions?.length === 0 ? (
+        <h2>Sorry, you don't have any transactions yet</h2>
+      ) : (
+        <ContainerTable>
+          <Table>
+            <Thead>
+              <TheadTr>
+                <TheadTrTh>{t('transactions.date')}</TheadTrTh>
+                <th>{t('transactions.type')}</th>
+                <th>{t('transactions.category')}</th>
+                <th>{t('transactions.comment')}</th>
+                <th>{t('transactions.sum')}</th>
+                <TheadTrTh>{t('transactions.balance')}</TheadTrTh>
+              </TheadTr>
+            </Thead>
+            <Tbody>
+              {allTransactions.map(
+                ({
+                  _id,
+                  date,
+                  type,
+                  category,
+                  comment,
+                  sum,
+                  balanceAfterTransaction,
+                }) => (
+                  <TbodyTr key={_id}>
+                    <td>{date}</td>
+                    <td>{type}</td>
+                    <td>{category}</td>
+                    <td>{comment}</td>
+                    <td>{sum}</td>
+                    <td>{balanceAfterTransaction}</td>
+                  </TbodyTr>
+                )
+              )}
+            </Tbody>
+          </Table>
+        </ContainerTable>
+      )}
 
-          <Tbody>
-            <TbodyTr>
-              <td>04.01.22</td>
-              <td> - </td>
-              <td>Other</td>
-              <td>Gift for your wife</td>
-              <td>300.00</td>
-              <td>6 900.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>05.01.19</td>
-              <td> + </td>
-              <td>Regular Income</td>
-              <td>January bonus</td>
-              <td>8 000.00</td>
-              <td>14 900.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>07.01.19</td>
-              <td> - </td>
-              <td>Car</td>
-              <td>Oil</td>
-              <td>1 000.00</td>
-              <td>13 900.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>07.01.19</td>
-              <td> - </td>
-              <td>Products</td>
-              <td>Vegetables for the week</td>
-              <td>280.00</td>
-              <td>13 870.00</td>
-            </TbodyTr>
-            <TbodyTr>
-              <td>07.01.19</td>
-              <td> + </td>
-              <td>Irregular Income</td>
-              <td>Gift </td>
-              <td>1 000.00</td>
-              <td>14870.00</td>
-            </TbodyTr>
-          </Tbody>
-        </Table>
-      </ContainerTable>
       <ContainerList>
         <List>
           <Element>
