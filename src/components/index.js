@@ -15,3 +15,4 @@ export * from './Navigation/Navigation';
 export * from './StatisticsList/StatisticsList';
 export * from './StatisticsFilterSelect/StatisticsFilterSelect';
 export * from './YourBalance/YourBalance';
+export * from './PasswordProgressBar/PasswordProgressBar.styled';
