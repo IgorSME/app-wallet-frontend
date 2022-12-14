@@ -2,8 +2,9 @@ import { useId, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { getCategories } from 'redux/selectors';
+import { getCategories  } from 'redux/selectors';
 import { addTransaction } from 'redux/transactions/transactions-operations';
+
 import { Switch } from 'components/Switch/Switch';
 import Calendar from '../Calendar/Calendar';
 import {
@@ -32,9 +33,10 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   const [income, setIncome] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState(t('addTransactions.select'));
-  const [amound, setAmound] = useState(0);
+  const [selected, setSelected] = useState("");
+  const [amound, setAmound] = useState();
   const [comment, setComment] = useState('');
+  
 
   const inputId = useId();
 
@@ -78,8 +80,8 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
         sum: +amound,
       })
     );
-    setSelected(t('addTransactions.select'));
-    setAmound('');
+    setSelected("");
+    setAmound();
     setComment('');
     setIncome(false);
   };
@@ -100,11 +102,12 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
             income={income}
             onToggle={() => {
               setIncome(!income);
-              setSelected(t('addTransactions.select'));
+              setSelected('');
             }}
           />
           <SelectWrapper>
             <SelectCategoryButton
+              placeholder={t('addTransactions.select')}
               required
               readOnly
               onClick={() => {
@@ -137,16 +140,17 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
           <AmoundDateWrapper>
             <AmoundWrapper>
               <Amound
+                required
                 style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
                 name="amound"
                 value={amound}
-                type="number"
                 min="1"
+                placeholder="0.00"
                 onChange={handleChange}
               />
             </AmoundWrapper>
             <DateWrapper>
-              <Calendar name="date" value={date} onChange={handleChange} />
+              <Calendar required name="date" value={date} onChange={handleChange} />
               <CalendarImg />
             </DateWrapper>
           </AmoundDateWrapper>

@@ -10,7 +10,7 @@ import {
 
 
 export const ModalBackdrop = styled.div`
-z-index: 10;
+z-index: 500;
 position: absolute;
 top: 0;
 left: 0;
@@ -110,13 +110,17 @@ font-family: ${p => p.theme.fonts.primary};
 font-weight: ${p => p.theme.fontWeights.normal};
 font-size: ${p => p.theme.fontSizes.m};
 line-height: ${p => p.theme.lineHeights.normal};
-color: ${p => p.theme.colors.placeholder};
+color: ${p => p.theme.colors.primaryText};
 border-bottom: ${p => p.theme.borders.radioBtn};
 border-top: none;
 border-left: none;
 border-right: none;
 padding-left: 20px;
 text-align: left;
+
+&::first-letter {
+  text-transform: uppercase;
+}
 
 @media screen and (min-width: 768px) {
   width: 394px;
@@ -160,6 +164,10 @@ line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.primaryText};
 cursor: pointer;
 text-align: left;
+
+&::first-letter {
+  text-transform: uppercase;
+}
 
 &:hover,
 &:focus {
