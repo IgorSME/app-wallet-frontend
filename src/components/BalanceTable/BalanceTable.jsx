@@ -23,10 +23,11 @@ import {
 export const BalanceTable = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const allTransaction = useSelector(getAllTransactions);
+
+  const allTransaction = useSelector(getTransactions);
 
   useEffect(() => {
-    dispatch(getTransactions());
+    dispatch(getAllTransactions());
   }, [dispatch]);
 
   return (
