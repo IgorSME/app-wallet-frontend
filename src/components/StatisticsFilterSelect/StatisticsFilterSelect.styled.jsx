@@ -26,8 +26,8 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
 
-    &:first-of-type {
-      margin-right: ${p => p.theme.spacing(4)};
+    &:last-of-type {
+      margin-left: ${p => p.theme.spacing(4)};
     }
   }
 `;
@@ -117,14 +117,23 @@ export const SelectItem = styled.li`
 
   color: ${p => p.theme.colors.primaryText};
 
-  &::first-letter {
-    text-transform: uppercase;
-  }
-
   &:hover,
   &:focus {
     color: ${p => p.theme.colors.expense};
     background-color: ${p => p.theme.colors.barBackground};
     font-weight: ${p => p.theme.fontWeights.bold};
   }
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+`;
+
+export const OverlaySelect = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
 `;

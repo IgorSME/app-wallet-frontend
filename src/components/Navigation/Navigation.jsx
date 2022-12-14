@@ -1,4 +1,5 @@
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 import {
   AppNav,
@@ -13,13 +14,13 @@ import { ReactComponent as Currency } from 'images/navigation/currency.svg';
 const navItems = [
   {
     href: '/home',
-    text: 'Home',
+    text: 'home',
     icon: Home,
     isShow: true,
   },
   {
     href: '/statistics',
-    text: 'Statistics',
+    text: 'statistics',
     icon: Statistics,
     isShow: true,
   },
@@ -32,6 +33,8 @@ const navItems = [
 ];
 
 export const Navigation = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Media
@@ -63,7 +66,8 @@ export const Navigation = () => {
                       {isShow && (
                         <NavLinkStyled to={href}>
                           <Icon />
-                          {text}
+                          {t(`nav.${text}`)}
+                          {/* {text} */}
                         </NavLinkStyled>
                       )}
                     </Item>

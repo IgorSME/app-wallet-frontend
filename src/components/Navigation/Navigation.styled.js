@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const AppNav = styled.nav`
+  z-index: 200;
+  position: relative;
+
   width: 280px;
   margin: 0 auto;
   padding: 0 20px;
