@@ -1,4 +1,8 @@
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTransactions } from '../../redux/selectors';
+import { getAllTransactions } from '../../redux/transactions/transactions-operations';
 
 import {
   ContainerTable,
@@ -18,6 +22,12 @@ import {
 
 export const BalanceTable = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const allTransaction = useSelector(getAllTransactions);
+
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
 
   return (
     <>
