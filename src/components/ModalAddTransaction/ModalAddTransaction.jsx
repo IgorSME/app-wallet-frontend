@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -27,8 +27,12 @@ import {
   SelectWrapper,
 } from './ModalAddTransaction.styled';
 
+import { useCloseOnEsc } from '../../hooks/useCloseOnEsc';
+
 export default function ModalAddTransaction({ onClose: handleClose }) {
   const { t } = useTranslation();
+
+  useCloseOnEsc(handleClose);
 
   const [income, setIncome] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -88,7 +92,13 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   return (
     <>
-      <ModalBackdrop>
+      <ModalBackdrop
+        onClick={e => {
+          if (e.currentTarget === e.target) {
+            handleClose();
+          }
+        }}
+      >
         <ModalContainerStyled onSubmit={handleSubmit}>
           <ModalCloseBtn onClick={handleClose}>
             <CloseBtnIcon />

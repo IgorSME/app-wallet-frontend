@@ -85,11 +85,10 @@ export const getCurrent = async () => {
 
 export const fetchStatistics = async body => {
   const { month, year } = body;
-
+  const correctMonth = month + 1;
 
   const { data } = await axios.get(
-    `/api/transactions/statistic?month=${month}&year=${year}`
-
+    `/api/transactions/statistic?month=${correctMonth}&year=${year}`
   );
   return data;
 };

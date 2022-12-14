@@ -7,6 +7,7 @@ export const OpenModalBtn = styled.button`
   width: 44px;
   height: 44px;
   background-color: ${p => p.theme.colors.accent};
+  outline: none;
   border: transparent;
   border-radius: ${p => p.theme.radii.large};
   box-shadow: ${p => p.theme.shadows.addBtn};

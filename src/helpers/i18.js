@@ -98,6 +98,7 @@ i18n
           },
         },
       },
+
       ua: {
         translation: {
           balanceYour: 'ТВІЙ БАЛАНС',

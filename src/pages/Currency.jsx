@@ -7,7 +7,7 @@ import { CurrencyTable, Loader } from 'components';
 
 const CURRENCY_KEY = 'currency';
 const CURRENCY_TIME_KEY = 'currencyTime';
-const REFRESH_TIME = 36000;
+const REFRESH_TIME = 3600000;
 
 export default function Currency() {
   const [currency, setCurrency] = useState(null);
@@ -43,7 +43,12 @@ export default function Currency() {
     };
 
     getCurrency();
-  }, []);
+  }, [
+    currencyStorage,
+    currencyTimeStorage,
+    setCurrencyStorage,
+    setCurrencyTimeStorage,
+  ]);
 
   return currency ? <CurrencyTable currency={currency} /> : <Loader />;
 }
