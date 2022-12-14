@@ -47,7 +47,10 @@ export default function Statistics() {
   };
 
   const profit = () => {
-    const [income, expense] = statisticsData.typesTotalSum;
+    const sortArr = [...statisticsData.typesTotalSum].sort((x, y) =>
+      y.typeName.localeCompare(x.typeName)
+    );
+    const [income, expense] = sortArr;
 
     return income.totalSum - expense.totalSum;
   };

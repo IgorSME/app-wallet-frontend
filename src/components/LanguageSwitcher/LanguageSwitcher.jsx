@@ -10,40 +10,44 @@ import { useState } from 'react';
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  const [isActive, setIsActive] = useState(true);
+  const initialState = i18n.language === 'en' ? true : false;
 
-  const sizeEngImg = !isActive ? '18px' : '26px';
-  const sizeUkrImg = isActive ? '18px' : '26px';
+  const [isActive, setIsActive] = useState(initialState);
+
+  const sizeEngImg = !isActive ? '20px' : '30px';
+  const sizeUkrImg = isActive ? '20px' : '30px';
 
   return (
     <>
       <Tabs variant="soft-rounded" colorScheme="accent">
         <TabListStyled>
-          <Tab>
+          <TabStyled>
             <ImgStyled
               onClick={() => {
                 setIsActive(!isActive);
                 i18n.changeLanguage('en');
               }}
               boxSize={sizeEngImg}
-              borderRadius="full"
+              // boxShadow={isActive === true && '0px 6px 15px rgba(0, 0, 0, 0.1)'}
+              // borderRadius="full"
               src={englishFlag}
               alt="change english language"
-              mr="12px"
+              pos={sizeEngImg}
             />
-          </Tab>
-          <Tab>
-            <Image
+          </TabStyled>
+          <TabStyled>
+            <ImgStyled
               onClick={() => {
                 setIsActive(!isActive);
                 i18n.changeLanguage('ua');
               }}
               boxSize={sizeUkrImg}
-              borderRadius="full"
+              // borderRadius="full"
               src={ukraineFlag}
               alt="change ukrainian language"
+              pos={sizeUkrImg}
             />
-          </Tab>
+          </TabStyled>
         </TabListStyled>
       </Tabs>
     </>
@@ -51,16 +55,27 @@ export const LanguageSwitcher = () => {
 };
 
 const TabListStyled = styled(TabList)`
-  display: flex;
-
   @media (min-width: 768px) {
-    width: 160px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 0;
   }
-  @media (min-width: 1279px) {
-    width: 182px;
+`;
+
+const TabStyled = styled(Tab)`
+  @media (min-width: 768px) {
+    &:first-of-type {
+      margin-right: 12px;
+    }
   }
 `;
 
 const ImgStyled = styled(Image)`
   margin-right: 0;
+  display: ${p => (p.pos === '30px' ? 'none' : 'flex')};
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;

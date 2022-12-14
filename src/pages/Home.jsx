@@ -13,13 +13,13 @@ const Home = () => {
   return (
     <Media
       queries={{
-        small: '(max-width: 767px)',
+        mobile: '(max-width: 767px)',
         other: '(min-width: 768px)',
       }}
     >
       {matches => (
         <>
-          {matches.small && (
+          {matches.mobile && (
             <section style={{ paddingBottom: 40 }}>
               <ContainerNav>
                 <YourBalance />
