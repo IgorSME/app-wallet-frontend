@@ -4,9 +4,14 @@ import { lazy, Suspense, useEffect } from 'react';
 import Media from 'react-media';
 import { useDispatch } from 'react-redux';
 import * as authOperations from 'redux/auth/auth-operations';
+import { useSelector } from 'react-redux';
 
 import { Loader } from 'components';
+
+import { getAccessToken } from 'redux/selectors';
+
 import { PrivateRoute, PublicRoute } from './routes';
+
 
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
@@ -18,9 +23,13 @@ const NotFound = lazy(() => import('pages/NotFound'));
 
 function App() {
   const dispatch = useDispatch();
+  const accessToken = useSelector(getAccessToken);
 
   useEffect(() => {
-    dispatch(authOperations.current());
+    if (accessToken) {
+      dispatch(authOperations.current());
+    }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   return (

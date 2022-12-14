@@ -1,18 +1,17 @@
 import axios from 'axios';
 import * as authOperations from 'redux/auth/auth-operations';
 
-const BASE_URL = 'https://app-wallet.onrender.com';
+axios.defaults.baseURL = 'https://app-wallet.onrender.com';
 
-const instance = axios.create({
-  baseURL: BASE_URL,
-});
+export * from './categoryApi';
+export * from './transactionsApi';
 
 const token = {
   setAccessToken(accessToken) {
-    instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   },
   deleteAccessToken() {
-    instance.defaults.headers.common.Authorization = '';
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -22,14 +21,23 @@ export const injectStore = _store => {
   store = _store;
 };
 
-instance.interceptors.response.use(
+axios.interceptors.request.use(
+  function (config) {
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
   response => response,
   async error => {
     if (error.response.status === 412) {
       try {
         const state = store.getState();
         const refreshToken = state.auth.refreshToken;
-        const { data } = await instance.post('api/auth/refresh', {
+        const { data } = await axios.post('api/auth/refresh', {
           refreshToken,
         });
         token.setAccessToken(data.accessToken);
@@ -40,8 +48,9 @@ instance.interceptors.response.use(
           })
         );
 
-        return instance(error.config);
+        //return axios(error.config);
       } catch (error) {
+        store.dispatch(authOperations.logout());
         return Promise.reject(error);
       }
     }
@@ -50,19 +59,19 @@ instance.interceptors.response.use(
 );
 
 export const performRegistration = async body => {
-  const { data } = await instance.post('/api/auth/register', body);
+  const { data } = await axios.post('/api/auth/register', body);
   token.setAccessToken(data.accessToken);
   return data;
 };
 
 export const performLogin = async body => {
-  const { data } = await instance.post('/api/auth/login', body);
+  const { data } = await axios.post('/api/auth/login', body);
   token.setAccessToken(data.accessToken);
   return data;
 };
 
 export const performLogout = async () => {
-  await instance.post('/api/auth/logout');
+  await axios.post('/api/auth/logout');
   token.deleteAccessToken();
 };
 
@@ -70,18 +79,17 @@ export const getCurrent = async () => {
   const state = store.getState();
   const accessToken = state.auth.accessToken;
   token.setAccessToken(accessToken);
-  const { data } = await instance.get('/api/user/current');
+  const { data } = await axios.get('/api/user/current');
   return data;
 };
 
 export const fetchStatistics = async body => {
   const { month, year } = body;
-  const correctMonth = (+month + 1).toString();
 
-  const { data } = await instance.get(
-    `/api/transactions/statistic?month=${correctMonth}&year=${year}`
+
+  const { data } = await axios.get(
+    `/api/transactions/statistic?month=${month}&year=${year}`
+
   );
   return data;
 };
-
-export default instance;
