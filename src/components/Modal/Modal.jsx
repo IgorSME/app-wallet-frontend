@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { addTransaction } from "redux/transactions/transactions-operations";
-import { getCategories } from 'redux/selectors';
 import { get } from 'redux/categories/categories-operations'
 
 import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
@@ -18,12 +16,6 @@ export function Modal() {
         dispatch(get())
       }, [dispatch]);
 
-
-  //   const onAddTransaction = (payload) => {
-  //   // dispatch(addTransaction(payload));
-  //     console.log(payload);
-  // };
-  
 
   const openModal = () => {
     setIsModalOpen(true);

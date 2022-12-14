@@ -12,7 +12,7 @@ import {
 export const ModalBackdrop = styled.div`
 z-index: 10;
 position: absolute;
-top: 60px;
+top: 0;
 left: 0;
 overflow-y: scroll;
     min-width: 320px;
@@ -21,11 +21,7 @@ overflow-y: scroll;
     transition: all .8s;
 
 @media screen and (min-width: 768px) {
-z-index: 10;
 position: fixed;
-top: 0;
-left: 0;
-overflow-y: scroll;
     width: 100%;
     height: 100%;
     background-color: ${p => p.theme.colors.backdropBackground};
@@ -130,9 +126,9 @@ text-align: left;
 export const SelectIconSvg = styled(SelectIcon)`
 position: absolute;
     top: 10px;
-    left: 400px;
+    right: 12%;
 @media screen and (min-width: 768px) {
-// margin-left: 210px;
+  left: 420px;
 }
 `;
 
@@ -163,6 +159,7 @@ font-size: ${p => p.theme.fontSizes.m};
 line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.primaryText};
 cursor: pointer;
+text-align: left;
 
 &:hover,
 &:focus {
@@ -266,6 +263,7 @@ border-top: none;
 border-left: none;
 border-right: none;
 outline: none;
+user-select: none;
 
 @media screen and (min-width: 768px) {
   width: 181px;
