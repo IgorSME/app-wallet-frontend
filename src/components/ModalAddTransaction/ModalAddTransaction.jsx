@@ -86,6 +86,8 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
     setAmound('');
     setComment('');
     setIncome(false);
+
+    handleClose();
   };
 
   const typeTransaction = income ? 'expense' : 'income';

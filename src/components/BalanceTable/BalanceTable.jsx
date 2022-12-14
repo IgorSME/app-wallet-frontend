@@ -19,6 +19,7 @@ import {
   ItemFirstChild,
   ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
+import { ButtonLoadMore } from 'components';
 
 export const BalanceTable = () => {
   const { t } = useTranslation();
@@ -69,6 +70,7 @@ export const BalanceTable = () => {
               )}
             </Tbody>
           </Table>
+          <ButtonLoadMore />
         </ContainerTable>
       )}
 

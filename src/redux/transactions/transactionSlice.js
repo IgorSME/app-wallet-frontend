@@ -35,7 +35,7 @@ const transactionSlice = createSlice({
       state.error = null;
     },
     [transactionsOperations.addTransaction.fulfilled]: (state, { payload }) => {
-      state.transactions = [...state.transactions, payload.transaction];
+      state.transactions = [payload.transaction, ...state.transactions];
       state.loading = false;
     },
     [transactionsOperations.addTransaction.rejected]: (state, { payload }) => {

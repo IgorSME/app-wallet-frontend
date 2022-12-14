@@ -1,7 +1,15 @@
 import axios from 'axios';
 
-export const getAllTransactions = async () => {
-  const { data } = await axios.get('/api/transactions');
+export const getAllTransactions = async body => {
+  let query = '';
+
+  if (body) {
+    query = `/api/transactions?page=${body.page}&limit=${body.limit}`;
+  } else {
+    query = '/api/transactions';
+  }
+
+  const { data } = await axios.get(query);
   return data;
 };
 

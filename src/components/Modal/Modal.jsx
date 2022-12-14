@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { get } from 'redux/categories/categories-operations';
+import * as authOperations from 'redux/auth/auth-operations';
 
 import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 
@@ -22,6 +23,7 @@ export function Modal() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    dispatch(authOperations.current());
   };
 
   return (
