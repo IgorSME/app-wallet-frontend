@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTransactions } from '../../redux/selectors';
+import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
 
 import {
@@ -19,21 +19,27 @@ import {
   ItemFirstChild,
   ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
-import { ButtonLoadMore } from 'components';
+import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
 
 export const BalanceTable = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const allTransactions = useSelector(getTransactions);
+  const loading = useSelector(getTransactionsLoading);
+
   useEffect(() => {
     dispatch(getAllTransactions());
   }, [dispatch]);
 
+  const isNoTransactions = allTransactions?.length === 0;
+
   return (
     <>
-      {allTransactions?.length === 0 ? (
-        <h2>Sorry, you don't have any transactions yet</h2>
+      {loading ? (
+        <LoaderStatistics />
+      ) : isNoTransactions ? (
+        <NoStatisticsText>{t('transactions.text')}</NoStatisticsText>
       ) : (
         <ContainerTable>
           <Table>
