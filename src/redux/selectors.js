@@ -1,5 +1,6 @@
 export const getName = state => state.auth.user.name;
 export const getEmail = state => state.auth.user.email;
+export const getAccessToken = state => state.auth.accessToken;
 export const getAuthLoading = state => state.auth.loading;
 export const getIsLoggedIn = state => state.auth.isLoggedIn;
 export const getAuthError = state => state.auth.error;

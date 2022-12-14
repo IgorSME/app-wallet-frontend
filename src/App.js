@@ -5,9 +5,11 @@ import Media from 'react-media';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as authOperations from 'redux/auth/auth-operations';
+import { useSelector } from 'react-redux';
 
 import { PrivateRoute, PublicRoute } from './routes';
 import { Loader } from 'components';
+import { getAccessToken } from 'redux/selectors';
 
 const Register = lazy(() => import('./pages/Register'));
 const Login = lazy(() => import('./pages/Login'));
@@ -19,9 +21,13 @@ const NotFound = lazy(() => import('pages/NotFound'));
 
 function App() {
   const dispatch = useDispatch();
+  const accessToken = useSelector(getAccessToken);
 
   useEffect(() => {
-    dispatch(authOperations.current());
+    if (accessToken) {
+      dispatch(authOperations.current());
+    }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   return (
