@@ -1,27 +1,42 @@
-import { useState } from "react";
-import ModalAddTransaction from "components/ModalAddTransaction/ModalAddTransaction";
 
-import {OpenModalBtn, PlusIconSvg } from "./Modal.styled";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-export default function Modal() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
+import { get } from 'redux/categories/categories-operations'
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
+import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 
-    return (
-        <>
-            <OpenModalBtn onClick={openModal}>
-                <PlusIconSvg/>
-            </OpenModalBtn>
-    
-            {isModalOpen &&
-                <ModalAddTransaction onClose={closeModal}/>
-    }
+import { OpenModalBtn, PlusIconSvg } from './Modal.styled';
+
+export function Modal() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(get());
+  }, [dispatch]);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      <OpenModalBtn onClick={openModal}>
+        <PlusIconSvg />
+      </OpenModalBtn>
+
+      {isModalOpen && (
+        <ModalAddTransaction
+          onClose={closeModal}
+          // onSubmit={onAddTransaction}
+        />
+      )}
     </>
-    );
+  );
 }

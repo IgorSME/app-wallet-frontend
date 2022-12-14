@@ -47,8 +47,8 @@ export const GlobalStyles = css`
   main {
     flex-grow: 1;
 
-    /* background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(25px); */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px);
   }
 
   h1,

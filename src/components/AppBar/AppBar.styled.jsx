@@ -49,6 +49,8 @@ export const UserMenu = styled.div`
 export const UserName = styled.p`
   min-width: 80px;
 
+  color: ${p => p.theme.colors.name};
+
   font-family: ${props => props.theme.fonts.primary};
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.m};

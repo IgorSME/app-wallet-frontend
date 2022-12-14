@@ -1,15 +1,19 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { BaseTable, THead, TBody, Th, Td } from './CurrencyTable.styled';
 
 export function CurrencyTable({ currency }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <BaseTable>
         <THead>
           <tr>
-            <Th>Currency</Th>
-            <Th>Purchase</Th>
-            <Th>Sale</Th>
+            <Th>{t('currency.currency')}</Th>
+            <Th>{t('currency.purchase')}</Th>
+            <Th>{t('currency.sale')}</Th>
           </tr>
         </THead>
         <TBody>

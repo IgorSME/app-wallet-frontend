@@ -1,17 +1,17 @@
-import instance from 'helpers/api';
+import axios from 'axios';
 
 export const getAllTransactions = async () => {
-  const { data } = await instance.get('/api/transactions');
+  const { data } = await axios.get('/api/transactions');
   return data;
 };
 
 export const addTransaction = async body => {
-  const { data } = await instance.post('/api/transactions', body);
+  const { data } = await axios.post('/api/transactions', body);
   return data;
 };
 
 export const updateTransactionById = async (id, body) => {
   console.log(body, id);
-  const { data } = await instance.patch(`/api/transactions/${id}`, body);
+  const { data } = await axios.patch(`/api/transactions/${id}`, body);
   return data;
 };

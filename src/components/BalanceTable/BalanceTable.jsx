@@ -1,7 +1,6 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
-  Section,
   ContainerTable,
   Table,
   Thead,
@@ -17,34 +16,34 @@ import {
   ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
 
-export const BalanceTable = transactions => {
+export const BalanceTable = () => {
+  const { t } = useTranslation();
+
   return (
-    <Section>
+    <>
       <ContainerTable>
         <Table>
           <Thead>
             <TheadTr>
-              <TheadTrTh>Date</TheadTrTh>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Comment</th>
-              <th>Sum</th>
-              <TheadTrTh>Balance</TheadTrTh>
+              <TheadTrTh>{t('transactions.date')}</TheadTrTh>
+              <th>{t('transactions.type')}</th>
+              <th>{t('transactions.category')}</th>
+              <th>{t('transactions.comment')}</th>
+              <th>{t('transactions.sum')}</th>
+              <TheadTrTh>{t('transactions.balance')}</TheadTrTh>
             </TheadTr>
           </Thead>
           <Tbody>
-            {transactions.map(
-              ({ date, type, category, comment, sum, balance }) => (
-                <TbodyTr>
-                  <td>{date}</td>
-                  <td>{type}</td>
-                  <td>{category}</td>
-                  <td>{comment}</td>
-                  <td>{sum}</td>
-                  <td>{balance}</td>
-                </TbodyTr>
-              )
-            )}
+            {/* {t.map(({ date, type, category, comment, sum, balance }) => (
+              <TbodyTr>
+                <td>{date}</td>
+                <td>{type}</td>
+                <td>{category}</td>
+                <td>{comment}</td>
+                <td>{sum}</td>
+                <td>{balance}</td>
+              </TbodyTr>
+            ))} */}
           </Tbody>
         </Table>
       </ContainerTable>
@@ -182,6 +181,6 @@ export const BalanceTable = transactions => {
           </Element>
         </List>
       </ContainerList>
-    </Section>
+    </>
   );
 };

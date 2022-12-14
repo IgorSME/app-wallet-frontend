@@ -12,7 +12,7 @@ import {
 export const ModalBackdrop = styled.div`
 z-index: 10;
 position: absolute;
-top: 60px;
+top: 0;
 left: 0;
 overflow-y: scroll;
     min-width: 320px;
@@ -21,11 +21,7 @@ overflow-y: scroll;
     transition: all .8s;
 
 @media screen and (min-width: 768px) {
-z-index: 10;
 position: fixed;
-top: 0;
-left: 0;
-overflow-y: scroll;
     width: 100%;
     height: 100%;
     background-color: ${p => p.theme.colors.backdropBackground};
@@ -39,7 +35,7 @@ stroke: #24CCA7;
 }
 `;
 
-export const ModalContainerStyled = styled.div`
+export const ModalContainerStyled = styled.form`
 width: 100vw;
 height: 100vh;
 margin: 0 auto;
@@ -104,7 +100,7 @@ margin-left: 10px;
 margin-right: 10px;
 `;
 
-export const SelectCategoryButton = styled.button`
+export const SelectCategoryButton = styled.input`
 user-select: none;
 position: relative;
 width: 280px;
@@ -128,12 +124,11 @@ text-align: left;
 `;
 
 export const SelectIconSvg = styled(SelectIcon)`
-margin-left: 95px;
 position: absolute;
     top: 10px;
-    right: 10px;
+    right: 12%;
 @media screen and (min-width: 768px) {
-margin-left: 210px;
+  left: 420px;
 }
 `;
 
@@ -164,6 +159,7 @@ font-size: ${p => p.theme.fontSizes.m};
 line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.primaryText};
 cursor: pointer;
+text-align: left;
 
 &:hover,
 &:focus {
@@ -252,7 +248,7 @@ flex-direction: column;
   }
 `;
 
-export const Amount = styled.input`
+export const Amound = styled.input`
 width: 280px;
 height: 32px;
 background: ${p => p.theme.colors.barBackground};
@@ -267,46 +263,13 @@ border-top: none;
 border-left: none;
 border-right: none;
 outline: none;
+user-select: none;
 
 @media screen and (min-width: 768px) {
   width: 181px;
   text-align: center;
 }
 `;
-
-// export const DateSelector = styled.input`
-// position: relative;
-// width: 280px;
-// height: 32px;
-// background-color: ${p => p.theme.colors.barBackground};
-// font-family: ${p => p.theme.fonts.primary};
-// font-weight: ${p => p.theme.fontWeights.normal};
-// font-size: ${p => p.theme.fontSizes.m};
-// line-height: ${p => p.theme.lineHeights.normal};
-// color: ${p => p.theme.colors.primaryText};
-// border-bottom: ${p => p.theme.borders.radioBtn};
-// padding-left: 20px;
-// margin-bottom: 40px;
-// margin-left: 10px;
-// margin-right: 10px;
-// border-top: none;
-// border-left: none;
-// border-right: none;
-// outline: none;
-
-
-// @media screen and (min-width: 768px) {
-//   width: 182px;
-//   margin-left: 0;
-// }
-
-// // svg {
-// //     width: 18px;
-// //     height: 20px;
-// //     color: ${p => p.theme.colors.activeIcon};
-// //     margin-left: 137px;
-// // }
-// `;
 
 export const Comments = styled.input`
 width: 280px;

@@ -4,7 +4,7 @@ import * as api from 'helpers/api';
 
 const getDate = new Date();
 
-const currentMonth = getDate.getMonth() + 1;
+const currentMonth = getDate.getMonth();
 const currentYear = getDate.getFullYear();
 
 export const fetchStatistics = createAsyncThunk(

@@ -26,10 +26,7 @@ export const ContainerTable = styled(ContainerStyled)`
   }
   @media screen and (min-width: 1280px) {
     width: 715px;
-    margin-right: 16px;
-    position: absolute;
-    top: 46px;
-    left: 549px;
+    margin-right: 0;
   }
 `;
 
@@ -44,7 +41,7 @@ export const Table = styled.table`
     border-collapse: collapse;
   }
   @media screen and (min-width: 1280px) {
-    width: 715px;
+    margin-right: 0;
   }
 `;
 
@@ -125,7 +122,7 @@ export const TbodyTr = styled.tr`
 export const ContainerList = styled(ContainerStyled)`
   @media screen and (max-width: 767px) {
     margin: 0;
-    width: 280px;
+    width: auto;
   }
 
   @media screen and (min-width: 768px) {

@@ -12,11 +12,9 @@ export default function Calendar() {
                 selected={startDate}
                 onChange={onChange}
                 dateFormat="dd-MM-yyyy"
-                showYearDropdown
-                scrollableMonthYearDropdown
+                minDate={new Date()}
+                maxDate={new Date()}
             >
-                <div style={{ color: "#216ba5", textAlign: "center", fontWeight: "bold" }}>
-                    Don't forget to smile!</div>
             </DatePicker>
         </>
     );

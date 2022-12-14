@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -7,19 +8,24 @@ import {
   SelectButton,
   SelectList,
   SelectItem,
+  OverlaySelect,
 } from './StatisticsFilterSelect.styled';
 import sprite from 'images/svg-sprite.svg';
 
 import months from 'assets/data/months.json';
 
 export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
+  const { t } = useTranslation();
+
   const { year, month } = currentFilter;
 
   const [isActiveMonth, setIsActiveMonth] = useState(false);
   const [isActiveYear, setIsActiveYear] = useState(false);
 
-  const [selectedMonth, setSelectedMonth] = useState(month ?? 'Month');
-  const [selectedYear, setSelectedYear] = useState(year ?? 'Year');
+  const [selectedMonth, setSelectedMonth] = useState(
+    month ?? t('select.month')
+  );
+  const [selectedYear, setSelectedYear] = useState(year ?? t('select.year'));
 
   const thisYear = new Date().getFullYear();
   const yearsList = Array.from(new Array(6), (_, index) => thisYear - index);
@@ -46,6 +52,7 @@ export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
 
   return (
     <Box>
+      <OverlaySelect onClick={closeSelect} />
       <Wrapper>
         <SelectButton
           onClick={() => {

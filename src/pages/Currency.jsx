@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 import { fetchCurrency, getCorrectCurrency } from 'helpers';
 import { useLocalStorage } from 'hooks/useLocalStorage';
@@ -38,17 +38,12 @@ export default function Currency() {
         setCurrencyStorage(currentData);
         setCurrencyTimeStorage(Date.now());
       } catch (error) {
-        toast.error('No connection. try later.');
+        // toast.error('No connection. try later.');
       }
     };
 
     getCurrency();
-  }, [
-    currencyStorage,
-    currencyTimeStorage,
-    setCurrencyStorage,
-    setCurrencyTimeStorage,
-  ]);
+  }, []);
 
   return currency ? <CurrencyTable currency={currency} /> : <Loader />;
 }
