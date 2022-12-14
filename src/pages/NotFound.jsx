@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>404 NotFound !!!</h1>
-      <Link to={'/'}>Go Home Page</Link>
+      <Link to={'/home'}>Go Home Page</Link>
     </div>
   );
 }

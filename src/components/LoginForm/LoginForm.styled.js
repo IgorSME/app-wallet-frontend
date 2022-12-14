@@ -23,13 +23,14 @@ export const LoginSectionStyled = styled.section`
   }
 
   @media screen and (min-width: 768px) {
-    min-height: 100vh;
+    min-height: 1028px;
 
     display: flex;
     flex-direction: column;
   }
 
   @media screen and (min-width: 1280px) {
+    min-height: 720px;
     flex-direction: row;
     align-items: center;
   }

@@ -1,11 +1,22 @@
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { useState } from 'react';
+import { get } from 'redux/categories/categories-operations'
+
 import ModalAddTransaction from 'components/ModalAddTransaction/ModalAddTransaction';
 
 import { OpenModalBtn, PlusIconSvg } from './Modal.styled';
 
 export function Modal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(get())
+      }, [dispatch]);
+
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -21,7 +32,12 @@ export function Modal() {
         <PlusIconSvg />
       </OpenModalBtn>
 
-      {isModalOpen && <ModalAddTransaction onClose={closeModal} />}
+      {isModalOpen &&
+        <ModalAddTransaction
+        onClose={closeModal}
+          // onSubmit={onAddTransaction}
+        />
+      }
 
     </>
   );

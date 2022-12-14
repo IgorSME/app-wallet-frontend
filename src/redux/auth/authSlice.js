@@ -24,6 +24,7 @@ export const authSlice = createSlice({
       state.user = payload.user;
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
+      state.isLoggedIn = true;
     },
     [authOperations.register.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -67,8 +68,9 @@ export const authSlice = createSlice({
     },
     [authOperations.current.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.user.email = payload.user.email;
-      state.user.name = payload.user.name;
+      // state.user.email = payload.user.email;
+      // state.user.name = payload.user.name;
+      state.user = { ...payload.user };
       state.isLoggedIn = true;
     },
     [authOperations.current.rejected]: (state, { payload }) => {
