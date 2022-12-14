@@ -7,6 +7,7 @@ export * from './AppBar/AppBar';
 export * from './BalanceTable/BalanceTable';
 export * from './CurrencyTable/CurrencyTable';
 export * from './Chart/Chart';
+export * from './LanguageSwitcher/LanguageSwitcher';
 export * from './Loader/Loader';
 export * from './Logo/Logo';
 export * from './Modal/Modal';

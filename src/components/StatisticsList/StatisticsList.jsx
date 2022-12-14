@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import {
   Box,
   WrapperHeader,
@@ -16,11 +18,13 @@ import {
 import { transformNumber } from 'helpers';
 
 export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
+  const { t } = useTranslation();
+
   return (
     <Box>
       <WrapperHeader>
-        <p>Category</p>
-        <p>Sum</p>
+        <p>{t('category')}</p>
+        <p>{t('sum')}</p>
       </WrapperHeader>
       <ListCategories>
         {allCategories.map(({ categoryName, totalSum, color }) => (

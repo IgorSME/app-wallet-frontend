@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
-import { Logo, ModalLogout } from 'components';
+import { Logo, ModalLogout, LanguageSwitcher } from 'components';
 import { getName } from 'redux/selectors';
 import { logout } from 'redux/auth/auth-operations';
 
@@ -17,6 +18,8 @@ import {
 import { ExitIcon } from './ExitIcon';
 
 export const AppBar = () => {
+  const { t } = useTranslation();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const userName = useSelector(getName);
 
@@ -36,6 +39,7 @@ export const AppBar = () => {
         <Container>
           <Logo />
           <UserMenu>
+            <LanguageSwitcher />
             <UserName>{userName}</UserName>
             <Divider />
             <ExitBtn
@@ -44,7 +48,7 @@ export const AppBar = () => {
               }}
             >
               <ExitIcon />
-              <ExitText>Exit</ExitText>
+              <ExitText>{t('exit')}</ExitText>
             </ExitBtn>
           </UserMenu>
         </Container>
