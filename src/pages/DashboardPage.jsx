@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Media from 'react-media';
 import { Outlet } from 'react-router-dom';
 
 import Currency from 'pages/Currency';
+import * as authOperations from 'redux/auth/auth-operations';
 
 import {
   AppBar,
@@ -14,6 +17,12 @@ import {
 } from 'components';
 
 const DashboardPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.current());
+  }, [dispatch]);
+
   return (
     <>
       <Media

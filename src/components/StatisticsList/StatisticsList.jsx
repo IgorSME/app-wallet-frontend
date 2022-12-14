@@ -17,7 +17,7 @@ import {
 
 import { transformNumber } from 'helpers';
 
-export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
+export function StatisticsList({ data: { renderStatistics, typesTotalSum } }) {
   const { t } = useTranslation();
 
   return (
@@ -27,7 +27,7 @@ export function StatisticsList({ data: { allCategories, typesTotalSum } }) {
         <p>{t('sum')}</p>
       </WrapperHeader>
       <ListCategories>
-        {allCategories.map(({ categoryName, totalSum, color }) => (
+        {renderStatistics.map(({ categoryName, totalSum, color }) => (
           <ListItem key={categoryName}>
             <Wrapper>
               <Color color={color}></Color>

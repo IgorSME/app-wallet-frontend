@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useCloseOnEsc } from '../../hooks/useCloseOnEsc';
 import {
   Box,
   Wrapper,
@@ -10,8 +11,8 @@ import {
   SelectItem,
   OverlaySelect,
 } from './StatisticsFilterSelect.styled';
-import sprite from 'images/svg-sprite.svg';
 
+import sprite from 'images/svg-sprite.svg';
 import months from 'assets/data/months.json';
 
 export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
@@ -49,6 +50,8 @@ export function StatisticsFilterSelect({ handleChangeSearch, currentFilter }) {
     setIsActiveMonth(false);
     setIsActiveYear(false);
   };
+
+  useCloseOnEsc(closeSelect);
 
   return (
     <Box>

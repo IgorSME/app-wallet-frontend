@@ -26,52 +26,54 @@ export const BalanceTable = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const allTransaction = useSelector(getTransactions);
-  console.log(allTransaction);
-
+  const allTransactions = useSelector(getTransactions);
   useEffect(() => {
     dispatch(getAllTransactions());
   }, [dispatch]);
 
   return (
     <>
-      <ContainerTable>
-        <Table>
-          <Thead>
-            <TheadTr>
-              <TheadTrTh>{t('transactions.date')}</TheadTrTh>
-              <th>{t('transactions.type')}</th>
-              <th>{t('transactions.category')}</th>
-              <th>{t('transactions.comment')}</th>
-              <th>{t('transactions.sum')}</th>
-              <TheadTrTh>{t('transactions.balance')}</TheadTrTh>
-            </TheadTr>
-          </Thead>
-          <Tbody>
-            {allTransaction.map(
-              ({
-                date,
-                type,
-                category,
-                comment,
-                sum,
-                balanceAfterTransaction,
-              }) => (
-                <TbodyTr>
-                  <td>{date}</td>
-                  <td>{type}</td>
-                  <td>{category}</td>
-                  <td>{comment}</td>
-                  <ListSumNumber textColor={type}>
-                    {transformNumber(sum)}
-                  </ListSumNumber>
-                  <td>{transformNumber(balanceAfterTransaction)}</td>
-                </TbodyTr>
-              )
-            )}
-          </Tbody>
-        </Table>
-      </ContainerTable>
+      {allTransactions?.length === 0 ? (
+        <h2>Sorry, you don't have any transactions yet</h2>
+      ) : (
+        <ContainerTable>
+          <Table>
+            <Thead>
+              <TheadTr>
+                <TheadTrTh>{t('transactions.date')}</TheadTrTh>
+                <th>{t('transactions.type')}</th>
+                <th>{t('transactions.category')}</th>
+                <th>{t('transactions.comment')}</th>
+                <th>{t('transactions.sum')}</th>
+                <TheadTrTh>{t('transactions.balance')}</TheadTrTh>
+              </TheadTr>
+            </Thead>
+            <Tbody>
+              {allTransactions.map(
+                ({
+                  _id,
+                  date,
+                  type,
+                  category,
+                  comment,
+                  sum,
+                  balanceAfterTransaction,
+                }) => (
+                  <TbodyTr key={_id}>
+                    <td>{date}</td>
+                    <td>{type}</td>
+                    <td>{category}</td>
+                    <td>{comment}</td>
+                    <td>{sum}</td>
+                    <td>{balanceAfterTransaction}</td>
+                  </TbodyTr>
+                )
+              )}
+            </Tbody>
+          </Table>
+        </ContainerTable>
+      )}
+
       <ContainerList>
         <List>
           <Element>
