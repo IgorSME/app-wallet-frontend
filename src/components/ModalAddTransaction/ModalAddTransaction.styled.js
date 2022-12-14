@@ -13,18 +13,9 @@ export const ModalBackdrop = styled.div`
   left: 0;
   overflow-y: scroll;
   min-width: 320px;
-  height: 100vh;
+  height: 100%;
   background-color: ${p => p.theme.colors.backdropBackground};
   transition: all 0.8s;
-z-index: 500;
-position: absolute;
-top: 0;
-left: 0;
-overflow-y: scroll;
-    min-width: 320px;
-    height: 100vh;
-    background-color: ${p => p.theme.colors.backdropBackground};
-    transition: all .8s;
 
   @media screen and (min-width: 768px) {
     position: fixed;
@@ -43,13 +34,11 @@ export const CloseBtnIcon = styled(CloseBtn)`
 
 export const ModalContainerStyled = styled.form`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   position: relative;
   top: 0;
-  // bottom: 0;
   left: 0;
-  // right: 0;
   padding: 10px;
   background-color: ${p => p.theme.colors.modalBackground};
 
@@ -58,8 +47,6 @@ export const ModalContainerStyled = styled.form`
     height: 603px;
     border-radius: ${p => p.theme.radii.normal};
     top: 20%;
-    // left: 50%;
-    // transform: translate(-50%,-50%);
   }
 `;
 

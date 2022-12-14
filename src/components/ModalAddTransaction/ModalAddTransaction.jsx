@@ -35,10 +35,10 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   useCloseOnEsc(handleClose);
 
-  const [income, setIncome] = useState(false);
+  const [income, setIncome] = useState(true);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState("");
-  const [amound, setAmound] = useState();
+  const [amound, setAmound] = useState("");
   const [comment, setComment] = useState('');
   
 
@@ -85,9 +85,11 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
       })
     );
     setSelected("");
-    setAmound();
+    setAmound("");
     setComment('');
-    setIncome(false);
+    setIncome(true);
+
+    // handleClose();
   };
 
   const typeTransaction = income ? 'expense' : 'income';
