@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTransactions } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
+import { transformNumber } from 'helpers';
 
 import {
   ContainerTable,
@@ -18,6 +19,7 @@ import {
   Item,
   ItemFirstChild,
   ItemLastChild,
+  ListSumNumber,
 } from 'components/BalanceTable/BalanceTable.styled';
 
 export const BalanceTable = () => {
@@ -25,6 +27,7 @@ export const BalanceTable = () => {
   const dispatch = useDispatch();
 
   const allTransaction = useSelector(getTransactions);
+  console.log(allTransaction);
 
   useEffect(() => {
     dispatch(getAllTransactions());
@@ -45,16 +48,27 @@ export const BalanceTable = () => {
             </TheadTr>
           </Thead>
           <Tbody>
-            {/* {t.map(({ date, type, category, comment, sum, balance }) => (
-              <TbodyTr>
-                <td>{date}</td>
-                <td>{type}</td>
-                <td>{category}</td>
-                <td>{comment}</td>
-                <td>{sum}</td>
-                <td>{balance}</td>
-              </TbodyTr>
-            ))} */}
+            {allTransaction.map(
+              ({
+                date,
+                type,
+                category,
+                comment,
+                sum,
+                balanceAfterTransaction,
+              }) => (
+                <TbodyTr>
+                  <td>{date}</td>
+                  <td>{type}</td>
+                  <td>{category}</td>
+                  <td>{comment}</td>
+                  <ListSumNumber textColor={type}>
+                    {transformNumber(sum)}
+                  </ListSumNumber>
+                  <td>{transformNumber(balanceAfterTransaction)}</td>
+                </TbodyTr>
+              )
+            )}
           </Tbody>
         </Table>
       </ContainerTable>
