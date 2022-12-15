@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import EllipsisText from 'react-ellipsis-text';
 import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
 import { formatDate, transformNumber } from '../../helpers';
@@ -21,7 +22,6 @@ import {
   ItemLastChild,
   TableSumNumber,
   ListSumNumber,
-  ElementBorder,
 } from 'components/BalanceTable/BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics } from '../../components';
 
@@ -72,7 +72,10 @@ export const BalanceTable = () => {
                     <td>{formatDate(date)}</td>
                     <td>{type === 'income' ? '+' : '-'}</td>
                     <td>{category}</td>
-                    <td>{comment}</td>
+
+                    <td>
+                      <EllipsisText text={comment} length={'18'} />
+                    </td>
                     <TableSumNumber textColor={type}>
                       {transformNumber(sum)}
                     </TableSumNumber>
