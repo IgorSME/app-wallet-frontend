@@ -13,7 +13,7 @@ export const ModalBackdrop = styled.div`
   left: 0;
   overflow-y: scroll;
   min-width: 320px;
-  height: 100vh;
+  height: 100%;
   background-color: ${p => p.theme.colors.backdropBackground};
   transition: all 0.8s;
 
@@ -34,13 +34,11 @@ export const CloseBtnIcon = styled(CloseBtn)`
 
 export const ModalContainerStyled = styled.form`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   position: relative;
   top: 0;
-  // bottom: 0;
   left: 0;
-  // right: 0;
   padding: 10px;
   background-color: ${p => p.theme.colors.modalBackground};
 
@@ -49,8 +47,6 @@ export const ModalContainerStyled = styled.form`
     height: 603px;
     border-radius: ${p => p.theme.radii.normal};
     top: 20%;
-    // left: 50%;
-    // transform: translate(-50%,-50%);
   }
 `;
 
@@ -97,22 +93,26 @@ export const SelectWrapper = styled.div`
 `;
 
 export const SelectCategoryButton = styled.input`
-  user-select: none;
-  position: relative;
-  width: 280px;
-  height: 32px;
-  background-color: ${p => p.theme.colors.barBackground};
-  font-family: ${p => p.theme.fonts.primary};
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: ${p => p.theme.lineHeights.normal};
-  color: ${p => p.theme.colors.placeholder};
-  border-bottom: ${p => p.theme.borders.radioBtn};
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  padding-left: 20px;
-  text-align: left;
+user-select: none;
+position: relative;
+width: 280px;
+height: 32px;
+background-color: ${p => p.theme.colors.barBackground};
+font-family: ${p => p.theme.fonts.primary};
+font-weight: ${p => p.theme.fontWeights.normal};
+font-size: ${p => p.theme.fontSizes.m};
+line-height: ${p => p.theme.lineHeights.normal};
+color: ${p => p.theme.colors.primaryText};
+border-bottom: ${p => p.theme.borders.radioBtn};
+border-top: none;
+border-left: none;
+border-right: none;
+padding-left: 20px;
+text-align: left;
+
+&::first-letter {
+  text-transform: uppercase;
+}
 
   @media screen and (min-width: 768px) {
     width: 394px;
@@ -148,14 +148,18 @@ export const SelectCategoryList = styled.ul`
 `;
 
 export const SelectCategoryItem = styled.li`
-  padding: 10px;
-  font-family: ${p => p.theme.fonts.primary};
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: ${p => p.theme.lineHeights.normal};
-  color: ${p => p.theme.colors.primaryText};
-  cursor: pointer;
-  text-align: left;
+padding: 10px;
+font-family: ${p => p.theme.fonts.primary};
+font-weight: ${p => p.theme.fontWeights.normal};
+font-size: ${p => p.theme.fontSizes.m};
+line-height: ${p => p.theme.lineHeights.normal};
+color: ${p => p.theme.colors.primaryText};
+cursor: pointer;
+text-align: left;
+
+&::first-letter {
+  text-transform: uppercase;
+}
 
   &:hover,
   &:focus {
@@ -165,6 +169,7 @@ export const SelectCategoryItem = styled.li`
 `;
 
 export const CommentWrapper = styled.div`
+position: relative;
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
@@ -174,6 +179,7 @@ export const CommentWrapper = styled.div`
 `;
 
 export const AmoundWrapper = styled.div`
+position: relative;
   justify-content: center;
   display: flex;
   margin-bottom: 40px;

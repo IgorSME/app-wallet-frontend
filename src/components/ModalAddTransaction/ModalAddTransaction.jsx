@@ -2,8 +2,11 @@ import { useId, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { getCategories } from 'redux/selectors';
+import { toast } from 'react-toastify';
+
+import { getCategories  } from 'redux/selectors';
 import { addTransaction } from 'redux/transactions/transactions-operations';
+
 import { Switch } from 'components/Switch/Switch';
 import Calendar from '../Calendar/Calendar';
 import {
@@ -25,6 +28,7 @@ import {
   SelectCategoryList,
   SelectIconSvg,
   SelectWrapper,
+  // Error,
 } from './ModalAddTransaction.styled';
 
 import { useCloseOnEsc } from '../../hooks/useCloseOnEsc';
@@ -34,11 +38,13 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   useCloseOnEsc(handleClose);
 
-  const [income, setIncome] = useState(false);
+  const [income, setIncome] = useState(true);
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState(t('addTransactions.select'));
-  const [amound, setAmound] = useState(0);
+  const [selected, setSelected] = useState("");
+  const [amound, setAmound] = useState("");
   const [comment, setComment] = useState('');
+  
+  const [error, setError] = useState(false);
 
   const inputId = useId();
 
@@ -55,7 +61,6 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
       case 'selected':
         setSelected(value);
         break;
-
       case 'amound':
         setAmound(value);
         break;
@@ -70,24 +75,30 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    if (selected.length === 0 || amound.length === 0 || comment.length === 0) {
+      setError(true)
+    }
+    if (selected && amound && comment) {
 
-    dispatch(
-      addTransaction({
-        date: date,
-        type: typeTransaction,
-        category: selected,
-        comment: comment,
-        sum: +amound,
-      })
-    );
-    setSelected(t('addTransactions.select'));
-    setAmound('');
-    setComment('');
-    setIncome(false);
+      dispatch(
+        addTransaction({
+          date: date,
+          type: typeTransaction,
+          category: selected,
+          comment: comment,
+          sum: +amound,
+        })
+      );
+      setSelected("");
+      setAmound("");
+      setComment('');
+      setIncome(true);
+      handleClose()
+    }
 
-    handleClose();
+
   };
 
   const typeTransaction = income ? 'expense' : 'income';
@@ -112,12 +123,12 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
             income={income}
             onToggle={() => {
               setIncome(!income);
-              setSelected(t('addTransactions.select'));
+              setSelected('');
             }}
-          />
+          />          
           <SelectWrapper>
-            <SelectCategoryButton
-              required
+          <SelectCategoryButton
+              placeholder={t('addTransactions.select')}
               readOnly
               onClick={() => {
                 setIsActive(!isActive);
@@ -146,22 +157,25 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               </SelectCategoryList>
             )}
           </SelectWrapper>
+          {error && selected.length <= 0 ? toast.error("Category is required") : ""}
           <AmoundDateWrapper>
             <AmoundWrapper>
               <Amound
                 style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
                 name="amound"
                 value={amound}
-                type="number"
                 min="1"
+                placeholder="0.00"
                 onChange={handleChange}
               />
             </AmoundWrapper>
+            {error && amound.length <= 0 ? toast.error("Sum is required") : ''}
             <DateWrapper>
-              <Calendar name="date" value={date} onChange={handleChange} />
+              <Calendar required name="date" value={date} onChange={handleChange} />
               <CalendarImg />
             </DateWrapper>
           </AmoundDateWrapper>
+          
           <CommentWrapper>
             <Comments
               style={comment ? { color: '#000000' } : { color: '#BDBDBD' }}
@@ -171,6 +185,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               onChange={handleChange}
             />
           </CommentWrapper>
+          {error && comment.length <= 0 ? toast.error("Comment is required") : ""}
           <ModalButtonStyled type="submit">
             {t('addTransactions.add')}
           </ModalButtonStyled>
