@@ -20,7 +20,7 @@ root.render(
         <ThemeProvider theme={theme}>
           <Global styles={GlobalStyles} />
           <BrowserRouter>
-            <ToastContainer />
+            <ToastContainer autoClose={800} />
             <App />
           </BrowserRouter>
         </ThemeProvider>
