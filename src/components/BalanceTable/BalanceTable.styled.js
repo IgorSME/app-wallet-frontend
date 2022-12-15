@@ -1,6 +1,18 @@
 import styled from '@emotion/styled';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 
+export const TableSumNumber = styled.td`
+  color: ${p =>
+    p.textColor === 'expense' ? p.theme.colors.expense : p.theme.colors.income};
+`;
+
+export const ListSumNumber = styled.p`
+  color: ${p =>
+    p.textColor === 'expense' ? p.theme.colors.expense : p.theme.colors.income};
+`;
+
+export const ElementBorder = styled.li``;
+
 export const Section = styled.section`
   width: 280px;
   margin: 0 auto;
@@ -68,7 +80,7 @@ export const TheadTrTh = styled.th`
   @media screen and (min-width: 320px) {
   }
   @media screen and (min-width: 768px) {
-    &:first-of-type {
+    &:first-child {
       border-bottom-left-radius: 30px;
     }
     &:last-child {
@@ -144,7 +156,12 @@ export const List = styled.ul`
 export const Element = styled.li`
   @media screen and (max-width: 767px) {
     border-radius: 10px;
-    border-left: 5px solid teal;
+    border-left: 5px solid;
+    border-left-color: ${p =>
+      p.textColor === 'expense'
+        ? p.theme.colors.expense
+        : p.theme.colors.income};
+
     background-color: #fff;
 
     &:not(:last-child) {
@@ -181,7 +198,7 @@ export const ItemFirstChild = styled.p`
   @media screen and (max-width: 767px) {
     text-align: left;
 
-    &:first-of-type {
+    &:first-child {
       font-family: 'Circe';
       font-style: normal;
       font-weight: 700;
@@ -200,7 +217,7 @@ export const ItemLastChild = styled.p`
   @media screen and (max-width: 767px) {
     text-align: left;
 
-    &:first-of-type {
+    &:first-child {
       font-family: 'Circe';
       font-style: normal;
       font-weight: 700;

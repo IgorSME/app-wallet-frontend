@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 // import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+
 import { getAllTransactions } from 'redux/transactions/transactions-operations';
 import {
   getTransactions,
@@ -11,6 +12,7 @@ import {
   // getTotalTransactions,
 } from 'redux/selectors';
 import { formatDate, transformNumber } from 'helpers';
+
 
 import {
   ContainerTable,
@@ -26,9 +28,14 @@ import {
   Item,
   ItemFirstChild,
   ItemLastChild,
+
+  TableSumNumber,
+  ListSumNumber,
+  ElementBorder,
   BOxBtn,
 } from './BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
+
 
 export const BalanceTable = transactions => {
   const { t } = useTranslation();
@@ -79,10 +86,14 @@ export const BalanceTable = transactions => {
                 }) => (
                   <TbodyTr key={_id}>
                     <td>{formatDate(date)}</td>
-                    <td>{type}</td>
+                    <td>{type === 'income' ? '+' : '-'}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
-                    <td>{transformNumber(sum)}</td>
+
+                    <TableSumNumber textColor={type}>
+                      {transformNumber(sum)}
+                    </TableSumNumber>
+
                     <td>{transformNumber(balanceAfterTransaction)}</td>
                   </TbodyTr>
                 )
@@ -109,14 +120,16 @@ export const BalanceTable = transactions => {
               sum,
               balanceAfterTransaction,
             }) => (
-              <Element key={_id}>
+              <Element key={_id} textColor={type}>
                 <Item>
                   <ItemFirstChild>{t('transactions.date')}</ItemFirstChild>
                   <ItemLastChild>{formatDate(date)}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>{t('transactions.type')}</ItemFirstChild>
-                  <ItemLastChild>{type}</ItemLastChild>
+
+                  <ItemFirstChild>Type</ItemFirstChild>
+                  <ItemLastChild>{type === 'income' ? '+' : '-'}</ItemLastChild>
+
                 </Item>
                 <Item>
                   <ItemFirstChild>{t('transactions.category')}</ItemFirstChild>
@@ -127,11 +140,15 @@ export const BalanceTable = transactions => {
                   <ItemLastChild>{comment}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>{t('transactions.sum')}</ItemFirstChild>
-                  <ItemLastChild>{transformNumber(sum)}</ItemLastChild>
+
+                  <ItemFirstChild>Sum</ItemFirstChild>
+                  <ListSumNumber textColor={type}>
+                    {transformNumber(sum)}
+                  </ListSumNumber>
                 </Item>
                 <Item>
-                  <ItemFirstChild>{t('transactions.balance')}</ItemFirstChild>
+                  <ItemFirstChild>Balance</ItemFirstChild>
+
                   <ItemLastChild>
                     {transformNumber(balanceAfterTransaction)}
                   </ItemLastChild>
