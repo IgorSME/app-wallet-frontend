@@ -169,6 +169,7 @@ text-align: left;
 `;
 
 export const CommentWrapper = styled.div`
+position: relative;
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
@@ -178,6 +179,7 @@ export const CommentWrapper = styled.div`
 `;
 
 export const AmoundWrapper = styled.div`
+position: relative;
   justify-content: center;
   display: flex;
   margin-bottom: 40px;
@@ -304,3 +306,12 @@ export const ModalButtonStyled = styled(ButtonStyled)`
     margin-bottom: 20px;
   }
 `;
+export const Error = styled.div`
+position: absolute;
+color: red;
+font-family: ${p => p.theme.fonts.primary};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.normal};
+  text-align: center;
+`

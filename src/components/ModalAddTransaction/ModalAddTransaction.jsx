@@ -2,6 +2,8 @@ import { useId, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import { toast } from 'react-toastify';
+
 import { getCategories  } from 'redux/selectors';
 import { addTransaction } from 'redux/transactions/transactions-operations';
 
@@ -26,6 +28,7 @@ import {
   SelectCategoryList,
   SelectIconSvg,
   SelectWrapper,
+  // Error,
 } from './ModalAddTransaction.styled';
 
 import { useCloseOnEsc } from '../../hooks/useCloseOnEsc';
@@ -153,9 +156,8 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               </SelectCategoryList>
             )}
           </SelectWrapper>
-          {error && selected.length <= 0 ? <p style={{color: "red"}}>Category is required</p> : ""}
+          {error && selected.length <= 0 ? toast.error("Category is required") : ""}
           <AmoundDateWrapper>
-          
             <AmoundWrapper>
               <Amound
                 style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
@@ -166,7 +168,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
                 onChange={handleChange}
               />
             </AmoundWrapper>
-            {error && amound.length <= 0 ? <p style={{color: "red"}}>Sum is required</p> : ''}
+            {error && amound.length <= 0 ? toast.error("Sum is required") : ''}
             <DateWrapper>
               <Calendar required name="date" value={date} onChange={handleChange} />
               <CalendarImg />
@@ -174,7 +176,6 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
           </AmoundDateWrapper>
           
           <CommentWrapper>
-          {error && comment.length <= 0 ? <p style={{color: "red"}}>Comment</p> : ""}
             <Comments
               style={comment ? { color: '#000000' } : { color: '#BDBDBD' }}
               placeholder={t('addTransactions.comment')}
@@ -183,6 +184,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               onChange={handleChange}
             />
           </CommentWrapper>
+          {error && comment.length <= 0 ? toast.error("Comment is required") : ""}
           <ModalButtonStyled type="submit">
             {t('addTransactions.add')}
           </ModalButtonStyled>
