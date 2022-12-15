@@ -9,7 +9,7 @@ import {
   // getPage,
   getTotalTransactions,
 } from 'redux/selectors';
-import { formatDate } from 'helpers';
+import { formatDate, transformNumber } from 'helpers';
 
 import {
   ContainerTable,
@@ -89,8 +89,8 @@ export const BalanceTable = transactions => {
                     <td>{type}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
-                    <td>{sum}</td>
-                    <td>{balanceAfterTransaction}</td>
+                    <td>{transformNumber(sum)}</td>
+                    <td>{transformNumber(balanceAfterTransaction)}</td>
                   </TbodyTr>
                 )
               )}
@@ -118,28 +118,30 @@ export const BalanceTable = transactions => {
             }) => (
               <Element key={_id}>
                 <Item>
-                  <ItemFirstChild>Date</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.date')}</ItemFirstChild>
                   <ItemLastChild>{formatDate(date)}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>Type</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.type')}</ItemFirstChild>
                   <ItemLastChild>{type}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>Category</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.category')}</ItemFirstChild>
                   <ItemLastChild>{category}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>Comment</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.comment')}</ItemFirstChild>
                   <ItemLastChild>{comment}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>Sum</ItemFirstChild>
-                  <ItemLastChild>{sum}</ItemLastChild>
+                  <ItemFirstChild>{t('transactions.sum')}</ItemFirstChild>
+                  <ItemLastChild>{transformNumber(sum)}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>Balance</ItemFirstChild>
-                  <ItemLastChild>{balanceAfterTransaction}</ItemLastChild>
+                  <ItemFirstChild>{t('transactions.balance')}</ItemFirstChild>
+                  <ItemLastChild>
+                    {transformNumber(balanceAfterTransaction)}
+                  </ItemLastChild>
                 </Item>
               </Element>
             )
