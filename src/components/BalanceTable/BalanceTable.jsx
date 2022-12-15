@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTransactions } from '../../redux/selectors';
+import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
 import { transformNumber } from 'helpers';
 
@@ -21,24 +21,27 @@ import {
   ItemLastChild,
   ListSumNumber,
 } from 'components/BalanceTable/BalanceTable.styled';
+import { NoStatisticsText, LoaderStatistics } from '../../components';
 
 export const BalanceTable = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const allTransactions = useSelector(getTransactions);
-  console.log(allTransactions);
+  const loading = useSelector(getTransactionsLoading);
+
   useEffect(() => {
     dispatch(getAllTransactions());
   }, [dispatch]);
 
-  // const date = new Date().toDateString();
-  // console.log(date);
+  const isNoTransactions = allTransactions?.length === 0;
 
   return (
     <>
-      {allTransactions?.length === 0 ? (
-        <h2>Sorry, you don't have any transactions yet</h2>
+      {loading ? (
+        <LoaderStatistics />
+      ) : isNoTransactions ? (
+        <NoStatisticsText>{t('transactions.text')}</NoStatisticsText>
       ) : (
         <ContainerTable>
           <Table>
@@ -83,136 +86,44 @@ export const BalanceTable = () => {
 
       <ContainerList>
         <List>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>04.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Other</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Gift for your wife</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>300.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>6 900.00</ItemLastChild>
-            </Item>
-          </Element>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>05.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> + </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Regular Income</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>January bonus</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>8 000.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>14 900.00</ItemLastChild>
-            </Item>
-          </Element>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>07.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Car</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Oil</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>1000.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>13 900.00</ItemLastChild>
-            </Item>
-          </Element>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>07.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Products</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Vegetables for the week</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>280.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>13 870.00</ItemLastChild>
-            </Item>
-          </Element>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>07.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> + </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Irregular Income</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Gift</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>1 000.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>14 870.00</ItemLastChild>
-            </Item>
-          </Element>
+          {allTransactions.map(
+            ({
+              _id,
+              date,
+              type,
+              category,
+              comment,
+              sum,
+              balanceAfterTransaction,
+            }) => (
+              <Element key={_id}>
+                <Item>
+                  <ItemFirstChild>Date</ItemFirstChild>
+                  <ItemLastChild>{date}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Type</ItemFirstChild>
+                  <ItemLastChild>{type}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Category</ItemFirstChild>
+                  <ItemLastChild>{category}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Comment</ItemFirstChild>
+                  <ItemLastChild>{comment}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Sum</ItemFirstChild>
+                  <ItemLastChild>{sum}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Balance</ItemFirstChild>
+                  <ItemLastChild>{balanceAfterTransaction}</ItemLastChild>
+                </Item>
+              </Element>
+            )
+          )}
         </List>
       </ContainerList>
     </>
