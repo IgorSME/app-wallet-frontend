@@ -19,7 +19,7 @@ export const RegisterFormStyled = styled(LoginFormStyled)`
 //     background-image: none;
 //     background-image: url(${RegisterDecorationImgTablet});
 //   }
-//   @media screen and (min-width: 1280px) {
+//   @media screen and (min-width: 1152px) {
 //     padding-bottom: 0;
 //     background-image: none;
 //   }
@@ -33,7 +33,7 @@ export const RegisterSideBareStyled = styled(LoginSideBareStyled)`
     background-image: url(${RegisterDecorationImgTablet});
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     width: 452px;
     height: 413px;
 

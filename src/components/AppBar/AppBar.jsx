@@ -14,8 +14,9 @@ import {
   Divider,
   ExitText,
   ExitBtn,
+  ExitIconStyled,
+  LogoLink,
 } from './AppBar.styled';
-import { ExitIcon } from './ExitIcon';
 
 export const AppBar = () => {
   const { t } = useTranslation();
@@ -37,7 +38,9 @@ export const AppBar = () => {
     <>
       <Header>
         <Container>
-          <Logo />
+          <LogoLink to={'/home'}>
+            <Logo />
+          </LogoLink>
           <UserMenu>
             <LanguageSwitcher />
             <UserName>{userName}</UserName>
@@ -47,7 +50,7 @@ export const AppBar = () => {
                 setIsOpenModal(true);
               }}
             >
-              <ExitIcon />
+              <ExitIconStyled />
               <ExitText>{t('exit')}</ExitText>
             </ExitBtn>
           </UserMenu>
