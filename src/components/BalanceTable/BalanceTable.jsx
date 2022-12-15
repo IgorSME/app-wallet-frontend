@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllTransactions } from 'redux/transactions/transactions-operations';
 import {
   getTransactions,
   getTransactionsLoading,
-  // getPage,
-  getTotalTransactions,
+  getPage,
+  getTotalPages,
+  // getTotalTransactions,
 } from 'redux/selectors';
 import { formatDate, transformNumber } from 'helpers';
 
@@ -35,21 +36,13 @@ export const BalanceTable = transactions => {
 
   const transactionsPage = useSelector(getTransactions);
   const loading = useSelector(getTransactionsLoading);
-  // const currentPage = useSelector(getPage);
+  const currentPage = +useSelector(getPage);
+  const totalPages = +useSelector(getTotalPages);
 
-  //-----костыль------//
-  const [page, setPage] = useState(2);
-
-  const totalTransactions = useSelector(getTotalTransactions)?.length;
-  const isLastPage = page - 1 < totalTransactions / 5;
+  const isLastPage = currentPage < totalPages;
 
   const onClickLoadMoreBtn = () => {
-    // dispatch(getAllTransactions({ page: currentPage + 1 }));
-
-    //пока с бека не приходит текущая страница и общее колличество страниц - сделаю костыли//
-    setPage(page + 1);
-
-    dispatch(getAllTransactions({ page: page }));
+    dispatch(getAllTransactions({ page: +currentPage + 1 }));
   };
 
   const isNoTransactions = transactionsPage?.length === 0;

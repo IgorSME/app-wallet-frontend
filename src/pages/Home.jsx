@@ -24,7 +24,6 @@ const Home = () => {
               <ContainerNav>
                 <YourBalance />
                 <BalanceTable />
-                <Modal />
               </ContainerNav>
             </section>
           )}

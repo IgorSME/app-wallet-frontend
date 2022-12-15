@@ -5,7 +5,9 @@ const initialState = {
   transactions: [],
   loading: false,
   error: null,
+  userBalance: '',
   page: 1,
+  totalPages: 1,
 };
 
 const transactionSlice = createSlice({
@@ -31,6 +33,9 @@ const transactionSlice = createSlice({
 
       state.transactions = filterTransactions;
       state.loading = false;
+      state.userBalance = payload.userBalance;
+      state.page = payload.page;
+      state.totalPages = payload.totalPages;
     },
     [transactionsOperations.getAllTransactions.rejected]: (
       state,
@@ -45,6 +50,7 @@ const transactionSlice = createSlice({
     },
     [transactionsOperations.addTransaction.fulfilled]: (state, { payload }) => {
       state.transactions = [payload.transaction, ...state.transactions];
+      state.userBalance = payload.transaction.balanceAfterTransaction;
       state.loading = false;
     },
     [transactionsOperations.addTransaction.rejected]: (state, { payload }) => {

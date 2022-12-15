@@ -12,8 +12,8 @@ export const OpenModalBtn = styled.button`
   border-radius: ${p => p.theme.radii.large};
   box-shadow: ${p => p.theme.shadows.addBtn};
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  right: 20%;
-  bottom: 50%;
+  right: 20px;
+  bottom: 20px;
   cursor: pointer;
   display: flex;
   @media screen and (min-width: 768px) {
