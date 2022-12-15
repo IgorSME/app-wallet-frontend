@@ -41,6 +41,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
   const [amound, setAmound] = useState("");
   const [comment, setComment] = useState('');
   
+  const [error, setError] = useState(false);
 
   const inputId = useId();
 
@@ -57,7 +58,6 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
       case 'selected':
         setSelected(value);
         break;
-
       case 'amound':
         setAmound(value);
         break;
@@ -72,24 +72,29 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    if (selected.length === 0 || amound.length === 0 || comment.length === 0) {
+      setError(true)
+    }
+    if (selected && amound && comment) {
 
-    dispatch(
-      addTransaction({
-        date: date,
-        type: typeTransaction,
-        category: selected,
-        comment: comment,
-        sum: +amound,
-      })
-    );
-    setSelected("");
-    setAmound("");
-    setComment('');
-    setIncome(true);
+      dispatch(
+        addTransaction({
+          date: date,
+          type: typeTransaction,
+          category: selected,
+          comment: comment,
+          sum: +amound,
+        })
+      );
+      setSelected("");
+      setAmound("");
+      setComment('');
+      setIncome(true);
+      handleClose()
+    }
 
-    // handleClose();
   };
 
   const typeTransaction = income ? 'expense' : 'income';
@@ -116,11 +121,10 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               setIncome(!income);
               setSelected('');
             }}
-          />
+          />          
           <SelectWrapper>
-            <SelectCategoryButton
+          <SelectCategoryButton
               placeholder={t('addTransactions.select')}
-              required
               readOnly
               onClick={() => {
                 setIsActive(!isActive);
@@ -149,10 +153,11 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               </SelectCategoryList>
             )}
           </SelectWrapper>
+          {error && selected.length <= 0 ? <p style={{color: "red"}}>Category is required</p> : ""}
           <AmoundDateWrapper>
+          
             <AmoundWrapper>
               <Amound
-                required
                 style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
                 name="amound"
                 value={amound}
@@ -161,12 +166,15 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
                 onChange={handleChange}
               />
             </AmoundWrapper>
+            {error && amound.length <= 0 ? <p style={{color: "red"}}>Sum is required</p> : ''}
             <DateWrapper>
               <Calendar required name="date" value={date} onChange={handleChange} />
               <CalendarImg />
             </DateWrapper>
           </AmoundDateWrapper>
+          
           <CommentWrapper>
+          {error && comment.length <= 0 ? <p style={{color: "red"}}>Comment</p> : ""}
             <Comments
               style={comment ? { color: '#000000' } : { color: '#BDBDBD' }}
               placeholder={t('addTransactions.comment')}
