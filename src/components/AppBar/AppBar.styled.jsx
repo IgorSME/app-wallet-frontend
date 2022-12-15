@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { ContainerStyled } from 'components/';
+import { ExitIcon } from './ExitIcon';
+import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   display: flex;
@@ -63,11 +65,18 @@ export const ExitBtn = styled.button`
   justify-content: center;
   align-items: center;
   height: 24px;
+  fill: ${p => p.theme.colors.placeholder};
+  &:hover {
+    color: ${p => p.theme.colors.name};
+    fill: ${p => p.theme.colors.name};
+  }
 
   @media screen and (min-width: 768px) {
     gap: 8px;
   }
 `;
+
+export const ExitIconStyled = styled(ExitIcon)``;
 
 export const ExitText = styled.p`
   display: none;
@@ -90,3 +99,5 @@ export const Divider = styled.div`
     outline: 1px solid #bdbdbd;
   }
 `;
+
+export const LogoLink = styled(NavLink)``;

@@ -29,7 +29,7 @@ export const LoginSectionStyled = styled.section`
     flex-direction: column;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     min-height: 720px;
     flex-direction: row;
     align-items: center;
@@ -48,7 +48,7 @@ export const LoginContainerStyled = styled(ContainerStyled)`
     padding-top: 60px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     flex-direction: column;
     justify-content: end;
     align-items: center;
@@ -75,7 +75,7 @@ export const LoginSideBareStyled = styled.div`
     background-position: 50% 50%;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     width: 435px;
     height: 420px;
 
@@ -99,7 +99,7 @@ export const LoginTitle = styled.h2`
     font-size: ${p => p.theme.fontSizes.xl};
     line-height: ${p => p.theme.lineHeights.normal};
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     margin-right: 162px;
     margin-left: auto;
   }
@@ -125,7 +125,7 @@ export const LoginFormStyled = styled(Form)`
     height: 468px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     z-index: 10;
     margin-left: 107px;
   }
@@ -187,7 +187,7 @@ export const LoginRegisterLink = styled(NavLinkBtn)`
 `;
 
 export const BlurBackGround = styled.div`
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     z-index: 3;
     position: absolute;
     top: 0px;
@@ -202,7 +202,7 @@ export const BlurBackGround = styled.div`
 
 export const BlurBackGroundOpacity = styled.div`
   display: none;
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1152px) {
     display: block;
     width: 731px;
     height: 720px;
