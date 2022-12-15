@@ -1,12 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { getAllTransactions } from 'redux/transactions/transactions-operations';
 import {
   getTransactions,
   getTransactionsLoading,
   // getPage,
   getTotalTransactions,
 } from 'redux/selectors';
+import { formatDate } from 'helpers';
 
 import {
   ContainerTable,
@@ -25,8 +28,6 @@ import {
   BOxBtn,
 } from './BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
-
-import { getAllTransactions } from 'redux/transactions/transactions-operations';
 
 export const BalanceTable = transactions => {
   const { t } = useTranslation();
@@ -84,7 +85,7 @@ export const BalanceTable = transactions => {
                   balanceAfterTransaction,
                 }) => (
                   <TbodyTr key={_id}>
-                    <td>{date}</td>
+                    <td>{formatDate(date)}</td>
                     <td>{type}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
@@ -105,58 +106,44 @@ export const BalanceTable = transactions => {
 
       <ContainerList>
         <List>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>04.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Other</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Gift for your wife</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>300.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>6 900.00</ItemLastChild>
-            </Item>
-          </Element>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>04.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Other</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Gift for your wife</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>300.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>6 900.00</ItemLastChild>
-            </Item>
-          </Element>
+          {transactionsPage.map(
+            ({
+              _id,
+              date,
+              type,
+              category,
+              comment,
+              sum,
+              balanceAfterTransaction,
+            }) => (
+              <Element key={_id}>
+                <Item>
+                  <ItemFirstChild>Date</ItemFirstChild>
+                  <ItemLastChild>{formatDate(date)}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Type</ItemFirstChild>
+                  <ItemLastChild>{type}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Category</ItemFirstChild>
+                  <ItemLastChild>{category}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Comment</ItemFirstChild>
+                  <ItemLastChild>{comment}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Sum</ItemFirstChild>
+                  <ItemLastChild>{sum}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Balance</ItemFirstChild>
+                  <ItemLastChild>{balanceAfterTransaction}</ItemLastChild>
+                </Item>
+              </Element>
+            )
+          )}
         </List>
         {isLastPage && (
           <BOxBtn>
