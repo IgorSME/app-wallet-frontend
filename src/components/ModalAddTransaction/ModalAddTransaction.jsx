@@ -28,7 +28,6 @@ import {
   SelectCategoryList,
   SelectIconSvg,
   SelectWrapper,
-  // Error,
 } from './ModalAddTransaction.styled';
 
 import { useCloseOnEsc } from '../../hooks/useCloseOnEsc';
@@ -77,10 +76,10 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selected.length === 0 || amound.length === 0 || comment.length === 0) {
+    if (selected.length === 0 || amound.length === 0 ) {
       setError(true)
     }
-    if (selected && amound && comment) {
+    if (selected && amound) {
 
       dispatch(
         addTransaction({
@@ -135,6 +134,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               }}
               value={selected}
               name="selected"
+              text={selected}
               onChange={handleChange}
             />
             <SelectIconSvg />
@@ -185,7 +185,6 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               onChange={handleChange}
             />
           </CommentWrapper>
-          {error && comment.length <= 0 ? toast.error("Comment is required") : ""}
           <ModalButtonStyled type="submit">
             {t('addTransactions.add')}
           </ModalButtonStyled>
