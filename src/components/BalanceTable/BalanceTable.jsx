@@ -27,9 +27,13 @@ export const BalanceTable = () => {
   const dispatch = useDispatch();
 
   const allTransactions = useSelector(getTransactions);
+  console.log(allTransactions);
   useEffect(() => {
     dispatch(getAllTransactions());
   }, [dispatch]);
+
+  // const date = new Date().toDateString();
+  // console.log(date);
 
   return (
     <>
@@ -60,12 +64,15 @@ export const BalanceTable = () => {
                   balanceAfterTransaction,
                 }) => (
                   <TbodyTr key={_id}>
+                    {/* <td>{(date = new Date().toLocaleDateString())}</td> */}
                     <td>{date}</td>
                     <td>{type}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
-                    <td>{sum}</td>
-                    <td>{balanceAfterTransaction}</td>
+                    <ListSumNumber textColor={type}>
+                      {transformNumber(sum)}
+                    </ListSumNumber>
+                    <td>{transformNumber(balanceAfterTransaction)}</td>
                   </TbodyTr>
                 )
               )}
