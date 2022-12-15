@@ -306,12 +306,3 @@ export const ModalButtonStyled = styled(ButtonStyled)`
     margin-bottom: 20px;
   }
 `;
-export const Error = styled.div`
-position: absolute;
-color: red;
-font-family: ${p => p.theme.fonts.primary};
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: ${p => p.theme.lineHeights.normal};
-  text-align: center;
-`
