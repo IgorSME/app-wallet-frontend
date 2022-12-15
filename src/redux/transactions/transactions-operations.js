@@ -5,9 +5,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getAllTransactions = createAsyncThunk(
   'transactions/get',
-  async (_, thunkAPI) => {
+  async (body, thunkAPI) => {
     try {
-      const result = await transactionsApi.getAllTransactions();
+      const result = await transactionsApi.getAllTransactions(body);
       return result;
     } catch (error) {
       toast.error(error.response.data.message);
