@@ -1,10 +1,14 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import Media from 'react-media';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+
+import { useEffect, useState, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+
+// import * as authOperations from 'redux/auth/auth-operations';
+import { getAllTransactions } from 'redux/transactions/transactions-operations';
+import { get } from 'redux/categories/categories-operations';
 
 import Currency from 'pages/Currency';
-import * as authOperations from 'redux/auth/auth-operations';
 
 import {
   AppBar,
@@ -14,13 +18,27 @@ import {
   ContainerNav,
   WrapperNav,
   WrapperDesktop,
+  Modal,
 } from 'components';
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
 
+  const [showModal, setShowModal] = useState(true);
+  const { pathname } = useLocation();
+
+  useMemo(() => {
+    if (pathname === '/home') {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  }, [pathname]);
+
   useEffect(() => {
-    dispatch(authOperations.current());
+    // dispatch(authOperations.current());
+    dispatch(getAllTransactions());
+    dispatch(get());
   }, [dispatch]);
 
   return (
@@ -43,6 +61,7 @@ const DashboardPage = () => {
 
                   <Outlet />
                 </main>
+                {showModal && <Modal />}
               </>
             )}
             {matches.other && (

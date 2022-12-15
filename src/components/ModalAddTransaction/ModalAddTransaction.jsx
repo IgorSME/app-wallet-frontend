@@ -1,4 +1,4 @@
-import { useId, useState, useEffect } from 'react';
+import { useId, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -97,6 +97,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
       setIncome(true);
       handleClose()
     }
+
 
   };
 

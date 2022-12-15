@@ -18,10 +18,14 @@ export const ContainerTable = styled(ContainerStyled)`
     display: block;
     margin: 0;
     width: 704px;
+    height: 57vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   @media screen and (min-width: 1280px) {
     width: 715px;
     margin-right: 0;
+    height: 75vh;
   }
 `;
 
@@ -209,4 +213,9 @@ export const ItemLastChild = styled.p`
   }
   @media screen and (min-width: 1280px) {
   }
+`;
+
+export const BOxBtn = styled.div`
+  padding-top: 20px;
+  padding-bottom: 30px;
 `;

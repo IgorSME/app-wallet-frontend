@@ -5,6 +5,7 @@ export * from './LoginForm/LoginForm.styled';
 
 export * from './AppBar/AppBar';
 export * from './BalanceTable/BalanceTable';
+export * from './ButtonLoadMore/ButtonLoadMore';
 export * from './CurrencyTable/CurrencyTable';
 export * from './Chart/Chart';
 export * from './LanguageSwitcher/LanguageSwitcher';
