@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
-import { transformNumber } from 'helpers';
+import { formatDate } from '../../helpers';
 
 import {
   ContainerTable,
@@ -29,7 +29,7 @@ export const BalanceTable = () => {
 
   const allTransactions = useSelector(getTransactions);
   const loading = useSelector(getTransactionsLoading);
-
+  console.log(allTransactions[0]);
   useEffect(() => {
     dispatch(getAllTransactions());
   }, [dispatch]);
@@ -72,8 +72,7 @@ export const BalanceTable = () => {
                   balanceAfterTransaction,
                 }) => (
                   <TbodyTr key={_id}>
-                    {/* <td>{(date = new Date().toLocaleDateString())}</td> */}
-                    <td>{date}</td>
+                    <td>{formatDate(date)}</td>
                     <td>{type}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
@@ -104,7 +103,7 @@ export const BalanceTable = () => {
               <Element key={_id}>
                 <Item>
                   <ItemFirstChild>Date</ItemFirstChild>
-                  <ItemLastChild>{date}</ItemLastChild>
+                  <ItemLastChild>{formatDate(date)}</ItemLastChild>
                 </Item>
                 <Item>
                   <ItemFirstChild>Type</ItemFirstChild>
