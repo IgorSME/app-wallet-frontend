@@ -36,6 +36,11 @@ export const BalanceTable = () => {
 
   const isNoTransactions = allTransactions?.length === 0;
 
+  // const changeType =
+  //   allTransactions.type === 'income'
+  //     ? (allTransactions.type = '+')
+  //     : (allTransactions.type = '-');
+
   return (
     <>
       {loading ? (
