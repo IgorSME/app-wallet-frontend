@@ -1,10 +1,14 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Media from 'react-media';
 import { Outlet } from 'react-router-dom';
 
-import Currency from 'pages/Currency';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import * as authOperations from 'redux/auth/auth-operations';
+import { getAllTransactions } from 'redux/transactions/transactions-operations';
+import { get } from 'redux/categories/categories-operations';
+
+import Currency from 'pages/Currency';
 
 import {
   AppBar,
@@ -21,6 +25,8 @@ const DashboardPage = () => {
 
   useEffect(() => {
     dispatch(authOperations.current());
+    dispatch(getAllTransactions());
+    dispatch(get());
   }, [dispatch]);
 
   return (

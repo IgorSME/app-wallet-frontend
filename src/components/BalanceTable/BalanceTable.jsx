@@ -1,8 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
-import { getAllTransactions } from '../../redux/transactions/transactions-operations';
+import {
+  getTransactions,
+  getTransactionsLoading,
+  // getPage,
+  getTotalTransactions,
+} from 'redux/selectors';
 
 import {
   ContainerTable,
@@ -18,21 +22,36 @@ import {
   Item,
   ItemFirstChild,
   ItemLastChild,
-} from 'components/BalanceTable/BalanceTable.styled';
+  BOxBtn,
+} from './BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
 
-export const BalanceTable = () => {
+import { getAllTransactions } from 'redux/transactions/transactions-operations';
+
+export const BalanceTable = transactions => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const allTransactions = useSelector(getTransactions);
+  const transactionsPage = useSelector(getTransactions);
   const loading = useSelector(getTransactionsLoading);
+  // const currentPage = useSelector(getPage);
 
-  useEffect(() => {
-    dispatch(getAllTransactions());
-  }, [dispatch]);
+  //-----костыль------//
+  const [page, setPage] = useState(2);
 
-  const isNoTransactions = allTransactions?.length === 0;
+  const totalTransactions = useSelector(getTotalTransactions)?.length;
+  const isLastPage = page - 1 < totalTransactions / 5;
+
+  const onClickLoadMoreBtn = () => {
+    // dispatch(getAllTransactions({ page: currentPage + 1 }));
+
+    //пока с бека не приходит текущая страница и общее колличество страниц - сделаю костыли//
+    setPage(page + 1);
+
+    dispatch(getAllTransactions({ page: page }));
+  };
+
+  const isNoTransactions = transactionsPage?.length === 0;
 
   return (
     <>
@@ -54,7 +73,7 @@ export const BalanceTable = () => {
               </TheadTr>
             </Thead>
             <Tbody>
-              {allTransactions.map(
+              {transactionsPage.map(
                 ({
                   _id,
                   date,
@@ -76,7 +95,11 @@ export const BalanceTable = () => {
               )}
             </Tbody>
           </Table>
-          <ButtonLoadMore />
+          {isLastPage && (
+            <BOxBtn>
+              <ButtonLoadMore onClick={onClickLoadMoreBtn} />
+            </BOxBtn>
+          )}
         </ContainerTable>
       )}
 
@@ -135,6 +158,11 @@ export const BalanceTable = () => {
             </Item>
           </Element>
         </List>
+        {isLastPage && (
+          <BOxBtn>
+            <ButtonLoadMore onClick={onClickLoadMoreBtn} />
+          </BOxBtn>
+        )}
       </ContainerList>
     </>
   );

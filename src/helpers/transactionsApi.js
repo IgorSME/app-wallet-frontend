@@ -4,7 +4,9 @@ export const getAllTransactions = async body => {
   let query = '';
 
   if (body) {
-    query = `/api/transactions?page=${body.page}&limit=${body.limit}`;
+    const { page = 1, limit = 5 } = body;
+
+    query = `/api/transactions?page=${page}&limit=${limit}`;
   } else {
     query = '/api/transactions';
   }
