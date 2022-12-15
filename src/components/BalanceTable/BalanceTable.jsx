@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
-import { formatDate } from '../../helpers';
+import { formatDate, transformNumber } from '../../helpers';
 
 import {
   ContainerTable,
@@ -19,7 +19,9 @@ import {
   Item,
   ItemFirstChild,
   ItemLastChild,
+  TableSumNumber,
   ListSumNumber,
+  ElementBorder,
 } from 'components/BalanceTable/BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics } from '../../components';
 
@@ -35,11 +37,6 @@ export const BalanceTable = () => {
   }, [dispatch]);
 
   const isNoTransactions = allTransactions?.length === 0;
-
-  // const changeType =
-  //   allTransactions.type === 'income'
-  //     ? (allTransactions.type = '+')
-  //     : (allTransactions.type = '-');
 
   return (
     <>
@@ -73,12 +70,12 @@ export const BalanceTable = () => {
                 }) => (
                   <TbodyTr key={_id}>
                     <td>{formatDate(date)}</td>
-                    <td>{type}</td>
+                    <td>{type === 'income' ? '+' : '-'}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
-                    <ListSumNumber textColor={type}>
+                    <TableSumNumber textColor={type}>
                       {transformNumber(sum)}
-                    </ListSumNumber>
+                    </TableSumNumber>
                     <td>{transformNumber(balanceAfterTransaction)}</td>
                   </TbodyTr>
                 )
@@ -100,14 +97,14 @@ export const BalanceTable = () => {
               sum,
               balanceAfterTransaction,
             }) => (
-              <Element key={_id}>
+              <Element key={_id} textColor={type}>
                 <Item>
                   <ItemFirstChild>Date</ItemFirstChild>
                   <ItemLastChild>{formatDate(date)}</ItemLastChild>
                 </Item>
                 <Item>
                   <ItemFirstChild>Type</ItemFirstChild>
-                  <ItemLastChild>{type}</ItemLastChild>
+                  <ItemLastChild>{type === 'income' ? '+' : '-'}</ItemLastChild>
                 </Item>
                 <Item>
                   <ItemFirstChild>Category</ItemFirstChild>
@@ -119,11 +116,15 @@ export const BalanceTable = () => {
                 </Item>
                 <Item>
                   <ItemFirstChild>Sum</ItemFirstChild>
-                  <ItemLastChild>{sum}</ItemLastChild>
+                  <ListSumNumber textColor={type}>
+                    {transformNumber(sum)}
+                  </ListSumNumber>
                 </Item>
                 <Item>
                   <ItemFirstChild>Balance</ItemFirstChild>
-                  <ItemLastChild>{balanceAfterTransaction}</ItemLastChild>
+                  <ItemLastChild>
+                    {transformNumber(balanceAfterTransaction)}
+                  </ItemLastChild>
                 </Item>
               </Element>
             )

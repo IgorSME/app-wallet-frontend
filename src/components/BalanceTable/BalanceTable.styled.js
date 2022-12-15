@@ -1,10 +1,17 @@
 import styled from '@emotion/styled';
 import { ContainerStyled } from 'components/common/commonComponents.styled';
 
-export const ListSumNumber = styled.td`
+export const TableSumNumber = styled.td`
   color: ${p =>
     p.textColor === 'expense' ? p.theme.colors.expense : p.theme.colors.income};
 `;
+
+export const ListSumNumber = styled.p`
+  color: ${p =>
+    p.textColor === 'expense' ? p.theme.colors.expense : p.theme.colors.income};
+`;
+
+export const ElementBorder = styled.li``;
 
 export const Section = styled.section`
   width: 280px;
@@ -145,7 +152,12 @@ export const List = styled.ul`
 export const Element = styled.li`
   @media screen and (max-width: 767px) {
     border-radius: 10px;
-    border-left: 5px solid teal;
+    border-left: 5px solid;
+    border-left-color: ${p =>
+      p.textColor === 'expense'
+        ? p.theme.colors.expense
+        : p.theme.colors.income};
+
     background-color: #fff;
 
     &:not(:last-child) {
