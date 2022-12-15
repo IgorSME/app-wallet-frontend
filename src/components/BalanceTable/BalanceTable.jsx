@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 // import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-
 import { getAllTransactions } from 'redux/transactions/transactions-operations';
 import {
   getTransactions,
@@ -12,7 +11,6 @@ import {
   // getTotalTransactions,
 } from 'redux/selectors';
 import { formatDate, transformNumber } from 'helpers';
-
 
 import {
   ContainerTable,
@@ -28,14 +26,12 @@ import {
   Item,
   ItemFirstChild,
   ItemLastChild,
-
   TableSumNumber,
   ListSumNumber,
   ElementBorder,
   BOxBtn,
 } from './BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
-
 
 export const BalanceTable = transactions => {
   const { t } = useTranslation();
@@ -126,10 +122,8 @@ export const BalanceTable = transactions => {
                   <ItemLastChild>{formatDate(date)}</ItemLastChild>
                 </Item>
                 <Item>
-
                   <ItemFirstChild>Type</ItemFirstChild>
                   <ItemLastChild>{type === 'income' ? '+' : '-'}</ItemLastChild>
-
                 </Item>
                 <Item>
                   <ItemFirstChild>{t('transactions.category')}</ItemFirstChild>
@@ -140,7 +134,6 @@ export const BalanceTable = transactions => {
                   <ItemLastChild>{comment}</ItemLastChild>
                 </Item>
                 <Item>
-
                   <ItemFirstChild>Sum</ItemFirstChild>
                   <ListSumNumber textColor={type}>
                     {transformNumber(sum)}
