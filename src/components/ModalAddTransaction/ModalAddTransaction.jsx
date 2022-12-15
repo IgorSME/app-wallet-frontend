@@ -76,10 +76,10 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selected.length === 0 || amound.length === 0 ) {
+    if (selected.length === 0 || amound.length === 0 || comment.length === 0 ) {
       setError(true)
     }
-    if (selected && amound) {
+    if (selected && amound && comment) {
 
       dispatch(
         addTransaction({
@@ -126,6 +126,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
             }}
           />          
           <SelectWrapper>
+          {error && (selected.length <= 0) ? (toast.error("Category is required")) : ""}
           <SelectCategoryButton
               placeholder={t('addTransactions.select')}
               readOnly
@@ -157,9 +158,10 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
               </SelectCategoryList>
             )}
           </SelectWrapper>
-          {error && selected.length <= 0 ? toast.error("Category is required") : ""}
+          
           <AmoundDateWrapper>
             <AmoundWrapper>
+            {error && amound.length <= 0 ? (toast.error("Sum is required")) : ''}
               <Amound
                 style={amound ? { color: '#000000' } : { color: '#BDBDBD' }}
                 name="amound"
@@ -169,7 +171,6 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
                 onChange={handleChange}
               />
             </AmoundWrapper>
-            {error && amound.length <= 0 ? toast.error("Sum is required") : ''}
             <DateWrapper>
               <Calendar required name="date" value={date} onChange={handleChange} />
               <CalendarImg />
@@ -177,6 +178,7 @@ export default function ModalAddTransaction({ onClose: handleClose }) {
           </AmoundDateWrapper>
           
           <CommentWrapper>
+          {error && selected.length <= 0 ? toast.error("Comment is required") : ""}
             <Comments
               style={comment ? { color: '#000000' } : { color: '#BDBDBD' }}
               placeholder={t('addTransactions.comment')}
