@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ReactComponent as BtnAddTrans } from '../../images/btn-add-transaction.svg';
 
 export const OpenModalBtn = styled.button`
-  position: absolute;
+  position: fixed;
   width: 44px;
   height: 44px;
   background-color: ${p => p.theme.colors.accent};
@@ -13,8 +13,8 @@ export const OpenModalBtn = styled.button`
   box-shadow: ${p => p.theme.shadows.addBtn};
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  right: 15%;
-  bottom: 70%;
+  right: 20px;
+  bottom: 20px;s
 
   cursor: pointer;
   display: flex;

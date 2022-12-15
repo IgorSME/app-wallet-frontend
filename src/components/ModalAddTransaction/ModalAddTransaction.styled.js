@@ -110,10 +110,6 @@ border-right: none;
 padding-left: 20px;
 text-align: left;
 
-&::first-letter {
-  text-transform: uppercase;
-}
-
   @media screen and (min-width: 768px) {
     width: 394px;
   }
@@ -156,10 +152,6 @@ line-height: ${p => p.theme.lineHeights.normal};
 color: ${p => p.theme.colors.primaryText};
 cursor: pointer;
 text-align: left;
-
-&::first-letter {
-  text-transform: uppercase;
-}
 
   &:hover,
   &:focus {
