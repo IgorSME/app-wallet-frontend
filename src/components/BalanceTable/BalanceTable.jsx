@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 // import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import EllipsisText from 'react-ellipsis-text';
 
 import { getAllTransactions } from 'redux/transactions/transactions-operations';
 import {
@@ -28,7 +29,6 @@ import {
   ItemLastChild,
   TableSumNumber,
   ListSumNumber,
-  ElementBorder,
   BOxBtn,
 } from './BalanceTable.styled';
 import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
@@ -84,7 +84,9 @@ export const BalanceTable = transactions => {
                     <td>{formatDate(date)}</td>
                     <td>{type === 'income' ? '+' : '-'}</td>
                     <td>{category}</td>
-                    <td>{comment}</td>
+                    <td>
+                      <EllipsisText text={comment} length={18} />
+                    </td>
 
                     <TableSumNumber textColor={type}>
                       {transformNumber(sum)}
@@ -131,7 +133,9 @@ export const BalanceTable = transactions => {
                 </Item>
                 <Item>
                   <ItemFirstChild>{t('transactions.comment')}</ItemFirstChild>
-                  <ItemLastChild>{comment}</ItemLastChild>
+                  <ItemLastChild>
+                    <EllipsisText text={comment} length={18} />
+                  </ItemLastChild>
                 </Item>
                 <Item>
                   <ItemFirstChild>Sum</ItemFirstChild>
