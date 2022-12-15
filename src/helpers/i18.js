@@ -88,6 +88,8 @@ i18n
 
           balance: 'Balance',
 
+          loadMoreBtn: 'Load More',
+
           err404: 'Page not found',
           err404redirect: 'Go back to Home page',
 
@@ -162,6 +164,7 @@ i18n
           expense: 'Витрати',
           income: 'Прибутки',
           balance: 'Баланс',
+          loadMoreBtn: 'Завантажить ще',
           err404: 'Сторінку не знайдено',
           err404redirect: 'Повернутися на початкову сторінку',
           logout: {
