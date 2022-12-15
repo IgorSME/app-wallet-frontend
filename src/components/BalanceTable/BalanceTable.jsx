@@ -1,9 +1,18 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
-import { getAllTransactions } from '../../redux/transactions/transactions-operations';
-import { formatDate, transformNumber } from '../../helpers';
+
+
+import { getAllTransactions } from 'redux/transactions/transactions-operations';
+import {
+  getTransactions,
+  getTransactionsLoading,
+  getPage,
+  getTotalPages,
+  // getTotalTransactions,
+} from 'redux/selectors';
+import { formatDate, transformNumber } from 'helpers';
+
 
 import {
   ContainerTable,
@@ -19,24 +28,31 @@ import {
   Item,
   ItemFirstChild,
   ItemLastChild,
+
   TableSumNumber,
   ListSumNumber,
   ElementBorder,
-} from 'components/BalanceTable/BalanceTable.styled';
-import { NoStatisticsText, LoaderStatistics } from '../../components';
+  BOxBtn,
+} from './BalanceTable.styled';
+import { NoStatisticsText, LoaderStatistics, ButtonLoadMore } from 'components';
 
-export const BalanceTable = () => {
+
+export const BalanceTable = transactions => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const allTransactions = useSelector(getTransactions);
+  const transactionsPage = useSelector(getTransactions);
   const loading = useSelector(getTransactionsLoading);
-  console.log(allTransactions[0]);
-  useEffect(() => {
-    dispatch(getAllTransactions());
-  }, [dispatch]);
+  const currentPage = +useSelector(getPage);
+  const totalPages = +useSelector(getTotalPages);
 
-  const isNoTransactions = allTransactions?.length === 0;
+  const isLastPage = currentPage < totalPages;
+
+  const onClickLoadMoreBtn = () => {
+    dispatch(getAllTransactions({ page: +currentPage + 1 }));
+  };
+
+  const isNoTransactions = transactionsPage?.length === 0;
 
   return (
     <>
@@ -58,7 +74,7 @@ export const BalanceTable = () => {
               </TheadTr>
             </Thead>
             <Tbody>
-              {allTransactions.map(
+              {transactionsPage.map(
                 ({
                   _id,
                   date,
@@ -73,21 +89,28 @@ export const BalanceTable = () => {
                     <td>{type === 'income' ? '+' : '-'}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
+
                     <TableSumNumber textColor={type}>
                       {transformNumber(sum)}
                     </TableSumNumber>
+
                     <td>{transformNumber(balanceAfterTransaction)}</td>
                   </TbodyTr>
                 )
               )}
             </Tbody>
           </Table>
+          {isLastPage && (
+            <BOxBtn>
+              <ButtonLoadMore onClick={onClickLoadMoreBtn} />
+            </BOxBtn>
+          )}
         </ContainerTable>
       )}
 
       <ContainerList>
         <List>
-          {allTransactions.map(
+          {transactionsPage.map(
             ({
               _id,
               date,
@@ -99,22 +122,25 @@ export const BalanceTable = () => {
             }) => (
               <Element key={_id} textColor={type}>
                 <Item>
-                  <ItemFirstChild>Date</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.date')}</ItemFirstChild>
                   <ItemLastChild>{formatDate(date)}</ItemLastChild>
                 </Item>
                 <Item>
+
                   <ItemFirstChild>Type</ItemFirstChild>
                   <ItemLastChild>{type === 'income' ? '+' : '-'}</ItemLastChild>
+
                 </Item>
                 <Item>
-                  <ItemFirstChild>Category</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.category')}</ItemFirstChild>
                   <ItemLastChild>{category}</ItemLastChild>
                 </Item>
                 <Item>
-                  <ItemFirstChild>Comment</ItemFirstChild>
+                  <ItemFirstChild>{t('transactions.comment')}</ItemFirstChild>
                   <ItemLastChild>{comment}</ItemLastChild>
                 </Item>
                 <Item>
+
                   <ItemFirstChild>Sum</ItemFirstChild>
                   <ListSumNumber textColor={type}>
                     {transformNumber(sum)}
@@ -122,6 +148,7 @@ export const BalanceTable = () => {
                 </Item>
                 <Item>
                   <ItemFirstChild>Balance</ItemFirstChild>
+
                   <ItemLastChild>
                     {transformNumber(balanceAfterTransaction)}
                   </ItemLastChild>
@@ -130,6 +157,11 @@ export const BalanceTable = () => {
             )
           )}
         </List>
+        {isLastPage && (
+          <BOxBtn>
+            <ButtonLoadMore onClick={onClickLoadMoreBtn} />
+          </BOxBtn>
+        )}
       </ContainerList>
     </>
   );
