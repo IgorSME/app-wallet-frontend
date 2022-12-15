@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTransactions } from '../../redux/selectors';
+import { getTransactions, getTransactionsLoading } from '../../redux/selectors';
 import { getAllTransactions } from '../../redux/transactions/transactions-operations';
+import { formatDate } from '../../helpers';
 
 import {
   ContainerTable,
@@ -19,20 +20,27 @@ import {
   ItemFirstChild,
   ItemLastChild,
 } from 'components/BalanceTable/BalanceTable.styled';
+import { NoStatisticsText, LoaderStatistics } from '../../components';
 
 export const BalanceTable = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const allTransactions = useSelector(getTransactions);
+  const loading = useSelector(getTransactionsLoading);
+  console.log(allTransactions[0]);
   useEffect(() => {
     dispatch(getAllTransactions());
   }, [dispatch]);
 
+  const isNoTransactions = allTransactions?.length === 0;
+
   return (
     <>
-      {allTransactions?.length === 0 ? (
-        <h2>Sorry, you don't have any transactions yet</h2>
+      {loading ? (
+        <LoaderStatistics />
+      ) : isNoTransactions ? (
+        <NoStatisticsText>{t('transactions.text')}</NoStatisticsText>
       ) : (
         <ContainerTable>
           <Table>
@@ -58,7 +66,7 @@ export const BalanceTable = () => {
                   balanceAfterTransaction,
                 }) => (
                   <TbodyTr key={_id}>
-                    <td>{date}</td>
+                    <td>{formatDate(date)}</td>
                     <td>{type}</td>
                     <td>{category}</td>
                     <td>{comment}</td>
@@ -74,58 +82,44 @@ export const BalanceTable = () => {
 
       <ContainerList>
         <List>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>04.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Other</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Gift for your wife</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>300.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>6 900.00</ItemLastChild>
-            </Item>
-          </Element>
-          <Element>
-            <Item>
-              <ItemFirstChild>Date</ItemFirstChild>
-              <ItemLastChild>04.01.19</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Type</ItemFirstChild>
-              <ItemLastChild> - </ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Category</ItemFirstChild>
-              <ItemLastChild>Other</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Comment</ItemFirstChild>
-              <ItemLastChild>Gift for your wife</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Sum</ItemFirstChild>
-              <ItemLastChild>300.00</ItemLastChild>
-            </Item>
-            <Item>
-              <ItemFirstChild>Balance</ItemFirstChild>
-              <ItemLastChild>6 900.00</ItemLastChild>
-            </Item>
-          </Element>
+          {allTransactions.map(
+            ({
+              _id,
+              date,
+              type,
+              category,
+              comment,
+              sum,
+              balanceAfterTransaction,
+            }) => (
+              <Element key={_id}>
+                <Item>
+                  <ItemFirstChild>Date</ItemFirstChild>
+                  <ItemLastChild>{formatDate(date)}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Type</ItemFirstChild>
+                  <ItemLastChild>{type}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Category</ItemFirstChild>
+                  <ItemLastChild>{category}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Comment</ItemFirstChild>
+                  <ItemLastChild>{comment}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Sum</ItemFirstChild>
+                  <ItemLastChild>{sum}</ItemLastChild>
+                </Item>
+                <Item>
+                  <ItemFirstChild>Balance</ItemFirstChild>
+                  <ItemLastChild>{balanceAfterTransaction}</ItemLastChild>
+                </Item>
+              </Element>
+            )
+          )}
         </List>
       </ContainerList>
     </>
