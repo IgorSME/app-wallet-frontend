@@ -14,17 +14,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={theme}>
-          <Global styles={GlobalStyles} />
-          <BrowserRouter>
-            <ToastContainer autoClose={800} />
-            <App />
-          </BrowserRouter>
-        </ThemeProvider>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <ThemeProvider theme={theme}>
+        <Global styles={GlobalStyles} />
+        <BrowserRouter>
+          <ToastContainer autoClose={800} />
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </PersistGate>
+  </Provider>
+  // </React.StrictMode>
 );
