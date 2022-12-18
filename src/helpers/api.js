@@ -33,7 +33,9 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response.status === 412) {
+    const newConfig = error.config;
+    if (error.response.status === 412 && !newConfig._retry) {
+      newConfig._retry = true;
       try {
         const state = store.getState();
         const refreshToken = state.auth.refreshToken;
@@ -47,8 +49,8 @@ axios.interceptors.response.use(
             accessToken: data.accessToken,
           })
         );
-
-        //return axios(error.config);
+        newConfig.headers.Authorization = `Bearer ${data.accessToken}`;
+        return axios(newConfig);
       } catch (error) {
         store.dispatch(authOperations.logout());
         return Promise.reject(error);
